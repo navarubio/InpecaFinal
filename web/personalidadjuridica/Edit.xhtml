@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PersonalidadjuridicaEditDlg" widgetVar="PersonalidadjuridicaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPersonalidadjuridicaTitle}">
+            <h:form id="PersonalidadjuridicaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{personalidadjuridicaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPersonalidadjuridicaLabel_idpersonalidad}" for="idpersonalidad" />
+                        <p:inputText id="idpersonalidad" value="#{personalidadjuridicaController.selected.idpersonalidad}" title="#{bundle.EditPersonalidadjuridicaTitle_idpersonalidad}" required="true" requiredMessage="#{bundle.EditPersonalidadjuridicaRequiredMessage_idpersonalidad}"/>
+                        <p:outputLabel value="#{bundle.EditPersonalidadjuridicaLabel_personalidad}" for="personalidad" />
+                        <p:inputText id="personalidad" value="#{personalidadjuridicaController.selected.personalidad}" title="#{bundle.EditPersonalidadjuridicaTitle_personalidad}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{personalidadjuridicaController.update}" value="#{bundle.Save}" update="display,:PersonalidadjuridicaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PersonalidadjuridicaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PersonalidadjuridicaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RequerimientoEditDlg" widgetVar="RequerimientoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditRequerimientoTitle}">
+            <h:form id="RequerimientoEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{requerimientoController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditRequerimientoLabel_idrequerimiento}" for="idrequerimiento" />
+                        <p:inputText id="idrequerimiento" value="#{requerimientoController.selected.idrequerimiento}" title="#{bundle.EditRequerimientoTitle_idrequerimiento}" required="true" requiredMessage="#{bundle.EditRequerimientoRequiredMessage_idrequerimiento}"/>
+                        <p:outputLabel value="#{bundle.EditRequerimientoLabel_codigo}" for="codigo" />
+                        <p:inputText id="codigo" value="#{requerimientoController.selected.codigo}" title="#{bundle.EditRequerimientoTitle_codigo}" />
+                        <p:outputLabel value="#{bundle.EditRequerimientoLabel_cantidad}" for="cantidad" />
+                        <p:inputText id="cantidad" value="#{requerimientoController.selected.cantidad}" title="#{bundle.EditRequerimientoTitle_cantidad}" />
+                        <p:outputLabel value="#{bundle.EditRequerimientoLabel_pcosto}" for="pcosto" />
+                        <p:inputText id="pcosto" value="#{requerimientoController.selected.pcosto}" title="#{bundle.EditRequerimientoTitle_pcosto}" />
+                        <p:outputLabel value="#{bundle.EditRequerimientoLabel_idauxiliarrequerimiento}" for="idauxiliarrequerimiento" />
+                        <p:selectOneMenu id="idauxiliarrequerimiento" value="#{requerimientoController.selected.idauxiliarrequerimiento}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{auxiliarrequerimientoController.itemsAvailableSelectOne}"
+                                           var="idauxiliarrequerimientoItem"
+                                           itemValue="#{idauxiliarrequerimientoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{requerimientoController.update}" value="#{bundle.Save}" update="display,:RequerimientoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'RequerimientoEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="RequerimientoEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

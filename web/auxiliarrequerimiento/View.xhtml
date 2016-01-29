@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AuxiliarrequerimientoViewDlg" widgetVar="AuxiliarrequerimientoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewAuxiliarrequerimientoTitle}">
+            <h:form id="AuxiliarrequerimientoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{auxiliarrequerimientoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewAuxiliarrequerimientoLabel_idauxiliarrequerimiento}"/>
+                        <h:outputText value="#{auxiliarrequerimientoController.selected.idauxiliarrequerimiento}" title="#{bundle.ViewAuxiliarrequerimientoTitle_idauxiliarrequerimiento}"/>
+                        <h:outputText value="#{bundle.ViewAuxiliarrequerimientoLabel_posibleproveedor}"/>
+                        <h:outputText value="#{auxiliarrequerimientoController.selected.posibleproveedor}" title="#{bundle.ViewAuxiliarrequerimientoTitle_posibleproveedor}"/>
+                        <h:outputText value="#{bundle.ViewAuxiliarrequerimientoLabel_telefonoproveedor}"/>
+                        <h:outputText value="#{auxiliarrequerimientoController.selected.telefonoproveedor}" title="#{bundle.ViewAuxiliarrequerimientoTitle_telefonoproveedor}"/>
+                        <h:outputText value="#{bundle.ViewAuxiliarrequerimientoLabel_descripcion}"/>
+                        <h:outputText value="#{auxiliarrequerimientoController.selected.descripcion}" title="#{bundle.ViewAuxiliarrequerimientoTitle_descripcion}"/>
+                        <h:outputText value="#{bundle.ViewAuxiliarrequerimientoLabel_fecharequerimiento}"/>
+                        <h:outputText value="#{auxiliarrequerimientoController.selected.fecharequerimiento}" title="#{bundle.ViewAuxiliarrequerimientoTitle_fecharequerimiento}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewAuxiliarrequerimientoLabel_idusuario}"/>
+                        <h:outputText value="#{auxiliarrequerimientoController.selected.idusuario}" title="#{bundle.ViewAuxiliarrequerimientoTitle_idusuario}"/>
+                        <h:outputText value="#{bundle.ViewAuxiliarrequerimientoLabel_idestatusrequerimiento}"/>
+                        <h:outputText value="#{auxiliarrequerimientoController.selected.idestatusrequerimiento}" title="#{bundle.ViewAuxiliarrequerimientoTitle_idestatusrequerimiento}"/>
+                        <h:outputText value="#{bundle.ViewAuxiliarrequerimientoLabel_iddepartamento}"/>
+                        <h:outputText value="#{auxiliarrequerimientoController.selected.iddepartamento}" title="#{bundle.ViewAuxiliarrequerimientoTitle_iddepartamento}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="AuxiliarrequerimientoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

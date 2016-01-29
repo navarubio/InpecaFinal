@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ClienteCreateDlg" widgetVar="ClienteCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateClienteTitle}">
+            <h:form id="ClienteCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{clienteController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateClienteLabel_rifcliente}" for="rifcliente" />
+                        <p:inputText id="rifcliente" value="#{clienteController.selected.rifcliente}" title="#{bundle.CreateClienteTitle_rifcliente}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_rifcliente}"/>
+                        <p:outputLabel value="#{bundle.CreateClienteLabel_razonsocial}" for="razonsocial" />
+                        <p:inputText id="razonsocial" size="60" value="#{clienteController.selected.razonsocial}" title="#{bundle.CreateClienteTitle_razonsocial}" />
+                        <p:outputLabel value="#{bundle.CreateClienteLabel_direccionfiscal}" for="direccionfiscal" />
+                        <p:inputText id="direccionfiscal" size="60" value="#{clienteController.selected.direccionfiscal}" title="#{bundle.CreateClienteTitle_direccionfiscal}" />
+                        <p:outputLabel value="#{bundle.CreateClienteLabel_telefonos}" for="telefonos" />
+                        <p:inputText id="telefonos" value="#{clienteController.selected.telefonos}" title="#{bundle.CreateClienteTitle_telefonos}" />
+                        <p:outputLabel value="#{bundle.CreateClienteLabel_correo}" for="correo" />
+                        <p:inputText id="correo" value="#{clienteController.selected.correo}" title="#{bundle.CreateClienteTitle_correo}" />
+                        <p:outputLabel value="#{bundle.CreateClienteLabel_fechainscripcion}" for="fechainscripcion" />
+                        <p:calendar id="fechainscripcion" pattern="MM/dd/yyyy" value="#{clienteController.selected.fechainscripcion}" title="#{bundle.EditClienteTitle_fechainscripcion}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateClienteLabel_personacontacto}" for="personacontacto" />
+                        <p:inputText id="personacontacto" size="60"  value="#{clienteController.selected.personacontacto}" title="#{bundle.CreateClienteTitle_personacontacto}" />
+                        <p:outputLabel value="#{bundle.CreateClienteLabel_telefonocontacto}" for="telefonocontacto" />
+                        <p:inputText id="telefonocontacto" value="#{clienteController.selected.telefonocontacto}" title="#{bundle.CreateClienteTitle_telefonocontacto}" />
+                        <p:outputLabel value="#{bundle.CreateClienteLabel_idcontribuyente}" for="idcontribuyente" />
+                        <p:selectOneMenu id="idcontribuyente" value="#{clienteController.selected.idcontribuyente}" >
+                            <f:selectItems value="#{contribuyenteController.itemsAvailableSelectOne}"
+                                           var="idcontribuyenteItem"
+                                           itemValue="#{idcontribuyenteItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateClienteLabel_idpersonalidad}" for="idpersonalidad" />
+                        <p:selectOneMenu id="idpersonalidad" value="#{clienteController.selected.idpersonalidad}" >
+                            <f:selectItems value="#{personalidadjuridicaController.itemsAvailableSelectOne}"
+                                           var="idpersonalidadItem"
+                                           itemValue="#{idpersonalidadItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{clienteController.create}" value="#{bundle.Save}" update="display,:ClienteListForm:datalist,:growl" oncomplete="handleSubmit(args,'ClienteCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ClienteCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

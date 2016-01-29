@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EstatusrequerimientoEditDlg" widgetVar="EstatusrequerimientoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditEstatusrequerimientoTitle}">
+            <h:form id="EstatusrequerimientoEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{estatusrequerimientoController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditEstatusrequerimientoLabel_idestatusrequerimiento}" for="idestatusrequerimiento" />
+                        <p:inputText id="idestatusrequerimiento" value="#{estatusrequerimientoController.selected.idestatusrequerimiento}" title="#{bundle.EditEstatusrequerimientoTitle_idestatusrequerimiento}" required="true" requiredMessage="#{bundle.EditEstatusrequerimientoRequiredMessage_idestatusrequerimiento}"/>
+                        <p:outputLabel value="#{bundle.EditEstatusrequerimientoLabel_estatusrequerimiento}" for="estatusrequerimiento" />
+                        <p:inputText id="estatusrequerimiento" value="#{estatusrequerimientoController.selected.estatusrequerimiento}" title="#{bundle.EditEstatusrequerimientoTitle_estatusrequerimiento}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{estatusrequerimientoController.update}" value="#{bundle.Save}" update="display,:EstatusrequerimientoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EstatusrequerimientoEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EstatusrequerimientoEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

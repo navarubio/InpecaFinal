@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CondicionfacturaEditDlg" widgetVar="CondicionfacturaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCondicionfacturaTitle}">
+            <h:form id="CondicionfacturaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{condicionfacturaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCondicionfacturaLabel_idcondicionfactura}" for="idcondicionfactura" />
+                        <p:inputText id="idcondicionfactura" value="#{condicionfacturaController.selected.idcondicionfactura}" title="#{bundle.EditCondicionfacturaTitle_idcondicionfactura}" required="true" requiredMessage="#{bundle.EditCondicionfacturaRequiredMessage_idcondicionfactura}"/>
+                        <p:outputLabel value="#{bundle.EditCondicionfacturaLabel_condicionfactura}" for="condicionfactura" />
+                        <p:inputText id="condicionfactura" value="#{condicionfacturaController.selected.condicionfactura}" title="#{bundle.EditCondicionfacturaTitle_condicionfactura}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{condicionfacturaController.update}" value="#{bundle.Save}" update="display,:CondicionfacturaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CondicionfacturaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CondicionfacturaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

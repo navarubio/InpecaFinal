@@ -1,0 +1,30 @@
+#principal{
+    width: 1024px;
+    margin: 0 auto;
+}
+
+#cuadro{
+    margin: 100px auto;
+    width: 40%;
+    text-align: center;
+}
+
+#imag {
+    position: absolute;
+    top:  50px; 
+    left: 250px;
+
+}
+
+#imag1 {
+    position: absolute; 
+    top: 20px; 
+    left: 950px; 
+}
+
+#imag2 {
+    position: absolute;
+    top:  10px; 
+    left: 20px;
+
+}

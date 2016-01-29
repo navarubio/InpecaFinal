@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SubgrupoViewDlg" widgetVar="SubgrupoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewSubgrupoTitle}">
+            <h:form id="SubgrupoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{subgrupoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewSubgrupoLabel_idsubgrupo}"/>
+                        <h:outputText value="#{subgrupoController.selected.idsubgrupo}" title="#{bundle.ViewSubgrupoTitle_idsubgrupo}"/>
+                        <h:outputText value="#{bundle.ViewSubgrupoLabel_subgrupo}"/>
+                        <h:outputText value="#{subgrupoController.selected.subgrupo}" title="#{bundle.ViewSubgrupoTitle_subgrupo}"/>
+                        <h:outputText value="#{bundle.ViewSubgrupoLabel_idgrupo}"/>
+                        <h:outputText value="#{subgrupoController.selected.idgrupo}" title="#{bundle.ViewSubgrupoTitle_idgrupo}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="SubgrupoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

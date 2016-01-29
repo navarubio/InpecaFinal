@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AuxiliarrequerimientoEditDlg" widgetVar="AuxiliarrequerimientoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditAuxiliarrequerimientoTitle}">
+            <h:form id="AuxiliarrequerimientoEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{auxiliarrequerimientoController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditAuxiliarrequerimientoLabel_idauxiliarrequerimiento}" for="idauxiliarrequerimiento" />
+                        <p:inputText id="idauxiliarrequerimiento" value="#{auxiliarrequerimientoController.selected.idauxiliarrequerimiento}" title="#{bundle.EditAuxiliarrequerimientoTitle_idauxiliarrequerimiento}" required="true" requiredMessage="#{bundle.EditAuxiliarrequerimientoRequiredMessage_idauxiliarrequerimiento}"/>
+                        <p:outputLabel value="#{bundle.EditAuxiliarrequerimientoLabel_posibleproveedor}" for="posibleproveedor" />
+                        <p:inputText id="posibleproveedor" value="#{auxiliarrequerimientoController.selected.posibleproveedor}" title="#{bundle.EditAuxiliarrequerimientoTitle_posibleproveedor}" />
+                        <p:outputLabel value="#{bundle.EditAuxiliarrequerimientoLabel_telefonoproveedor}" for="telefonoproveedor" />
+                        <p:inputText id="telefonoproveedor" value="#{auxiliarrequerimientoController.selected.telefonoproveedor}" title="#{bundle.EditAuxiliarrequerimientoTitle_telefonoproveedor}" />
+                        <p:outputLabel value="#{bundle.EditAuxiliarrequerimientoLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{auxiliarrequerimientoController.selected.descripcion}" title="#{bundle.EditAuxiliarrequerimientoTitle_descripcion}" />
+                        <p:outputLabel value="#{bundle.EditAuxiliarrequerimientoLabel_fecharequerimiento}" for="fecharequerimiento" />
+                        <p:calendar id="fecharequerimiento" pattern="MM/dd/yyyy" value="#{auxiliarrequerimientoController.selected.fecharequerimiento}" title="#{bundle.EditAuxiliarrequerimientoTitle_fecharequerimiento}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditAuxiliarrequerimientoLabel_idusuario}" for="idusuario" />
+                        <p:selectOneMenu id="idusuario" value="#{auxiliarrequerimientoController.selected.idusuario}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"
+                                           var="idusuarioItem"
+                                           itemValue="#{idusuarioItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditAuxiliarrequerimientoLabel_idestatusrequerimiento}" for="idestatusrequerimiento" />
+                        <p:selectOneMenu id="idestatusrequerimiento" value="#{auxiliarrequerimientoController.selected.idestatusrequerimiento}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{estatusrequerimientoController.itemsAvailableSelectOne}"
+                                           var="idestatusrequerimientoItem"
+                                           itemValue="#{idestatusrequerimientoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditAuxiliarrequerimientoLabel_iddepartamento}" for="iddepartamento" />
+                        <p:selectOneMenu id="iddepartamento" value="#{auxiliarrequerimientoController.selected.iddepartamento}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{departamentoController.itemsAvailableSelectOne}"
+                                           var="iddepartamentoItem"
+                                           itemValue="#{iddepartamentoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{auxiliarrequerimientoController.update}" value="#{bundle.Save}" update="display,:AuxiliarrequerimientoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'AuxiliarrequerimientoEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AuxiliarrequerimientoEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

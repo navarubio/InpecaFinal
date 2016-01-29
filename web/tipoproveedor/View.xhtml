@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TipoproveedorViewDlg" widgetVar="TipoproveedorViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTipoproveedorTitle}">
+            <h:form id="TipoproveedorViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tipoproveedorController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTipoproveedorLabel_idtipoproveedor}"/>
+                        <h:outputText value="#{tipoproveedorController.selected.idtipoproveedor}" title="#{bundle.ViewTipoproveedorTitle_idtipoproveedor}"/>
+                        <h:outputText value="#{bundle.ViewTipoproveedorLabel_tipoproveedor}"/>
+                        <h:outputText value="#{tipoproveedorController.selected.tipoproveedor}" title="#{bundle.ViewTipoproveedorTitle_tipoproveedor}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TipoproveedorViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

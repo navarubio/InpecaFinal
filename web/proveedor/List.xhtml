@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListProveedorTitle}"></h:outputText>
+            <h:outputStylesheet library="css" name="index.css" />            
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="ProveedorListForm">
+                <div id="imag2">
+                    <img src="../resources/images/LogoInpeca.jpg" width="155" height="58" alt="Logo Inpeca"/>
+                </div>      
+                <img src="../resources/images/kdmconfig.png" width="70" height="70" alt="Clientes" align="right" />
+
+                <p:panel header="#{bundle.ListProveedorTitle}">
+                    <p:dataTable id="datalist" value="#{proveedorController.items}" var="item"
+                                 selectionMode="single" selection="#{proveedorController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.rifproveedor}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column width="100" filterBy="#{item.rifproveedor}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProveedorTitle_rifproveedor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rifproveedor}"/>
+                        </p:column>
+                        <p:column width="250" filterBy="#{item.razonsocial}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProveedorTitle_razonsocial}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.razonsocial}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProveedorTitle_direccionfiscal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.direccionfiscal}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProveedorTitle_telefonos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.telefonos}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProveedorTitle_correo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.correo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProveedorTitle_fechainscripcion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechainscripcion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProveedorTitle_personacontacto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.personacontacto}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProveedorTitle_telefonocontacto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.telefonocontacto}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProveedorTitle_idtipoproveedor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idtipoproveedor.tipoproveedor}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProveedorTitle_idpersonalidad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idpersonalidad.personalidad}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{proveedorController.prepareCreate}" update=":ProveedorCreateForm" oncomplete="PF('ProveedorCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ProveedorViewForm" oncomplete="PF('ProveedorViewDialog').show()" disabled="#{empty proveedorController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ProveedorEditForm" oncomplete="PF('ProveedorEditDialog').show()" disabled="#{empty proveedorController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{proveedorController.destroy}" update=":growl,datalist" disabled="#{empty proveedorController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

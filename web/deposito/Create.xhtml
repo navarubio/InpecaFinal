@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DepositoCreateDlg" widgetVar="DepositoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateDepositoTitle}">
+            <h:form id="DepositoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{depositoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateDepositoLabel_iddeposito}" for="iddeposito" />
+                        <p:inputText id="iddeposito" value="#{depositoController.selected.iddeposito}" title="#{bundle.CreateDepositoTitle_iddeposito}" required="true" requiredMessage="#{bundle.CreateDepositoRequiredMessage_iddeposito}"/>
+                        <p:outputLabel value="#{bundle.CreateDepositoLabel_nombredeposito}" for="nombredeposito" />
+                        <p:inputText id="nombredeposito" value="#{depositoController.selected.nombredeposito}" title="#{bundle.CreateDepositoTitle_nombredeposito}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{depositoController.create}" value="#{bundle.Save}" update="display,:DepositoListForm:datalist,:growl" oncomplete="handleSubmit(args,'DepositoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DepositoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

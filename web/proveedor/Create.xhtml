@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProveedorCreateDlg" widgetVar="ProveedorCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateProveedorTitle}">
+            <h:form id="ProveedorCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{proveedorController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateProveedorLabel_rifproveedor}" for="rifproveedor" />
+                        <p:inputText id="rifproveedor" value="#{proveedorController.selected.rifproveedor}" title="#{bundle.CreateProveedorTitle_rifproveedor}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_rifproveedor}"/>
+                        <p:outputLabel value="#{bundle.CreateProveedorLabel_razonsocial}" for="razonsocial" />
+                        <p:inputText id="razonsocial" value="#{proveedorController.selected.razonsocial}" title="#{bundle.CreateProveedorTitle_razonsocial}" />
+                        <p:outputLabel value="#{bundle.CreateProveedorLabel_direccionfiscal}" for="direccionfiscal" />
+                        <p:inputText id="direccionfiscal" value="#{proveedorController.selected.direccionfiscal}" title="#{bundle.CreateProveedorTitle_direccionfiscal}" />
+                        <p:outputLabel value="#{bundle.CreateProveedorLabel_telefonos}" for="telefonos" />
+                        <p:inputText id="telefonos" value="#{proveedorController.selected.telefonos}" title="#{bundle.CreateProveedorTitle_telefonos}" />
+                        <p:outputLabel value="#{bundle.CreateProveedorLabel_correo}" for="correo" />
+                        <p:inputText id="correo" value="#{proveedorController.selected.correo}" title="#{bundle.CreateProveedorTitle_correo}" />
+                        <p:outputLabel value="#{bundle.CreateProveedorLabel_fechainscripcion}" for="fechainscripcion" />
+                        <p:calendar id="fechainscripcion" pattern="MM/dd/yyyy" value="#{proveedorController.selected.fechainscripcion}" title="#{bundle.EditProveedorTitle_fechainscripcion}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateProveedorLabel_personacontacto}" for="personacontacto" />
+                        <p:inputText id="personacontacto" value="#{proveedorController.selected.personacontacto}" title="#{bundle.CreateProveedorTitle_personacontacto}" />
+                        <p:outputLabel value="#{bundle.CreateProveedorLabel_telefonocontacto}" for="telefonocontacto" />
+                        <p:inputText id="telefonocontacto" value="#{proveedorController.selected.telefonocontacto}" title="#{bundle.CreateProveedorTitle_telefonocontacto}" />
+                        <p:outputLabel value="#{bundle.CreateProveedorLabel_idtipoproveedor}" for="idtipoproveedor" />
+                        <p:selectOneMenu id="idtipoproveedor" value="#{proveedorController.selected.idtipoproveedor}" >
+                            <f:selectItems value="#{tipoproveedorController.itemsAvailableSelectOne}"
+                                           var="idtipoproveedorItem"
+                                           itemValue="#{idtipoproveedorItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateProveedorLabel_idusuario}" for="idusuario" />
+                        <p:selectOneMenu id="idusuario" value="#{proveedorController.selected.idusuario}" >
+                            <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"
+                                           var="idusuarioItem"
+                                           itemValue="#{idusuarioItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateProveedorLabel_idpersonalidad}" for="idpersonalidad" />
+                        <p:selectOneMenu id="idpersonalidad" value="#{proveedorController.selected.idpersonalidad}" >
+                            <f:selectItems value="#{personalidadjuridicaController.itemsAvailableSelectOne}"
+                                           var="idpersonalidadItem"
+                                           itemValue="#{idpersonalidadItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{proveedorController.create}" value="#{bundle.Save}" update="display,:ProveedorListForm:datalist,:growl" oncomplete="handleSubmit(args,'ProveedorCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ProveedorCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

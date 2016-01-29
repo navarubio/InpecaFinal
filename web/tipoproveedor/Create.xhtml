@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TipoproveedorCreateDlg" widgetVar="TipoproveedorCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTipoproveedorTitle}">
+            <h:form id="TipoproveedorCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tipoproveedorController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTipoproveedorLabel_idtipoproveedor}" for="idtipoproveedor" />
+                        <p:inputText id="idtipoproveedor" value="#{tipoproveedorController.selected.idtipoproveedor}" title="#{bundle.CreateTipoproveedorTitle_idtipoproveedor}" required="true" requiredMessage="#{bundle.CreateTipoproveedorRequiredMessage_idtipoproveedor}"/>
+                        <p:outputLabel value="#{bundle.CreateTipoproveedorLabel_tipoproveedor}" for="tipoproveedor" />
+                        <p:inputText id="tipoproveedor" value="#{tipoproveedorController.selected.tipoproveedor}" title="#{bundle.CreateTipoproveedorTitle_tipoproveedor}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tipoproveedorController.create}" value="#{bundle.Save}" update="display,:TipoproveedorListForm:datalist,:growl" oncomplete="handleSubmit(args,'TipoproveedorCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TipoproveedorCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

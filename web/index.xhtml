@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Inpeca Web</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+        <h:outputStylesheet library="css" name="index.css" />        
+    </h:head>
+    <h:body id="principal">
+        <div id="cuadro">
+            <h:form>
+                <h2 >Sistema Empresarial INPECA  </h2>                
+                <p:messages autoUpdate="true" showDetail="true"/>
+                <p:panelGrid columns="2"> 
+                    <p:outputLabel for="textUsuario" value="Usuario" />
+                    <p:inputText id="textUsuario" value="#{indexController.usuario.usuario}" required="true" />
+                    <p:outputLabel for="textPassword" value="Password"/>
+                    <p:password id="textPassword" value="#{indexController.usuario.clave}" required="true" />
+                    <h:column/>
+                    <p:commandButton  icon="ui-icon-key" value="Iniciar Sesion" action="#{indexController.iniciarSesion()}" />
+                </p:panelGrid>
+                <p:separator/>
+                <!--p:link value="Crear Cuenta" outcome="usuario/Create" /-->
+            </h:form>
+        </div>
+
+        <!--h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
+        <br />
+        <h:link outcome="/articulo/List" value="Show All Articulo Items"/>
+        <br />
+        <h:link outcome="/auxiliarrequerimiento/List" value="Show All Auxiliarrequerimiento Items"/>
+        <br />
+        <h:link outcome="/cliente/List" value="Show All Cliente Items"/>
+        <br />
+        <h:link outcome="/condicionfactura/List" value="Show All Condicionfactura Items"/>
+        <br />
+        <h:link outcome="/contribuyente/List" value="Show All Contribuyente Items"/>
+        <br />
+        <h:link outcome="/departamento/List" value="Show All Departamento Items"/>
+        <br />
+        <h:link outcome="/deposito/List" value="Show All Deposito Items"/>
+        <br />
+        <h:link outcome="/estatusrequerimiento/List" value="Show All Estatusrequerimiento Items"/>
+        <br />
+        <h:link outcome="/gravamen/List" value="Show All Gravamen Items"/>
+        <br />
+        <h:link outcome="/grupo/List" value="Show All Grupo Items"/>
+        <br />
+        <h:link outcome="/medida/List" value="Show All Medida Items"/>
+        <br />
+        <h:link outcome="/personalidadjuridica/List" value="Show All Personalidadjuridica Items"/>
+        <br />
+        <h:link outcome="/proveedor/List" value="Show All Proveedor Items"/>
+        <br />
+        <h:link outcome="/requerimiento/List" value="Show All Requerimiento Items"/>
+        <br />
+        <h:link outcome="/subgrupo/List" value="Show All Subgrupo Items"/>
+        <br />
+        <h:link outcome="/tipopago/List" value="Show All Tipopago Items"/>
+        <br />
+        <h:link outcome="/tipoproveedor/List" value="Show All Tipoproveedor Items"/>
+        <br />
+        <h:link outcome="/usuario/List" value="Show All Usuario Items"/-->
+    </h:body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
+

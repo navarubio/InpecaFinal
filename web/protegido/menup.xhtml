@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <body>
+
+        <ui:composition template="./../template.xhtml">
+
+            <ui:define name="title">
+                <h:outputStylesheet library="css" name="index.css"/>                
+                <h:outputText value="#{bundle.Menup}"></h:outputText>
+            </ui:define>
+
+            <ui:define name="body">
+                <a href="../faces/cliente/List.xhtml"> <img src="../resources/images/kuser.png" width="100" height="100" alt="Clientes" title="Clientes Registrados"/></a>
+                <br/> 
+                <a href="../faces/proveedor/List.xhtml"><img src="../resources/images/kdmconfig.png" width="100" height="100" alt="Proveedores" title="Proveedores Registrados"/></a>
+                <br/>
+                <a href="../faces/articulo/List.xhtml"><img src="../resources/images/blockdevice.png" width="100" height="100" alt="Consultar Articulos" title="Catologo de Articulos"/></a>
+                <br/>
+                <a href="../faces/requerimiento/newRequerimiento.xhtml"><img src="../resources/images/lists.png"  width="100" height="100" alt="Consutar Usurios" title="Hacer Requerimientos" /> </a> 
+                <br/>    
+
+                <div id="imag">
+                    <img src="../resources/images/LogoInpeca.jpg" width="510" height="255" alt="Logo Inpeca"/>
+                </div>  
+                <div id="imag1">
+                    <img src="../resources/images/FOTOPLANTA.jpg" width="310" height="438" alt="INPECA PLANTA" />
+                </div>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

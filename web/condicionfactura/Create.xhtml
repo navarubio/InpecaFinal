@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CondicionfacturaCreateDlg" widgetVar="CondicionfacturaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCondicionfacturaTitle}">
+            <h:form id="CondicionfacturaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{condicionfacturaController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateCondicionfacturaLabel_idcondicionfactura}" for="idcondicionfactura" />
+                        <p:inputText id="idcondicionfactura" value="#{condicionfacturaController.selected.idcondicionfactura}" title="#{bundle.CreateCondicionfacturaTitle_idcondicionfactura}" required="true" requiredMessage="#{bundle.CreateCondicionfacturaRequiredMessage_idcondicionfactura}"/>
+                        <p:outputLabel value="#{bundle.CreateCondicionfacturaLabel_condicionfactura}" for="condicionfactura" />
+                        <p:inputText id="condicionfactura" value="#{condicionfacturaController.selected.condicionfactura}" title="#{bundle.CreateCondicionfacturaTitle_condicionfactura}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{condicionfacturaController.create}" value="#{bundle.Save}" update="display,:CondicionfacturaListForm:datalist,:growl" oncomplete="handleSubmit(args,'CondicionfacturaCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CondicionfacturaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

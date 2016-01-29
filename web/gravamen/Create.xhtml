@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="GravamenCreateDlg" widgetVar="GravamenCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateGravamenTitle}">
+            <h:form id="GravamenCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{gravamenController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateGravamenLabel_idgravamen}" for="idgravamen" />
+                        <p:inputText id="idgravamen" value="#{gravamenController.selected.idgravamen}" title="#{bundle.CreateGravamenTitle_idgravamen}" required="true" requiredMessage="#{bundle.CreateGravamenRequiredMessage_idgravamen}"/>
+                        <p:outputLabel value="#{bundle.CreateGravamenLabel_categoria}" for="categoria" />
+                        <p:inputText id="categoria" value="#{gravamenController.selected.categoria}" title="#{bundle.CreateGravamenTitle_categoria}" />
+                        <p:outputLabel value="#{bundle.CreateGravamenLabel_alicuota}" for="alicuota" />
+                        <p:inputText id="alicuota" value="#{gravamenController.selected.alicuota}" title="#{bundle.CreateGravamenTitle_alicuota}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{gravamenController.create}" value="#{bundle.Save}" update="display,:GravamenListForm:datalist,:growl" oncomplete="handleSubmit(args,'GravamenCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="GravamenCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

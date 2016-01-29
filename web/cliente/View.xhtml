@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ClienteViewDlg" widgetVar="ClienteViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewClienteTitle}">
+            <h:form id="ClienteViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{clienteController.selected != null}">
+                        <h:outputText value="#{bundle.ViewClienteLabel_rifcliente}"/>
+                        <h:outputText value="#{clienteController.selected.rifcliente}" title="#{bundle.ViewClienteTitle_rifcliente}"/>
+                        <h:outputText value="#{bundle.ViewClienteLabel_razonsocial}"/>
+                        <h:outputText value="#{clienteController.selected.razonsocial}" title="#{bundle.ViewClienteTitle_razonsocial}"/>
+                        <h:outputText value="#{bundle.ViewClienteLabel_direccionfiscal}"/>
+                        <h:outputText value="#{clienteController.selected.direccionfiscal}" title="#{bundle.ViewClienteTitle_direccionfiscal}"/>
+                        <h:outputText value="#{bundle.ViewClienteLabel_telefonos}"/>
+                        <h:outputText value="#{clienteController.selected.telefonos}" title="#{bundle.ViewClienteTitle_telefonos}"/>
+                        <h:outputText value="#{bundle.ViewClienteLabel_correo}"/>
+                        <h:outputText value="#{clienteController.selected.correo}" title="#{bundle.ViewClienteTitle_correo}"/>
+                        <h:outputText value="#{bundle.ViewClienteLabel_fechainscripcion}"/>
+                        <h:outputText value="#{clienteController.selected.fechainscripcion}" title="#{bundle.ViewClienteTitle_fechainscripcion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewClienteLabel_personacontacto}"/>
+                        <h:outputText value="#{clienteController.selected.personacontacto}" title="#{bundle.ViewClienteTitle_personacontacto}"/>
+                        <h:outputText value="#{bundle.ViewClienteLabel_telefonocontacto}"/>
+                        <h:outputText value="#{clienteController.selected.telefonocontacto}" title="#{bundle.ViewClienteTitle_telefonocontacto}"/>
+                        <h:outputText value="#{bundle.ViewClienteLabel_idcontribuyente}"/>
+                        <h:outputText value="#{clienteController.selected.idcontribuyente.contribuyente}" title="#{bundle.ViewClienteTitle_idcontribuyente}"/>
+                        <h:outputText value="#{bundle.ViewClienteLabel_idpersonalidad}"/>
+                        <h:outputText value="#{clienteController.selected.idpersonalidad.personalidad}" title="#{bundle.ViewClienteTitle_idpersonalidad}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ClienteViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    
+    <ui:composition>
+
+        <p:dialog id="ArticuloCreateDlg" widgetVar="ArticuloCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateArticuloTitle}">
+            <h:form id="ArticuloCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{articuloController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateArticuloLabel_codigo}" for="codigo" />
+                        <p:inputText id="codigo" value="#{articuloController.selected.codigo}" title="#{bundle.CreateArticuloTitle_codigo}" required="true" requiredMessage="#{bundle.CreateArticuloRequiredMessage_codigo}"/>
+                        <p:outputLabel value="#{bundle.CreateArticuloLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{articuloController.selected.descripcion}" title="#{bundle.CreateArticuloTitle_descripcion}" />
+                        <p:outputLabel value="#{bundle.CreateArticuloLabel_pcosto}" for="pcosto" />
+                        <p:inputText id="pcosto" value="#{articuloController.selected.pcosto}" title="#{bundle.CreateArticuloTitle_pcosto}" />
+                        <p:outputLabel value="#{bundle.CreateArticuloLabel_pventa}" for="pventa" />
+
+                        <p:inputText id="pventa" value="#{articuloController.selected.pventa}" title="#{bundle.CreateArticuloTitle_pventa}" />
+
+                        <p:outputLabel value="#{bundle.CreateArticuloLabel_idmedida}" for="idmedida" />
+                        <p:selectOneMenu id="idmedida" value="#{articuloController.selected.idmedida}" >
+                            <f:selectItems value="#{medidaController.itemsAvailableSelectOne}"
+                                           var="idmedidaItem"
+                                           itemValue="#{idmedidaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateArticuloLabel_idgrupo}" for="idgrupo" />
+                        <p:selectOneMenu id="idgrupo" value="#{articuloController.selected.idgrupo}" >
+                            <f:selectItems value="#{grupoController.itemsAvailableSelectOne}"
+                                           var="idgrupoItem"
+                                           itemValue="#{idgrupoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateArticuloLabel_idsubgrupo}" for="idsubgrupo" />
+                        <p:selectOneMenu id="idsubgrupo" value="#{articuloController.selected.idsubgrupo}" >
+                            <f:selectItems value="#{subgrupoController.itemsAvailableSelectOne}"
+                                           var="idsubgrupoItem"
+                                           itemValue="#{idsubgrupoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateArticuloLabel_idgravamen}" for="idgravamen" />
+                        <p:selectOneMenu id="idgravamen" value="#{articuloController.selected.idgravamen}" >
+                            <f:selectItems value="#{gravamenController.itemsAvailableSelectOne}"
+                                           var="idgravamenItem"
+                                           itemValue="#{idgravamenItem}"/>
+                        </p:selectOneMenu>
+                        
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{articuloController.create}" value="#{bundle.Save}" update="display,:ArticuloListForm:datalist,:growl" oncomplete="handleSubmit(args,'ArticuloCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ArticuloCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

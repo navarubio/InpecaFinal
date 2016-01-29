@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SubgrupoCreateDlg" widgetVar="SubgrupoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSubgrupoTitle}">
+            <h:form id="SubgrupoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{subgrupoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateSubgrupoLabel_idsubgrupo}" for="idsubgrupo" />
+                        <p:inputText id="idsubgrupo" value="#{subgrupoController.selected.idsubgrupo}" title="#{bundle.CreateSubgrupoTitle_idsubgrupo}" required="true" requiredMessage="#{bundle.CreateSubgrupoRequiredMessage_idsubgrupo}"/>
+                        <p:outputLabel value="#{bundle.CreateSubgrupoLabel_subgrupo}" for="subgrupo" />
+                        <p:inputText id="subgrupo" value="#{subgrupoController.selected.subgrupo}" title="#{bundle.CreateSubgrupoTitle_subgrupo}" />
+                        <p:outputLabel value="#{bundle.CreateSubgrupoLabel_idgrupo}" for="idgrupo" />
+                        <p:selectOneMenu id="idgrupo" value="#{subgrupoController.selected.idgrupo}" >
+                            <f:selectItems value="#{grupoController.itemsAvailableSelectOne}"
+                                           var="idgrupoItem"
+                                           itemValue="#{idgrupoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{subgrupoController.create}" value="#{bundle.Save}" update="display,:SubgrupoListForm:datalist,:growl" oncomplete="handleSubmit(args,'SubgrupoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SubgrupoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

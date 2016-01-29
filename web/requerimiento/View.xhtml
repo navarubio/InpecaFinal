@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RequerimientoViewDlg" widgetVar="RequerimientoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewRequerimientoTitle}">
+            <h:form id="RequerimientoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{requerimientoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewRequerimientoLabel_idrequerimiento}"/>
+                        <h:outputText value="#{requerimientoController.selected.idrequerimiento}" title="#{bundle.ViewRequerimientoTitle_idrequerimiento}"/>
+                        <h:outputText value="#{bundle.ViewRequerimientoLabel_codigo}"/>
+                        <h:outputText value="#{requerimientoController.selected.codigo}" title="#{bundle.ViewRequerimientoTitle_codigo}"/>
+                        <h:outputText value="#{bundle.ViewRequerimientoLabel_cantidad}"/>
+                        <h:outputText value="#{requerimientoController.selected.cantidad}" title="#{bundle.ViewRequerimientoTitle_cantidad}"/>
+                        <h:outputText value="#{bundle.ViewRequerimientoLabel_pcosto}"/>
+                        <h:outputText value="#{requerimientoController.selected.pcosto}" title="#{bundle.ViewRequerimientoTitle_pcosto}"/>
+                        <h:outputText value="#{bundle.ViewRequerimientoLabel_idauxiliarrequerimiento}"/>
+                        <h:outputText value="#{requerimientoController.selected.idauxiliarrequerimiento}" title="#{bundle.ViewRequerimientoTitle_idauxiliarrequerimiento}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="RequerimientoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputScript library="js" name="jsfcrud.js"/>
+        <f:event type="preRenderView" listener="#{plantillaController.verificarSesion()}"/>             
+    </h:head>
+
+    <h:body>
+
+        <p:growl id="growl" life="3000" />
+
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="65" header="#{bundle.AppName}">
+                <h:form id="menuForm">
+                    <p:menubar>
+                        <f:facet name="options">
+                            <p:commandLink actionListener="#{plantillaController.cerrarSesion()}" value="Cerrar Sesion" action="/index?faces-redirect=true"/>
+                        </f:facet>
+                        <p:menuitem value="#{bundle.Home}" outcome="/protegido/menup.xhtml" icon="ui-icon-home"/>
+                        <p:submenu label="#{bundle.Admon}" icon="ui-icon-clipboard">
+                            <p:menuitem value="Clientes" outcome="/cliente/List.xhtml" />
+                            <p:menuitem value="Facturacion" outcome="/cliente/List.xhtml" />
+                            <p:menuitem value="Proveedores" outcome="/proveedor/List.xhtml" />
+                            <p:menuitem value="Compras" outcome="/proveedor/List.xhtml" />
+                            <p:menuitem value="Requerimientos" outcome="/cliente/List.xhtml" />
+                            <p:menuitem value="Articulos" outcome="/articulo/List.xhtml" />
+                        </p:submenu>  
+                        <p:submenu label="#{bundle.Opera}" icon="ui-icon-cart">
+                            <p:menuitem value="Requerimientos" outcome="/cliente/List.xhtml" />
+                            <p:menuitem value="Inventario Materia Prima" outcome="/articulo/List.xhtml" />
+                            <p:menuitem value="Inventario Insumos" outcome="/articulo/List.xhtml" />   
+                            <p:menuitem value="Despachos" outcome="/articulo/List.xhtml" />  
+                        </p:submenu>    
+                        <p:submenu label="#{bundle.Contab}" icon="ui-icon-calculator">
+                            <p:menuitem value="Requerimientos" outcome="/cliente/List.xhtml" />
+                            <p:menuitem value="Plan de Cuentas" outcome="/articulo/List.xhtml" />
+                            <p:menuitem value="Centro de Activos" outcome="/articulo/List.xhtml" />   
+                            <p:menuitem value="Centro Contable" outcome="/articulo/List.xhtml" />  
+                        </p:submenu>    
+
+                        <p:submenu label="#{bundle.Maintenance}" icon="ui-icon-wrench">
+                            <p:menuitem value="Condicionfactura" outcome="/condicionfactura/List.xhtml" />
+                            <p:menuitem value="Contribuyente" outcome="/contribuyente/List.xhtml" />
+                            <p:menuitem value="Departamento" outcome="/departamento/List.xhtml" />
+                            <p:menuitem value="Deposito" outcome="/deposito/List.xhtml" />
+                            <p:menuitem value="Gravamen" outcome="/gravamen/List.xhtml" />
+                            <p:menuitem value="Grupo" outcome="/grupo/List.xhtml" />
+                            <p:menuitem value="Subgrupo" outcome="/subgrupo/List.xhtml" />
+                            <p:menuitem value="Medida" outcome="/medida/List.xhtml" />
+                            <p:menuitem value="Personalidadjuridica" outcome="/personalidadjuridica/List.xhtml" />
+                            <p:menuitem value="Tipopago" outcome="/tipopago/List.xhtml" />
+                            <p:menuitem value="Tipoproveedor" outcome="/tipoproveedor/List.xhtml" />
+                            <p:menuitem value="Usuario" outcome="/usuario/List.xhtml" />
+                        </p:submenu>                    </p:menubar>
+                </h:form>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="50">
+                <h3>INPECAWEB Ver. 1.0  ® 2016. Lic. Manuel Nava Rubio CPC76939    Reservados todos los Derechos                                                                                                   Maracaibo - Venezuela</h3>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center">
+                <ui:insert name="body"/>
+            </p:layoutUnit>
+
+        </p:layout>
+
+    </h:body>
+
+</html>
