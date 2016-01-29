@@ -12,7 +12,7 @@
 
             <ui:define name="title">
                 title
-                <h:outputStylesheet library="css" name="index.css" />                   
+             
             </ui:define>
 
             <ui:define name="body">
@@ -47,18 +47,18 @@
                                 <p:selectOneMenu id="idrequerimiento" value="#{requerimientosController.requer.codigo}" >
                                     <f:selectItems value="#{requerimientosController.articulos}"
                                                    var="idarticuloItem"
-                                                   itemLabel="#{idarticuloItem.descripcion}"  /> 
+                                                   itemLabel="#{idarticuloItem.codigo}"  /> 
                                 </p:selectOneMenu>
                                 <p:outputLabel for="cantidad" value="Cantidad" styleClass="requieredLbl" />
                                 <p:inputText id="cantidad" value="#{requerimientosController.requer.cantidad}" required="true"/>
                                 <p:outputLabel for="precio"  value="Precio" styleClass="optionalLbl"/>
                                 <p:inputText id="precio" size="20" value="#{requerimientosController.requer.pcosto}"/>
-                                <p:commandButton value="Anexar" icon="ui-icon-plusthick"  action="#{indexController.enviarConfirmacion()}" update="listado"/>  
+                                <p:commandButton value="Anexar" icon="ui-icon-plusthick"  action="#{requerimientosController.registrar()}" update="listado"/>  
                             </p:panelGrid>
                         </p:fieldset>
                         <p:panel>
-                            <p:dataList id="listado"  value="#{requerimientosController.articulos}" var="arti" emptyMessage="No hay articulos para mostrar">
-                                #{arti.codigo}, #{arti.descripcion}, #{arti.pcosto} 
+                            <p:dataList id="listado"  value="#{requerimientosController.requerimientos}" var="requeri" emptyMessage="No hay articulos para mostrar">
+                                #{requeri.cantidad}, #{requeri.cantidad}, #{requeri.pcosto} 
                             </p:dataList>
                         </p:panel>
                     </p:panel>

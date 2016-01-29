@@ -26,30 +26,42 @@ public class RequerimientosController implements Serializable {
     @EJB
     private ArticuloFacadeLocal articuloEJB;
     @EJB
-    private RequerimientoFacadeLocal RequerimientoEJB;
+    private RequerimientoFacadeLocal requerimientoEJB;
     @EJB
-    private AuxiliarrequerimientoFacadeLocal AuxiliarrequerimientoEJB;
+    private AuxiliarrequerimientoFacadeLocal auxiliarrequerimientoEJB;
     @EJB
+
     private DepartamentoFacadeLocal departamentoEJB;
-
-    @PostConstruct
-    public void init() {
-        articulos = articuloEJB.findAll();
-    }
     private List<Articulo> articulos = null;
-
+    private List<Requerimiento> requerimientos = null;
     public List<Articulo> getArticulos() {
         return articulos;
     }
-
     public void setArticulos(List<Articulo> articulos) {
         this.articulos = articulos;
+    }    
+
+    public List<Requerimiento> getRequerimientos() {
+        return requerimientos;
     }
 
+    public void setRequerimientos(List<Requerimiento> requerimientos) {
+        this.requerimientos = requerimientos;
+    }
+    
+    
     @Inject
     private Articulo articulo;
     @Inject
     private Requerimiento requer;
+    
+    @PostConstruct
+    public void init() {
+        articulos = articuloEJB.findAll();
+    }
+    
+
+
     @Inject
     private Auxiliarrequerimiento auxrequer;
     @Inject
@@ -91,4 +103,10 @@ public class RequerimientosController implements Serializable {
         dpto = departamentoEJB.buscarDepartamento(usua);
         return dpto;        
     }
+    
+    public void registrar (){
+        requerimientoEJB.create(requer);
+        requerimientos = requerimientoEJB.findAll();
+    }
+    
 }
