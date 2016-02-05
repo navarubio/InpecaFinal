@@ -6,7 +6,6 @@
 package Modelo;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -18,13 +17,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -59,17 +56,15 @@ public class Auxiliarrequerimiento implements Serializable {
     @Column(name = "fecharequerimiento")
     @Temporal(TemporalType.DATE)
     private Date fecharequerimiento;
-    @JoinColumn(name = "idusuario", referencedColumnName = "idusuario")
-    @ManyToOne
-    private Usuario idusuario;
     @JoinColumn(name = "idestatusrequerimiento", referencedColumnName = "idestatusrequerimiento")
     @ManyToOne
     private Estatusrequerimiento idestatusrequerimiento;
+    @JoinColumn(name = "idusuario", referencedColumnName = "idusuario")
+    @ManyToOne
+    private Usuario idusuario;
     @JoinColumn(name = "iddepartamento", referencedColumnName = "iddepartamento")
     @ManyToOne
     private Departamento iddepartamento;
-    @OneToMany(mappedBy = "idauxiliarrequerimiento")
-    private Collection<Requerimiento> requerimientoCollection;
 
     public Auxiliarrequerimiento() {
     }
@@ -118,14 +113,6 @@ public class Auxiliarrequerimiento implements Serializable {
         this.fecharequerimiento = fecharequerimiento;
     }
 
-    public Usuario getIdusuario() {
-        return idusuario;
-    }
-
-    public void setIdusuario(Usuario idusuario) {
-        this.idusuario = idusuario;
-    }
-
     public Estatusrequerimiento getIdestatusrequerimiento() {
         return idestatusrequerimiento;
     }
@@ -134,21 +121,20 @@ public class Auxiliarrequerimiento implements Serializable {
         this.idestatusrequerimiento = idestatusrequerimiento;
     }
 
+    public Usuario getIdusuario() {
+        return idusuario;
+    }
+
+    public void setIdusuario(Usuario idusuario) {
+        this.idusuario = idusuario;
+    }
+
     public Departamento getIddepartamento() {
         return iddepartamento;
     }
 
     public void setIddepartamento(Departamento iddepartamento) {
         this.iddepartamento = iddepartamento;
-    }
-
-    @XmlTransient
-    public Collection<Requerimiento> getRequerimientoCollection() {
-        return requerimientoCollection;
-    }
-
-    public void setRequerimientoCollection(Collection<Requerimiento> requerimientoCollection) {
-        this.requerimientoCollection = requerimientoCollection;
     }
 
     @Override

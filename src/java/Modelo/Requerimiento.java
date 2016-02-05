@@ -17,7 +17,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -30,7 +29,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Requerimiento.findAll", query = "SELECT r FROM Requerimiento r"),
     @NamedQuery(name = "Requerimiento.findByIdrequerimiento", query = "SELECT r FROM Requerimiento r WHERE r.idrequerimiento = :idrequerimiento"),
-    @NamedQuery(name = "Requerimiento.findByCodigo", query = "SELECT r FROM Requerimiento r WHERE r.codigo = :codigo"),
     @NamedQuery(name = "Requerimiento.findByCantidad", query = "SELECT r FROM Requerimiento r WHERE r.cantidad = :cantidad"),
     @NamedQuery(name = "Requerimiento.findByPcosto", query = "SELECT r FROM Requerimiento r WHERE r.pcosto = :pcosto")})
 public class Requerimiento implements Serializable {
@@ -40,9 +38,6 @@ public class Requerimiento implements Serializable {
     @Basic(optional = false)
     @Column(name = "idrequerimiento")
     private Integer idrequerimiento;
-    @Size(max = 14)
-    @Column(name = "codigo")
-    private String codigo;
     @Column(name = "cantidad")
     private Integer cantidad;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -51,6 +46,9 @@ public class Requerimiento implements Serializable {
     @JoinColumn(name = "idauxiliarrequerimiento", referencedColumnName = "idauxiliarrequerimiento")
     @ManyToOne
     private Auxiliarrequerimiento idauxiliarrequerimiento;
+    @JoinColumn(name = "codigo", referencedColumnName = "codigo")
+    @ManyToOne
+    private Articulo codigo;
 
     public Requerimiento() {
     }
@@ -65,14 +63,6 @@ public class Requerimiento implements Serializable {
 
     public void setIdrequerimiento(Integer idrequerimiento) {
         this.idrequerimiento = idrequerimiento;
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
     }
 
     public Integer getCantidad() {
@@ -97,6 +87,14 @@ public class Requerimiento implements Serializable {
 
     public void setIdauxiliarrequerimiento(Auxiliarrequerimiento idauxiliarrequerimiento) {
         this.idauxiliarrequerimiento = idauxiliarrequerimiento;
+    }
+
+    public Articulo getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Articulo codigo) {
+        this.codigo = codigo;
     }
 
     @Override

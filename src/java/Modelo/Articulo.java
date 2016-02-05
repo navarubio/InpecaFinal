@@ -6,6 +6,7 @@
 package Modelo;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,10 +15,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -35,6 +38,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Articulo.findByPcosto", query = "SELECT a FROM Articulo a WHERE a.pcosto = :pcosto"),
     @NamedQuery(name = "Articulo.findByPventa", query = "SELECT a FROM Articulo a WHERE a.pventa = :pventa")})
 public class Articulo implements Serializable {
+    @OneToMany(mappedBy = "codigo")
+    private Collection<Requerimiento> requerimientoCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -187,7 +192,16 @@ public class Articulo implements Serializable {
 
     @Override
     public String toString() {
-        return "Modelo.Articulo[ codigo=" + codigo + " ]";
+        return descripcion;
+    }
+
+    @XmlTransient
+    public Collection<Requerimiento> getRequerimientoCollection() {
+        return requerimientoCollection;
+    }
+
+    public void setRequerimientoCollection(Collection<Requerimiento> requerimientoCollection) {
+        this.requerimientoCollection = requerimientoCollection;
     }
     
 }
