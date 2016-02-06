@@ -24,8 +24,8 @@
                                  rowsPerPageTemplate="15,20,30,40,50"
                                  >
 
-                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
-                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton "/>
 
                         <p:column style="width:4%">
                             <f:facet name="header">
@@ -81,7 +81,7 @@
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{auxiliarrequerimientoController.prepareCreate}" update=":AuxiliarrequerimientoCreateForm" oncomplete="PF('AuxiliarrequerimientoCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":AuxiliarrequerimientoViewForm" oncomplete="PF('AuxiliarrequerimientoViewDialog').show()" disabled="#{empty auxiliarrequerimientoController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":AuxiliarrequerimientoEditForm" oncomplete="PF('AuxiliarrequerimientoEditDialog').show()" disabled="#{empty auxiliarrequerimientoController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{auxiliarrequerimientoController.destroy}" update=":growl,datalist" disabled="#{empty auxiliarrequerimientoController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{auxiliarrequerimientoController}" update=":growl,datalist" disabled="#{empty auxiliarrequerimientoController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>
