@@ -25,11 +25,11 @@
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
                         <h:outputText value="#{bundle.ViewAuxiliarrequerimientoLabel_idusuario}"/>
-                        <h:outputText value="#{auxiliarrequerimientoController.selected.idusuario}" title="#{bundle.ViewAuxiliarrequerimientoTitle_idusuario}"/>
+                        <h:outputText value="#{auxiliarrequerimientoController.selected.idusuario.nombre}" title="#{bundle.ViewAuxiliarrequerimientoTitle_idusuario}"/>
                         <h:outputText value="#{bundle.ViewAuxiliarrequerimientoLabel_idestatusrequerimiento}"/>
-                        <h:outputText value="#{auxiliarrequerimientoController.selected.idestatusrequerimiento}" title="#{bundle.ViewAuxiliarrequerimientoTitle_idestatusrequerimiento}"/>
+                        <h:outputText value="#{auxiliarrequerimientoController.selected.idestatusrequerimiento.estatusrequerimiento}" title="#{bundle.ViewAuxiliarrequerimientoTitle_idestatusrequerimiento}"/>
                         <h:outputText value="#{bundle.ViewAuxiliarrequerimientoLabel_iddepartamento}"/>
-                        <h:outputText value="#{auxiliarrequerimientoController.selected.iddepartamento}" title="#{bundle.ViewAuxiliarrequerimientoTitle_iddepartamento}"/>
+                        <h:outputText value="#{auxiliarrequerimientoController.selected.iddepartamento.departamento}" title="#{bundle.ViewAuxiliarrequerimientoTitle_iddepartamento}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="AuxiliarrequerimientoViewDialog.hide()"/>
                 </h:panelGroup>

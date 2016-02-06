@@ -3,7 +3,7 @@ package Jsf;
 import Modelo.Auxiliarrequerimiento;
 import Jsf.util.JsfUtil;
 import Jsf.util.JsfUtil.PersistAction;
-import Jpa.AuxiliarrequerimientoFacade;
+import Jpa.AuxiliarrequerimientoFacadeLocal;
 
 import java.io.Serializable;
 import java.util.List;
@@ -24,7 +24,7 @@ import javax.faces.convert.FacesConverter;
 public class AuxiliarrequerimientoController implements Serializable {
 
     @EJB
-    private Jpa.AuxiliarrequerimientoFacade ejbFacade;
+    private AuxiliarrequerimientoFacadeLocal ejbFacade;
     private List<Auxiliarrequerimiento> items = null;
     private Auxiliarrequerimiento selected;
 
@@ -45,7 +45,7 @@ public class AuxiliarrequerimientoController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private AuxiliarrequerimientoFacade getFacade() {
+    private AuxiliarrequerimientoFacadeLocal getFacade() {
         return ejbFacade;
     }
 

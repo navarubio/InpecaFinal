@@ -9,6 +9,8 @@ import Modelo.Auxiliarrequerimiento;
 import Modelo.Requerimiento;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -37,7 +39,7 @@ public class RequerimientoFacade extends AbstractFacade<Requerimiento> implement
         String consulta = null;
         Auxiliarrequerimiento ultimo = new Auxiliarrequerimiento();
         try {
-            consulta = "Select a From Auxiliarrequerimiento a Order By a.idauxiliarrequerimiento Desc";        
+            consulta = "Select a From Auxiliarrequerimiento a Order By a.idauxiliarrequerimiento Desc";
             Query query = em.createQuery(consulta);
             List<Auxiliarrequerimiento> lista = query.getResultList();
             if (!lista.isEmpty()) {

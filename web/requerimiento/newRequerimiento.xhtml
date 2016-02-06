@@ -12,11 +12,13 @@
 
             <ui:define name="title">
                 title
+                <h:outputStylesheet library="css" name="index.css" />    
             </ui:define>
 
             <ui:define name="body">
+
                 <h:form>
-                    <p:messages autoUpdate="true" showDetail="true" showSummary="false"/>
+                    <p:growl autoUpdate="true" showDetail="true" showSummary="false"/>
                     <div id="imag2">
                         <img src="../resources/images/LogoInpeca.jpg" width="155" height="58" alt="Logo Inpeca"/>
                     </div>      
@@ -43,7 +45,7 @@
                         <p:fieldset legend="Datos de Articulos">
                             <p:panelGrid columns="7">
                                 <p:outputLabel value="Articulo" for="idrequerimiento" />
-                                <p:selectOneMenu id="idrequerimiento" value="#{requerimientosController.requer.codigo}" converter="omnifaces.SelectItemsConverter" > 
+                                <p:selectOneMenu id="idrequerimiento" value="#{requerimientosController.requer.codigo}" converter="omnifaces.SelectItemsConverter"> 
                                     <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
                                     <!--f:selectItems value=".{articuloController.itemsAvailableSelectOne}"-->
                                     <f:selectItems value="#{requerimientosController.articulos}"
@@ -52,27 +54,27 @@
                                 </p:selectOneMenu>
 
                                 <p:outputLabel for="cantidad" value="Cantidad" />
-                                <p:inputText id="cantidad" value="#{requerimientosController.cantidad}" />
+                                <p:inputText id="cantidad" value="#{requerimientosController.cantidad}" style="text-align:right"/>
                                 <p:outputLabel for="precio"  value="Precio" styleClass="optionalLbl"/>
-                                <p:inputText id="precio" size="20" value="#{requerimientosController.pcosto}"/>
+                                <p:inputText id="precio" size="20" value="#{requerimientosController.pcosto}" style="text-align:right"/>
                                 <p:commandButton value="Anexar" icon="ui-icon-plusthick"  action="#{requerimientosController.anexar()}" update="listado"/>  
                             </p:panelGrid>
                         </p:fieldset>
                         <p:panel>
-                            <p:dataTable id="listado"  value="#{requerimientosController.listarequerimiento}" var="req" emptyMessage="No hay articulos para mostrar">
-                                <p:column width="80" headerText="Codigo Articulo">
+                            <p:dataTable id="listado"  value="#{requerimientosController.listarequerimiento}" var="req" emptyMessage="No hay articulos para mostrar" >
+                                <p:column style="width:5%"  headerText="Codigo Articulo">
                                     #{req.codigo} 
                                 </p:column>
-                                <p:column width="50" headerText="Cantidad">
+                                <p:column style="width:5%" headerText="Cantidad">
                                     #{req.cantidad} 
                                 </p:column >
                                 <p:column width="50" headerText="Precio">
                                     #{req.pcosto} 
                                 </p:column>
                             </p:dataTable>
-                            <p:commandButton value="Registrar" actionListener="#{requerimientosController.registrar()}"/>
+                            <p:commandButton value="Registrar" actionListener="#{requerimientosController.registrar()}" action="/auxiliarrequerimiento/List?faces-redirect=true"/>
                         </p:panel>
-                        
+
                     </p:panel>
                 </h:form>
 

@@ -20,20 +20,20 @@
                                  selectionMode="single" selection="#{auxiliarrequerimientoController.selected}"
                                  paginator="true"
                                  rowKey="#{item.idauxiliarrequerimiento}"
-                                 rows="10"
-                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 rows="15"
+                                 rowsPerPageTemplate="15,20,30,40,50"
                                  >
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
+                        <p:column style="width:4%">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAuxiliarrequerimientoTitle_idauxiliarrequerimiento}"/>
                             </f:facet>
                             <h:outputText value="#{item.idauxiliarrequerimiento}"/>
-                        </p:column>
-                        <p:column>
+                        </p:column >
+                        <p:column style="width:14%">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAuxiliarrequerimientoTitle_posibleproveedor}"/>
                             </f:facet>
@@ -45,13 +45,13 @@
                             </f:facet>
                             <h:outputText value="#{item.telefonoproveedor}"/>
                         </p:column>
-                        <p:column>
+                        <p:column width="300" >
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAuxiliarrequerimientoTitle_descripcion}"/>
                             </f:facet>
                             <h:outputText value="#{item.descripcion}"/>
                         </p:column>
-                        <p:column>
+                        <p:column width="80" >
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAuxiliarrequerimientoTitle_fecharequerimiento}"/>
                             </f:facet>
@@ -63,19 +63,19 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAuxiliarrequerimientoTitle_idusuario}"/>
                             </f:facet>
-                            <h:outputText value="#{item.idusuario}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAuxiliarrequerimientoTitle_idestatusrequerimiento}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idestatusrequerimiento}"/>
+                            <h:outputText value="#{item.idusuario.nombre}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAuxiliarrequerimientoTitle_iddepartamento}"/>
                             </f:facet>
-                            <h:outputText value="#{item.iddepartamento}"/>
+                            <h:outputText value="#{item.iddepartamento.departamento}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAuxiliarrequerimientoTitle_idestatusrequerimiento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idestatusrequerimiento.estatusrequerimiento}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{auxiliarrequerimientoController.prepareCreate}" update=":AuxiliarrequerimientoCreateForm" oncomplete="PF('AuxiliarrequerimientoCreateDialog').show()"/>
