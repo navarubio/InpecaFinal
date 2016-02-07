@@ -4,11 +4,11 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"> 
 
     <body>
 
-        <ui:composition template="./../template.xhtml">
+        <ui:composition template="/template.xhtml">
 
             <ui:define name="title">
                 title
@@ -18,13 +18,12 @@
             <ui:define name="body">
                 <p:growl autoUpdate="true" showDetail="true" showSummary="false"/>
                 <h:form>
-
                     <div id="imag2">
                         <img src="../resources/images/LogoInpeca.jpg" width="155" height="58" alt="Logo Inpeca"/>
                     </div>      
                     <img src="../resources/images/lists.png" width="70" height="70" alt="Clientes" align="right" />
 
-                    <p:panel header="CARGA DE REQUERIMIENTOS">
+                    <p:panel header="PROCESAMIENTO DE COMPRAS">
                         <p:fieldset legend="Datos Requerimiento" >
                             <p:panelGrid columns="2">
                                 <p:outputLabel for="usuario" value="USUARIO" styleClass="optionalLbl"/>
@@ -90,13 +89,11 @@
 
                             <p:commandButton value="Registrar" actionListener="#{requerimientosController.registrar()}" update=":growl" action="/auxiliarrequerimiento/List?faces-redirect=true"/>
                         </p:panel>
-
                     </p:panel>
                 </h:form>
 
             </ui:define>
 
         </ui:composition>
-
     </body>
 </html>

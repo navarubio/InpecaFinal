@@ -33,7 +33,7 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column  width="80" filterBy="#{item.codigo}" filterMatchMode="contains">
+                        <p:column  width="100" filterBy="#{item.codigo}" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListArticuloTitle_codigo}"/>
                             </f:facet>
@@ -49,13 +49,18 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListArticuloTitle_pcosto}"/>
                             </f:facet>
-                            <h:outputText value="#{item.pcosto}" style="float: right" />
+                            <h:outputText value="#{item.pcosto}" style="float: right" >
+                                <f:convertNumber currencySymbol="" groupingUsed="true"
+                                                 maxFractionDigits="2" type="currency"  />
+                            </h:outputText>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListArticuloTitle_pventa}"/>
                             </f:facet>
-                            <h:outputText value="#{item.pventa}" style="float: right"/>
+                            <h:outputText value="#{item.pventa}" style="float: right">
+                                <f:convertNumber type="currency" currencySymbol="BsF " />
+                            </h:outputText>
                         </p:column>
                         <p:column>
                             <f:facet name="header">

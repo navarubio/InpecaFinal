@@ -77,6 +77,12 @@
                             </f:facet>
                             <h:outputText value="#{item.idestatusrequerimiento.estatusrequerimiento}"/>
                         </p:column>
+                        <p:column headerText="Procesar">
+                            <h:commandLink action="compra.xhtml">
+                                <h:graphicImage library="images" name="procesarp.jpg"/>
+                            </h:commandLink>      
+                        </p:column>
+
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{auxiliarrequerimientoController.prepareCreate}" update=":AuxiliarrequerimientoCreateForm" oncomplete="PF('AuxiliarrequerimientoCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":AuxiliarrequerimientoViewForm" oncomplete="PF('AuxiliarrequerimientoViewDialog').show()" disabled="#{empty auxiliarrequerimientoController.selected}"/>
