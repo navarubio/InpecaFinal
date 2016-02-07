@@ -15,11 +15,11 @@
                         <p:outputLabel value="#{bundle.EditAuxiliarrequerimientoLabel_idauxiliarrequerimiento}" for="idauxiliarrequerimiento" />
                         <p:inputText id="idauxiliarrequerimiento" value="#{auxiliarrequerimientoController.selected.idauxiliarrequerimiento}" title="#{bundle.EditAuxiliarrequerimientoTitle_idauxiliarrequerimiento}" required="true" requiredMessage="#{bundle.EditAuxiliarrequerimientoRequiredMessage_idauxiliarrequerimiento}"/>
                         <p:outputLabel value="#{bundle.EditAuxiliarrequerimientoLabel_posibleproveedor}" for="posibleproveedor" />
-                        <p:inputText id="posibleproveedor" value="#{auxiliarrequerimientoController.selected.posibleproveedor}" title="#{bundle.EditAuxiliarrequerimientoTitle_posibleproveedor}" />
+                        <p:inputText id="posibleproveedor" size="50" value="#{auxiliarrequerimientoController.selected.posibleproveedor}" title="#{bundle.EditAuxiliarrequerimientoTitle_posibleproveedor}" />
                         <p:outputLabel value="#{bundle.EditAuxiliarrequerimientoLabel_telefonoproveedor}" for="telefonoproveedor" />
                         <p:inputText id="telefonoproveedor" value="#{auxiliarrequerimientoController.selected.telefonoproveedor}" title="#{bundle.EditAuxiliarrequerimientoTitle_telefonoproveedor}" />
                         <p:outputLabel value="#{bundle.EditAuxiliarrequerimientoLabel_descripcion}" for="descripcion" />
-                        <p:inputText id="descripcion" value="#{auxiliarrequerimientoController.selected.descripcion}" title="#{bundle.EditAuxiliarrequerimientoTitle_descripcion}" />
+                        <p:inputTextarea id="descripcion" rows="3" cols="50" value="#{auxiliarrequerimientoController.selected.descripcion}" title="#{bundle.EditAuxiliarrequerimientoTitle_descripcion}" />
                         <p:outputLabel value="#{bundle.EditAuxiliarrequerimientoLabel_fecharequerimiento}" for="fecharequerimiento" />
                         <p:calendar id="fecharequerimiento" pattern="MM/dd/yyyy" value="#{auxiliarrequerimientoController.selected.fecharequerimiento}" title="#{bundle.EditAuxiliarrequerimientoTitle_fecharequerimiento}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.EditAuxiliarrequerimientoLabel_idusuario}" for="idusuario" />

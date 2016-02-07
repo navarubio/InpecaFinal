@@ -43,7 +43,7 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListSubgrupoTitle_idgrupo}"/>
                             </f:facet>
-                            <h:outputText value="#{item.idgrupo}"/>
+                            <h:outputText value="#{item.idgrupo.grupo}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{subgrupoController.prepareCreate}" update=":SubgrupoCreateForm" oncomplete="PF('SubgrupoCreateDialog').show()"/>

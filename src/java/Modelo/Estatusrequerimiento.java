@@ -99,7 +99,7 @@ public class Estatusrequerimiento implements Serializable {
 
     @Override
     public String toString() {
-        return "Modelo.Estatusrequerimiento[ idestatusrequerimiento=" + idestatusrequerimiento + " ]";
+        return estatusrequerimiento;
     }
     
 }

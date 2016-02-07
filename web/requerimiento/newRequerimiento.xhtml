@@ -44,8 +44,8 @@
                         </p:fieldset>
                         <p:fieldset legend="Datos de Articulos">
                             <p:panelGrid columns="7">
-                                <p:outputLabel value="Articulo" for="idrequerimiento" />
-                                <p:selectOneMenu id="idrequerimiento" value="#{requerimientosController.requer.codigo}" converter="omnifaces.SelectItemsConverter"> 
+                                <p:outputLabel value="Articulo" for="idrequerimiento"  />
+                                <p:selectOneMenu id="idrequerimiento" value="#{requerimientosController.requer.codigo}" converter="omnifaces.SelectItemsConverter" filter="true" filterMatchMode="contains"> 
                                     <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
                                     <!--f:selectItems value=".{articuloController.itemsAvailableSelectOne}"-->
                                     <f:selectItems value="#{requerimientosController.articulos}"
@@ -61,17 +61,29 @@
                             </p:panelGrid>
                         </p:fieldset>
                         <p:panel>
-                            <p:dataTable id="listado"  value="#{requerimientosController.listarequerimiento}" var="req" emptyMessage="No hay articulos para mostrar" >
-                                <p:column style="width:5%"  headerText="Codigo Articulo">
+                            <p:dataTable id="listado"  value="#{requerimientosController.listarequerimiento}" var="req" emptyMessage="No hay articulos para mostrar">
+                                <p:column style="width:8%"  headerText="Codigo Articulo">
+                                    #{req.codigo.codigo} 
+                                </p:column>
+                                <p:column style="width:15%"  headerText="Descripcion del Articulo">
                                     #{req.codigo} 
                                 </p:column>
-                                <p:column style="width:5%" headerText="Cantidad">
+                                <p:column style="width:10%" headerText="Cantidad">
                                     #{req.cantidad} 
                                 </p:column >
-                                <p:column width="50" headerText="Precio">
-                                    #{req.pcosto} 
+                                <p:column style="width:10%" headerText="Precio Unitario ">
+                                    <h:outputText value="#{req.pcosto}">
+                                        <f:convertNumber type="currency" currencySymbol="BsF " />
+                                    </h:outputText>
                                 </p:column>
+                                <p:columnGroup type="footer">
+                                    <p:row>
+                                        <p:column colspan="3" style="text-align:right" footerText="Monto Total del Requerimiento" />
+                                        <p:column footerText="BsF #{req.pcosto}" />
+                                    </p:row>
+                                </p:columnGroup>                            
                             </p:dataTable>
+
                             <p:commandButton value="Registrar" actionListener="#{requerimientosController.registrar()}" action="/auxiliarrequerimiento/List?faces-redirect=true"/>
                         </p:panel>
 
