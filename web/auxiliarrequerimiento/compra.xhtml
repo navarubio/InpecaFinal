@@ -11,7 +11,7 @@
         <ui:composition template="/template.xhtml">
 
             <ui:define name="title">
-                title
+                Compras
                 <h:outputStylesheet library="css" name="index.css" />    
             </ui:define>
 
@@ -26,19 +26,23 @@
                     <p:panel header="PROCESAMIENTO DE COMPRAS">
                         <p:fieldset legend="Datos Requerimiento" >
                             <p:panelGrid columns="2">
-                                <p:outputLabel for="usuario" value="USUARIO" styleClass="optionalLbl"/>
-                                <p:outputLabel id="usuario" value="#{requerimientosController.usuario.nombre}" styleClass="optionalLbl"/>
-                                <p:outputLabel for="departamento" value="DEPARTAMENTO" styleClass="optionalLbl"/>
-                                <p:outputLabel id="departamento" value="#{requerimientosController.buscarDepartamento().departamento}" styleClass="optionalLbl"/>
+                                <p:outputLabel for="numero" value="Solicitud" styleClass="optionalLbl"/>
+                                <p:outputLabel id="numero" value="#{procesarcomprasController.auxiliar.idauxiliarrequerimiento}" styleClass="optionalLbl"/>
+                                <p:outputLabel for="usuario" value="Usuario" styleClass="optionalLbl"/>
+                                <p:outputLabel id="usuario" value="#{procesarcomprasController.auxiliar.idusuario.nombre}" styleClass="optionalLbl"/>
+                                <p:outputLabel for="departamento" value="Departamento" styleClass="optionalLbl"/>
+                                <p:outputLabel id="departamento" value="#{procesarcomprasController.auxiliar.iddepartamento.departamento}" styleClass="optionalLbl"/>
 
                                 <p:outputLabel for="proveedor" value="Proveedor" styleClass="optionalLbl"/>
-                                <p:inputText id="proveedor" label="Proveedor" size ="50" value="#{requerimientosController.auxrequer.posibleproveedor}" />
+                                <p:outputLabel id="proveedor" value="#{procesarcomprasController.auxiliar.posibleproveedor}"/>
                                 <p:outputLabel for="telefono" value="Telefonos" styleClass="optionalLbl"/>
-                                <p:inputText id="telefono" label="Telefonos" size="40" value="#{requerimientosController.auxrequer.telefonoproveedor}"/>
+                                <p:outputLabel id="telefono" value="#{procesarcomprasController.auxiliar.telefonoproveedor}"/>
                                 <p:outputLabel for="fechasolicitud" value="Fecha Solicitud" />
-                                <p:calendar id="fechasolicitud" pattern="dd/MM/yyyy" value="#{requerimientosController.auxrequer.fecharequerimiento}" showOn="button" navigator="true"/>
+                                <p:outputLabel id="fechasolicitud" value="#{procesarcomprasController.auxiliar.fecharequerimiento}">
+                                    <f:convertDateTime pattern="dd/mm/yyyy"/>
+                                </p:outputLabel>
                                 <p:outputLabel for="resena" value="Breve Reseña" styleClass="optionalLbl"/>
-                                <p:inputTextarea id="resena"  rows="3" cols="50" label="breve resena" value="#{requerimientosController.auxrequer.descripcion}" required="true" />
+                                <p:outputLabel id="resena" value="#{procesarcomprasController.auxiliar.descripcion}" />
                             </p:panelGrid>
                         </p:fieldset>
                         <p:fieldset legend="Datos de Articulos">
@@ -60,7 +64,7 @@
                             </p:panelGrid>
                         </p:fieldset>
                         <p:panel>
-                            <p:dataTable id="listado"  value="#{requerimientosController.listarequerimiento}" var="req" emptyMessage="No hay articulos para mostrar">
+                            <p:dataTable id="listado"  value="#{comprasController.requerimientos}" var="req" emptyMessage="No hay articulos para mostrar">
                                 <p:column style="width:8%"  headerText="Codigo Articulo">
                                     #{req.codigo.codigo} 
                                 </p:column>

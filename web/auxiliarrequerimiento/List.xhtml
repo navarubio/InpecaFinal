@@ -78,7 +78,7 @@
                             <h:outputText value="#{item.idestatusrequerimiento.estatusrequerimiento}"/>
                         </p:column>
                         <p:column headerText="Procesar">
-                            <h:commandLink action="compra.xhtml">
+                            <h:commandLink action="compra.xhtml" actionListener="#{comprasController.asignar(item, requeri)}">
                                 <h:graphicImage library="images" name="procesarp.jpg"/>
                             </h:commandLink>      
                         </p:column>
