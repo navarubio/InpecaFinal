@@ -101,4 +101,10 @@ public class ComprasController implements Serializable{
         this.auxiliarrequerimiento = aux;
         this.requerimiento=requeri;
     }
+    
+    public List<Requerimiento> buscarRequerimiento (Auxiliarrequerimiento auxiliarrequerimiento){
+        List<Requerimiento> listado = null;
+        listado = requerimientoEJB.buscarRequerimientos(auxiliarrequerimiento);
+        return listado;
+    }
 }

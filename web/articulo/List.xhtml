@@ -62,19 +62,19 @@
                                 <f:convertNumber type="currency" currencySymbol="BsF " />
                             </h:outputText>
                         </p:column>
-                        <p:column>
+                        <p:column style="text-align: center">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListArticuloTitle_idmedida}"/>
                             </f:facet>
                             <h:outputText value="#{item.idmedida.medida}"/>
                         </p:column>                        
-                        <p:column>
+                        <p:column style="text-align: center" >
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListArticuloTitle_idgrupo}"/>
                             </f:facet>
                             <h:outputText value="#{item.idgrupo.grupo}" />
                         </p:column>
-                        <p:column>
+                        <p:column style="text-align: center">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListArticuloTitle_idsubgrupo}"/>
                             </f:facet>
@@ -84,7 +84,7 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListArticuloTitle_idgravamen}"/>
                             </f:facet>
-                            <h:outputText value="#{item.idgravamen.alicuota}" style="float: right"/>
+                            <h:outputText value="#{item.idgravamen.alicuota} %" style="float: right"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">

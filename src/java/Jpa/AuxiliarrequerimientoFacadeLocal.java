@@ -29,5 +29,4 @@ public interface AuxiliarrequerimientoFacadeLocal {
     List<Auxiliarrequerimiento> findRange(int[] range);
 
     int count();
-    
 }

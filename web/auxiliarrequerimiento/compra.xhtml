@@ -9,7 +9,7 @@
     <body>
 
         <ui:composition template="/template.xhtml">
-
+            
             <ui:define name="title">
                 Compras
                 <h:outputStylesheet library="css" name="index.css" />    
@@ -33,13 +33,13 @@
                                 <p:outputLabel for="departamento" value="Departamento" styleClass="optionalLbl"/>
                                 <p:outputLabel id="departamento" value="#{procesarcomprasController.auxiliar.iddepartamento.departamento}" styleClass="optionalLbl"/>
 
-                                <p:outputLabel for="proveedor" value="Proveedor" styleClass="optionalLbl"/>
+                                <p:outputLabel for="proveedor" value="Proveedor Referido" styleClass="optionalLbl"/>
                                 <p:outputLabel id="proveedor" value="#{procesarcomprasController.auxiliar.posibleproveedor}"/>
                                 <p:outputLabel for="telefono" value="Telefonos" styleClass="optionalLbl"/>
                                 <p:outputLabel id="telefono" value="#{procesarcomprasController.auxiliar.telefonoproveedor}"/>
                                 <p:outputLabel for="fechasolicitud" value="Fecha Solicitud" />
                                 <p:outputLabel id="fechasolicitud" value="#{procesarcomprasController.auxiliar.fecharequerimiento}">
-                                    <f:convertDateTime pattern="dd/mm/yyyy"/>
+                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
                                 </p:outputLabel>
                                 <p:outputLabel for="resena" value="Breve Reseña" styleClass="optionalLbl"/>
                                 <p:outputLabel id="resena" value="#{procesarcomprasController.auxiliar.descripcion}" />
@@ -64,34 +64,42 @@
                             </p:panelGrid>
                         </p:fieldset>
                         <p:panel>
-                            <p:dataTable id="listado"  value="#{comprasController.requerimientos}" var="req" emptyMessage="No hay articulos para mostrar">
+                            <p:dataTable id="listado"  value="#{comprasController.buscarRequerimiento(comprasController.auxiliarrequerimiento)}" var="req" emptyMessage="No hay articulos para mostrar">
                                 <p:column style="width:8%"  headerText="Codigo Articulo">
                                     #{req.codigo.codigo} 
                                 </p:column>
-                                <p:column style="width:15%"  headerText="Descripcion del Articulo">
+                                <p:column style="width:35%"  headerText="Descripcion del Articulo">
                                     #{req.codigo} 
                                 </p:column>
-                                <p:column style="width:10%" headerText="Cantidad">
+                                <p:column style="text-align:center" headerText="Cantidad">
                                     #{req.cantidad} 
                                 </p:column >
-                                <p:column style="width:10%" headerText="Precio Unitario ">
+                                <p:column style="text-align:right" headerText="Precio Unitario ">
                                     <h:outputText value="#{req.pcosto}">
-                                        <f:convertNumber type="currency" currencySymbol="BsF " />
+                                        <f:convertNumber type="currency" currencySymbol=" " />
                                     </h:outputText>
                                 </p:column>
+                                <p:column style="text-align:right" headerText="Sub Total">
+                                    <h:outputText value="#{req.total}"> 
+                                        <f:convertNumber type="currency" currencySymbol=" " />
+                                    </h:outputText>
+                                </p:column>
+
                                 <p:column style="width:10%" headerText="Eliminar">
                                     <p:commandLink value="Eliminar" />
                                 </p:column>
 
                                 <p:columnGroup type="footer">
                                     <p:row>
-                                        <p:column colspan="3" style="text-align:right" footerText="Monto Total del Requerimiento" />
-                                        <p:column footerText="BsF #{req.pcosto}" />
+                                        <p:column colspan="4" style="text-align:right" footerText="Monto Total del Requerimiento" />
+                                        <p:column footerText="#{req.pcosto}" />
                                     </p:row>
                                 </p:columnGroup>                            
                             </p:dataTable>
 
                             <p:commandButton value="Registrar" actionListener="#{requerimientosController.registrar()}" update=":growl" action="/auxiliarrequerimiento/List?faces-redirect=true"/>
+                            <p:commandButton value="Cancelar" />
+
                         </p:panel>
                     </p:panel>
                 </h:form>

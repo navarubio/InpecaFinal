@@ -33,4 +33,6 @@ public interface RequerimientoFacadeLocal {
 
     int count();
     
+    List<Requerimiento> buscarRequerimientos (Auxiliarrequerimiento auxireq);
+    
 }

@@ -6,9 +6,12 @@
 package Jpa;
 
 import Modelo.Auxiliarrequerimiento;
+import Modelo.Requerimiento;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *

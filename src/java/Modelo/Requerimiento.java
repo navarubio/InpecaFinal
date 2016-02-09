@@ -43,6 +43,9 @@ public class Requerimiento implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "pcosto")
     private Double pcosto;
+    @Column(name = "total")
+    private Double total;
+    
     @JoinColumn(name = "idauxiliarrequerimiento", referencedColumnName = "idauxiliarrequerimiento")
     @ManyToOne
     private Auxiliarrequerimiento idauxiliarrequerimiento;
@@ -79,6 +82,14 @@ public class Requerimiento implements Serializable {
 
     public void setPcosto(Double pcosto) {
         this.pcosto = pcosto;
+    }
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
     }
 
     public Auxiliarrequerimiento getIdauxiliarrequerimiento() {

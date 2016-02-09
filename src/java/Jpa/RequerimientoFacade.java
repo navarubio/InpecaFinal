@@ -50,4 +50,19 @@ public class RequerimientoFacade extends AbstractFacade<Requerimiento> implement
         }
         return ultimo;
     }
+
+    @Override
+    public List<Requerimiento> buscarRequerimientos(Auxiliarrequerimiento auxireq) {
+        String consulta;
+        List<Requerimiento> lista= null;
+        try {
+            consulta = "From Requerimiento r where r.idauxiliarrequerimiento.idauxiliarrequerimiento = ?1";
+            Query query = em.createQuery(consulta);
+            query.setParameter(1, auxireq.getIdauxiliarrequerimiento());
+            lista=query.getResultList();
+        } catch (Exception e) {
+            throw e;
+        }
+        return lista;
+    }
 }

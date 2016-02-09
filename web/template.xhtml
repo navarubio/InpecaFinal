@@ -30,17 +30,20 @@
                             <p:menuitem value="Proveedores" outcome="/proveedor/List.xhtml" />
                             <p:menuitem value="Articulos" outcome="/articulo/List.xhtml" />
                             <p:menuitem value="Facturacion" outcome="/cliente/List.xhtml" />
-                            <p:menuitem value="Compras" outcome="/proveedor/List.xhtml" />
-                            <p:menuitem value="Requerimientos" outcome="/auxiliarrequerimiento/List.xhtml" />
+                            <p:menuitem value="Compras" outcome="/auxiliarrequerimiento/List.xhtml" />
+                            <p:menuitem value="Articulos Requeridos" outcome="/requerimiento/List.xhtml" />
                         </p:submenu>  
                         <p:submenu label="#{bundle.Opera}" icon="ui-icon-cart">
                             <p:menuitem value="Requerimientos" outcome="/requerimiento/List.xhtml" />
                             <p:menuitem value="Inventario Materia Prima" outcome="/articulo/List.xhtml" />
                             <p:menuitem value="Inventario Insumos" outcome="/articulo/List.xhtml" />   
                             <p:menuitem value="Despachos" outcome="/articulo/List.xhtml" />  
+                            <p:menuitem value="Calculos Resistencia" outcome="/articulo/List.xhtml" />  
+                            
                         </p:submenu>    
                         <p:submenu label="#{bundle.Contab}" icon="ui-icon-calculator">
-                            <p:menuitem value="Requerimientos" outcome="/cliente/List.xhtml" />
+                            <p:menuitem value="Ingresos" outcome="/cliente/List.xhtml" />
+                            <p:menuitem value="Compras" outcome="/cliente/List.xhtml" />
                             <p:menuitem value="Plan de Cuentas" outcome="/articulo/List.xhtml" />
                             <p:menuitem value="Centro de Activos" outcome="/articulo/List.xhtml" />   
                             <p:menuitem value="Centro Contable" outcome="/articulo/List.xhtml" />  
@@ -59,7 +62,8 @@
                             <p:menuitem value="Tipopago" outcome="/tipopago/List.xhtml" />
                             <p:menuitem value="Tipoproveedor" outcome="/tipoproveedor/List.xhtml" />
                             <p:menuitem value="Usuario" outcome="/usuario/List.xhtml" />
-                        </p:submenu>                    </p:menubar>
+                        </p:submenu>                    
+                    </p:menubar>
                 </h:form>
             </p:layoutUnit>
 

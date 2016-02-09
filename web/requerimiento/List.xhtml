@@ -20,14 +20,20 @@
                                  selectionMode="single" selection="#{requerimientoController.selected}"
                                  paginator="true"
                                  rowKey="#{item.idrequerimiento}"
-                                 rows="10"
-                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 rows="15"
+                                 rowsPerPageTemplate="15,20,30,40,50"
                                  >
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
+                        <p:column width="100">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRequerimientoTitle_idauxiliarrequerimiento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idauxiliarrequerimiento}"/>
+                        </p:column>
+                        <p:column width="100">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListRequerimientoTitle_idrequerimiento}"/>
                             </f:facet>
@@ -37,26 +43,44 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListRequerimientoTitle_codigo}"/>
                             </f:facet>
+                            <h:outputText value="#{item.idauxiliarrequerimiento.iddepartamento.departamento}"/>
+                        </p:column>
+                        
+                        <p:column width="150">                            
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRequerimientoTitle_codigo}"/>
+                            </f:facet>
                             <h:outputText value="#{item.codigo}"/>
                         </p:column>
-                        <p:column>
+                        <p:column width="350">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRequerimientoTitle_codigo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigo.descripcion}"/>
+                        </p:column>
+                        <p:column style="text-align: center" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRequerimientoTitle_codigo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idauxiliarrequerimiento.fecharequerimiento}">
+                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column style="text-align: center">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListRequerimientoTitle_cantidad}"/>
                             </f:facet>
                             <h:outputText value="#{item.cantidad}"/>
                         </p:column>
-                        <p:column>
+                        <p:column style="text-align: right">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListRequerimientoTitle_pcosto}"/>
                             </f:facet>
-                            <h:outputText value="#{item.pcosto}"/>
+                            <h:outputText value="#{item.pcosto}">
+                                <f:convertNumber type="currency" currencySymbol=""  />
+                            </h:outputText>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListRequerimientoTitle_idauxiliarrequerimiento}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idauxiliarrequerimiento}"/>
-                        </p:column>
+
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{requerimientoController.prepareCreate}" update=":RequerimientoCreateForm" oncomplete="PF('RequerimientoCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":RequerimientoViewForm" oncomplete="PF('RequerimientoViewDialog').show()" disabled="#{empty requerimientoController.selected}"/>

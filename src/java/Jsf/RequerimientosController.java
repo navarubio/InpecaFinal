@@ -42,8 +42,28 @@ public class RequerimientosController implements Serializable {
     private String descripcion = null;
     private int cantidad = 0;
     private double pcosto = 0;
+    private double subtotal= 0;
+    private double total=0;
     private Auxiliarrequerimiento codAux;
 
+    public double getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    
+    
     public List<Requerimiento> getListarequerimiento() {
         return listarequerimiento;
     }
@@ -162,6 +182,9 @@ public class RequerimientosController implements Serializable {
         reque.setCodigo(requer.getCodigo());
         reque.setCantidad(cantidad);
         reque.setPcosto(pcosto);
+        subtotal=cantidad*pcosto;
+        reque.setTotal(subtotal);
+        total+=subtotal;
         this.listarequerimiento.add(reque);
         requerimientos = requerimientoEJB.findAll();
     }
@@ -182,6 +205,7 @@ public class RequerimientosController implements Serializable {
                 requer.setCodigo(arti);
                 requer.setCantidad(rq.getCantidad());
                 requer.setPcosto(rq.getPcosto());
+                requer.setTotal(rq.getTotal());
                 requerimientoEJB.create(requer);
             }
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Su Requerimiento fue Almacenado"));
@@ -190,7 +214,5 @@ public class RequerimientosController implements Serializable {
         } finally {
             FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
         }
-
     }
-
 }
