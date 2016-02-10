@@ -55,10 +55,17 @@
                                     <p:outputLabel for="proveedor" value="Proveedor" styleClass="optionalLbl"/>
                                     <p:selectOneMenu id="provee" value="#{requerimientosController.requer.codigo}" converter="omnifaces.SelectItemsConverter" filter="true" filterMatchMode="contains"> 
                                         <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
-                                        <f:selectItems value="#{requerimientosController.articulos}"
+                                        <f:selectItems value="#{comprasController.proveedores}"
                                                        var="idarticuloItem"
-                                                       itemLabel="#{idarticuloItem.descripcion}"  itemValue="#{idarticuloItem}" /> 
+                                                       itemLabel="#{idarticuloItem.razonsocial}"  itemValue="#{idarticuloItem}" /> 
                                     </p:selectOneMenu>
+                                    <p:outputLabel for="rif" value="R.I.F." styleClass="optionalLbl"/>
+                                    <p:outputLabel id="rif" value="#{requerimientosController.buscarDepartamento().departamento}" styleClass="optionalLbl"/>
+                                    <p:outputLabel for="fechacompra" value="Fecha Compra" />
+                                    <p:calendar id="fechacompra" pattern="dd/MM/yyyy" value="#{requerimientosController.auxrequer.fecharequerimiento}" showOn="button" navigator="true"/>
+                                    <p:outputLabel for="observa" value="Observaciones" styleClass="optionalLbl"/>
+                                    <p:inputTextarea id="observa"  rows="2" cols="50" label="Observaciones" value="#{requerimientosController.auxrequer.descripcion}" required="true" />
+
                                 </p:panelGrid>                                
                             </p:fieldset>
                         </p:panelGrid>
