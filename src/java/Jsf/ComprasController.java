@@ -107,4 +107,6 @@ public class ComprasController implements Serializable{
         listado = requerimientoEJB.buscarRequerimientos(auxiliarrequerimiento);
         return listado;
     }
+    
+    
 }

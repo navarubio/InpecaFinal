@@ -56,6 +56,9 @@ public class Auxiliarrequerimiento implements Serializable {
     @Column(name = "fecharequerimiento")
     @Temporal(TemporalType.DATE)
     private Date fecharequerimiento;
+    @Column(name = "montototal")
+    private Double montototal;
+    
     @JoinColumn(name = "idestatusrequerimiento", referencedColumnName = "idestatusrequerimiento")
     @ManyToOne
     private Estatusrequerimiento idestatusrequerimiento;
@@ -113,6 +116,15 @@ public class Auxiliarrequerimiento implements Serializable {
         this.fecharequerimiento = fecharequerimiento;
     }
 
+    public Double getMontototal() {
+        return montototal;
+    }
+
+    public void setMontototal(Double montototal) {
+        this.montototal = montototal;
+    }
+
+    
     public Estatusrequerimiento getIdestatusrequerimiento() {
         return idestatusrequerimiento;
     }

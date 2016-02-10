@@ -195,6 +195,7 @@ public class RequerimientosController implements Serializable {
             auxrequer.setIddepartamento(dpto);
             auxrequer.setIdusuario(usa);
             auxrequer.setIdestatusrequerimiento(statusreq);
+            auxrequer.setMontototal(total);
             auxiliarrequerimientoEJB.create(auxrequer);
 
             codAux = requerimientoEJB.ultimoInsertado();
