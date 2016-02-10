@@ -24,27 +24,45 @@
                     <img src="../resources/images/lists.png" width="70" height="70" alt="Clientes" align="right" />
 
                     <p:panel header="PROCESAMIENTO DE COMPRAS">
-                        <p:fieldset legend="Datos Requerimiento" >
-                            <p:panelGrid columns="2">
-                                <p:outputLabel for="numero" value="Solicitud" styleClass="optionalLbl"/>
-                                <p:outputLabel id="numero" value="REQ- #{procesarcomprasController.auxiliar.idauxiliarrequerimiento}" styleClass="optionalLbl"/>
-                                <p:outputLabel for="usuario" value="Usuario" styleClass="optionalLbl"/>
-                                <p:outputLabel id="usuario" value="#{procesarcomprasController.auxiliar.idusuario.nombre}" styleClass="optionalLbl"/>
-                                <p:outputLabel for="departamento" value="Departamento" styleClass="optionalLbl"/>
-                                <p:outputLabel id="departamento" value="#{procesarcomprasController.auxiliar.iddepartamento.departamento}" styleClass="optionalLbl"/>
+                        <p:panelGrid columns="2">
+                            <p:fieldset legend="Datos Requerimiento" >
+                                <p:panelGrid columns="2">
+                                    <p:outputLabel for="numero" value="Solicitud" styleClass="optionalLbl"/>
+                                    <p:outputLabel id="numero" value="REQ- #{procesarcomprasController.auxiliar.idauxiliarrequerimiento}" styleClass="optionalLbl"/>
+                                    <p:outputLabel for="usuario" value="Usuario" styleClass="optionalLbl"/>
+                                    <p:outputLabel id="usuario" value="#{procesarcomprasController.auxiliar.idusuario.nombre}" styleClass="optionalLbl"/>
+                                    <p:outputLabel for="departamento" value="Departamento" styleClass="optionalLbl"/>
+                                    <p:outputLabel id="departamento" value="#{procesarcomprasController.auxiliar.iddepartamento.departamento}" styleClass="optionalLbl"/>
 
-                                <p:outputLabel for="proveedor" value="Proveedor Referido" styleClass="optionalLbl"/>
-                                <p:outputLabel id="proveedor" value="#{procesarcomprasController.auxiliar.posibleproveedor}"/>
-                                <p:outputLabel for="telefono" value="Telefonos" styleClass="optionalLbl"/>
-                                <p:outputLabel id="telefono" value="#{procesarcomprasController.auxiliar.telefonoproveedor}"/>
-                                <p:outputLabel for="fechasolicitud" value="Fecha Solicitud" />
-                                <p:outputLabel id="fechasolicitud" value="#{procesarcomprasController.auxiliar.fecharequerimiento}">
-                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
-                                </p:outputLabel>
-                                <p:outputLabel for="resena" value="Breve Reseña" styleClass="optionalLbl"/>
-                                <p:outputLabel id="resena" value="#{procesarcomprasController.auxiliar.descripcion}" />
-                            </p:panelGrid>
-                        </p:fieldset>
+                                    <p:outputLabel for="proveedor" value="Proveedor Referido" styleClass="optionalLbl"/>
+                                    <p:outputLabel id="proveedor" value="#{procesarcomprasController.auxiliar.posibleproveedor}"/>
+                                    <p:outputLabel for="telefono" value="Telefonos" styleClass="optionalLbl"/>
+                                    <p:outputLabel id="telefono" value="#{procesarcomprasController.auxiliar.telefonoproveedor}"/>
+                                    <p:outputLabel for="fechasolicitud" value="Fecha Solicitud" />
+                                    <p:outputLabel id="fechasolicitud" value="#{procesarcomprasController.auxiliar.fecharequerimiento}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                    </p:outputLabel>
+                                    <p:outputLabel for="resena" value="Breve Reseña" styleClass="optionalLbl"/>
+                                    <p:outputLabel id="resena" value="#{procesarcomprasController.auxiliar.descripcion}" />
+                                </p:panelGrid>
+                            </p:fieldset>
+                            <p:fieldset legend="Datos Compra" >
+                                <p:panelGrid columns="2">
+                                    <p:outputLabel for="usua" value="USUARIO" styleClass="optionalLbl"/>
+                                    <p:outputLabel id="usua" value="#{requerimientosController.usuario.nombre}" styleClass="optionalLbl"/>
+                                    <p:outputLabel for="depto" value="DEPARTAMENTO" styleClass="optionalLbl"/>
+                                    <p:outputLabel id="depto" value="#{requerimientosController.buscarDepartamento().departamento}" styleClass="optionalLbl"/>
+                                    <p:outputLabel for="proveedor" value="Proveedor" styleClass="optionalLbl"/>
+                                    <p:selectOneMenu id="provee" value="#{requerimientosController.requer.codigo}" converter="omnifaces.SelectItemsConverter" filter="true" filterMatchMode="contains"> 
+                                        <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
+                                        <f:selectItems value="#{requerimientosController.articulos}"
+                                                       var="idarticuloItem"
+                                                       itemLabel="#{idarticuloItem.descripcion}"  itemValue="#{idarticuloItem}" /> 
+                                    </p:selectOneMenu>
+                                </p:panelGrid>                                
+                            </p:fieldset>
+                        </p:panelGrid>
+
                         <p:fieldset legend="Datos de Articulos" toggleable="true" toggleSpeed="500" >
                             <p:panelGrid columns="7">
                                 <p:outputLabel value="Articulo" for="idrequerimiento"  />
@@ -79,7 +97,17 @@
                                         <f:convertNumber type="currency" currencySymbol=" " />
                                     </h:outputText>
                                 </p:column>
-                                <p:column style="text-align:right" headerText="Sub Total">
+                                <p:column style="text-align:right" headerText="SUB TOTAL">
+                                    <h:outputText value="#{req.subtotal}"> 
+                                        <f:convertNumber type="currency" currencySymbol=" " />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column style="text-align:right" headerText="IVA">
+                                    <h:outputText value="#{req.tributoiva}"> 
+                                        <f:convertNumber type="currency" currencySymbol=" " />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column style="text-align:right" headerText="TOTAL">
                                     <h:outputText value="#{req.total}"> 
                                         <f:convertNumber type="currency" currencySymbol=" " />
                                     </h:outputText>
@@ -91,18 +119,11 @@
 
                                 <p:columnGroup type="footer">
                                     <p:row>
-                                        <p:column colspan="4" style="text-align:right" footerText="SUBTOTAL" />
-                                        <p:column style="text-align: right"  footerText="#{procesarcomprasController.auxiliar.montototal}" />
+                                        <p:column colspan="4" style="text-align:right" footerText="TOTALES" />
+                                        <p:column style="text-align: right"  footerText="#{procesarcomprasController.auxiliar.subtotal}" /> 
+                                        <p:column style="text-align: right"  footerText="#{procesarcomprasController.auxiliar.montoiva}" />
+                                        <p:column style="text-align: right"  footerText="#{procesarcomprasController.auxiliar.montototal}" />                                        
                                     </p:row>
-                                    <p:row>
-                                        <p:column colspan="4" style="text-align:right" footerText="IVA " />
-                                        <p:column style="text-align: right"  footerText="#{requerimientosController.total}" />
-                                    </p:row>
-                                    <p:row>
-                                        <p:column colspan="4" style="text-align:right" footerText="TOTAL GENERAL" />
-                                        <p:column style="text-align: right"  footerText="#{requerimientosController.total}" />
-                                    </p:row>
-
                                 </p:columnGroup>                            
                             </p:dataTable>
 

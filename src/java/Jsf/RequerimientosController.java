@@ -43,7 +43,10 @@ public class RequerimientosController implements Serializable {
     private int cantidad = 0;
     private double pcosto = 0;
     private double subtotal= 0;
-    private double total=0;
+    private double totalgeneral=0;
+    private double totaliva=0;
+    private double totalsubtotal=0;
+    
     private Auxiliarrequerimiento codAux;
 
     public double getSubtotal() {
@@ -54,20 +57,35 @@ public class RequerimientosController implements Serializable {
         this.subtotal = subtotal;
     }
 
-    public double getTotal() {
-        return total;
+    public double getTotalgeneral() {
+        return totalgeneral;
     }
 
-    public void setTotal(double total) {
-        this.total = total;
+    public void setTotalgeneral(double totalgeneral) {
+        this.totalgeneral = totalgeneral;
     }
-
-    
     
     public List<Requerimiento> getListarequerimiento() {
         return listarequerimiento;
     }
 
+    public double getTotaliva() {
+        return totaliva;
+    }
+
+    public void setTotaliva(double totaliva) {
+        this.totaliva = totaliva;
+    }
+
+    public double getTotalsubtotal() {
+        return totalsubtotal;
+    }
+
+    public void setTotalsubtotal(double totalsubtotal) {
+        this.totalsubtotal = totalsubtotal;
+    }
+
+    
     public void setListarequerimiento(List<Requerimiento> listarequerimiento) {
         this.listarequerimiento = listarequerimiento;
     }
@@ -178,13 +196,23 @@ public class RequerimientosController implements Serializable {
     }
 
     public void anexar() {
+        double alicuota=0;
+        double iva =0;
+        double total=0;
         Requerimiento reque = new Requerimiento();
         reque.setCodigo(requer.getCodigo());
         reque.setCantidad(cantidad);
         reque.setPcosto(pcosto);
         subtotal=cantidad*pcosto;
-        reque.setTotal(subtotal);
-        total+=subtotal;
+        reque.setSubtotal(subtotal);                
+        alicuota=reque.getCodigo().getIdgravamen().getAlicuota();
+        iva = (subtotal*alicuota)/100;
+        total=subtotal+iva;
+        reque.setTributoiva(iva);
+        reque.setTotal(total);
+        totalgeneral+=total;
+        totaliva+=iva;
+        totalsubtotal+=subtotal;
         this.listarequerimiento.add(reque);
         requerimientos = requerimientoEJB.findAll();
     }
@@ -195,9 +223,13 @@ public class RequerimientosController implements Serializable {
             auxrequer.setIddepartamento(dpto);
             auxrequer.setIdusuario(usa);
             auxrequer.setIdestatusrequerimiento(statusreq);
-            auxrequer.setMontototal(total);
+            auxrequer.setSubtotal(totalsubtotal);
+            auxrequer.setMontoiva(totaliva);
+            auxrequer.setMontototal(totalgeneral);
+            
             auxiliarrequerimientoEJB.create(auxrequer);
 
+            
             codAux = requerimientoEJB.ultimoInsertado();
 
             for (Requerimiento rq : listarequerimiento) {
@@ -206,6 +238,8 @@ public class RequerimientosController implements Serializable {
                 requer.setCodigo(arti);
                 requer.setCantidad(rq.getCantidad());
                 requer.setPcosto(rq.getPcosto());
+                requer.setSubtotal(rq.getSubtotal());
+                requer.setTributoiva(rq.getTributoiva());
                 requer.setTotal(rq.getTotal());
                 requerimientoEJB.create(requer);
             }

@@ -56,6 +56,10 @@ public class Auxiliarrequerimiento implements Serializable {
     @Column(name = "fecharequerimiento")
     @Temporal(TemporalType.DATE)
     private Date fecharequerimiento;
+    @Column(name = "subtotal")
+    private Double subtotal;
+    @Column(name = "montoiva")
+    private Double montoiva;
     @Column(name = "montototal")
     private Double montototal;
     
@@ -116,6 +120,23 @@ public class Auxiliarrequerimiento implements Serializable {
         this.fecharequerimiento = fecharequerimiento;
     }
 
+    public Double getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(Double subtotal) {
+        this.subtotal = subtotal;
+    }
+
+    public Double getMontoiva() {
+        return montoiva;
+    }
+
+    public void setMontoiva(Double montoiva) {
+        this.montoiva = montoiva;
+    }
+
+    
     public Double getMontototal() {
         return montototal;
     }

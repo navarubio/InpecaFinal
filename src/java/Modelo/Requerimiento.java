@@ -43,6 +43,10 @@ public class Requerimiento implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "pcosto")
     private Double pcosto;
+    @Column(name = "subtotal")
+    private Double subtotal;    
+    @Column(name = "tributoiva")
+    private Double tributoiva;
     @Column(name = "total")
     private Double total;
     
@@ -84,6 +88,23 @@ public class Requerimiento implements Serializable {
         this.pcosto = pcosto;
     }
 
+    public Double getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(Double subtotal) {
+        this.subtotal = subtotal;
+    }
+
+    
+    public Double getTributoiva() {
+        return tributoiva;
+    }
+
+    public void setTributoiva(Double tributoiva) {
+        this.tributoiva = tributoiva;
+    }
+    
     public Double getTotal() {
         return total;
     }

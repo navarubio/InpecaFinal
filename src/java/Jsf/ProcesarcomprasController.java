@@ -42,5 +42,6 @@ public class ProcesarcomprasController implements Serializable{
         this.reque=comprasController.getRequerimiento();
     }
     
+    
    
 }

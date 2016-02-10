@@ -55,7 +55,7 @@
 
                                 <p:outputLabel for="cantidad" value="Cantidad" />
                                 <p:inputText id="cantidad" value="#{requerimientosController.cantidad}" style="text-align:right"/>
-                                <p:outputLabel for="precio"  value="Precio" styleClass="optionalLbl"/>
+                                <p:outputLabel for="precio"  value="Precio Sin Iva" styleClass="optionalLbl"/>
                                 <p:inputText id="precio" size="20" value="#{requerimientosController.pcosto}" style="text-align:right"/>
                                 <p:commandButton value="Anexar" icon="ui-icon-plusthick"  action="#{requerimientosController.anexar()}" update="listado"/>  
                             </p:panelGrid>
@@ -65,7 +65,7 @@
                                 <p:column style="width:8%"  headerText="Codigo Articulo">
                                     #{req.codigo.codigo} 
                                 </p:column>
-                                <p:column style="width:15%"  headerText="Descripcion del Articulo">
+                                <p:column style="width:25%"  headerText="Descripcion del Articulo">
                                     #{req.codigo} 
                                 </p:column>
                                 <p:column style="text-align: center" headerText="Cantidad">
@@ -76,7 +76,17 @@
                                         <f:convertNumber type="currency" currencySymbol="BsF " />
                                     </h:outputText>
                                 </p:column>
-                                <p:column style="text-align: right" headerText="Sub Total">
+                                <p:column style="text-align: right" headerText="SUB TOTAL">
+                                    <h:outputText value="#{req.subtotal}">
+                                        <f:convertNumber type="currency" currencySymbol="BsF " />
+                                    </h:outputText>
+                                </p:column>                                
+                                <p:column style="text-align: right" headerText="IVA">
+                                    <h:outputText value="#{req.tributoiva}">
+                                        <f:convertNumber type="currency" currencySymbol="" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column style="text-align: right" headerText="TOTAL">
                                     <h:outputText value="#{req.total}">
                                         <f:convertNumber type="currency" currencySymbol=""  />
                                     </h:outputText>
@@ -88,8 +98,8 @@
 
                                 <p:columnGroup type="footer">
                                     <p:row>
-                                        <p:column colspan="4" style="text-align:right" footerText="Monto Total del Requerimiento" />
-                                        <p:column style="text-align: right"  footerText="BsF #{requerimientosController.total}" />
+                                        <p:column colspan="6" style="text-align:right" footerText="Monto Total del Requerimiento" />
+                                        <p:column style="text-align: right"  footerText="BsF #{requerimientosController.totalgeneral}" />
                                     </p:row>
                                 </p:columnGroup>                            
                             </p:dataTable>
