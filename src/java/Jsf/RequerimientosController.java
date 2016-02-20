@@ -216,6 +216,10 @@ public class RequerimientosController implements Serializable {
         this.listarequerimiento.add(reque);
         requerimientos = requerimientoEJB.findAll();
     }
+    
+    public void eliminar (Requerimiento requerim){
+        listarequerimiento.remove(requerim);
+    }
 
     public void registrar() {
         Articulo art = new Articulo();

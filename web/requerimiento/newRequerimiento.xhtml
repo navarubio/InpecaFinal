@@ -56,12 +56,14 @@
                                 <p:outputLabel for="cantidad" value="Cantidad" />
                                 <p:inputText id="cantidad" value="#{requerimientosController.cantidad}" style="text-align:right"/>
                                 <p:outputLabel for="precio"  value="Precio Sin Iva" styleClass="optionalLbl"/>
-                                <p:inputText id="precio" size="20" value="#{requerimientosController.pcosto}" style="text-align:right"/>
+                                <p:inputText id="precio"  label="#{requerimientosController.articulo.pcosto}" size="20" value="#{requerimientosController.pcosto}" style="text-align:right"/>
                                 <p:commandButton value="Anexar" icon="ui-icon-plusthick"  action="#{requerimientosController.anexar()}" update="listado"/>  
                             </p:panelGrid>
                         </p:fieldset>
                         <p:panel>
-                            <p:dataTable id="listado"  value="#{requerimientosController.listarequerimiento}" var="req" emptyMessage="No hay articulos para mostrar">
+                            <p:dataTable id="listado" widgetVar="listadoreq" value="#{requerimientosController.listarequerimiento}" 
+                                         var="req" emptyMessage="No hay articulos para mostrar" rowKey="#{req.codigo.codigo}"
+                                         selectionMode="single" >
                                 <p:column style="width:8%"  headerText="Codigo Articulo">
                                     #{req.codigo.codigo} 
                                 </p:column>

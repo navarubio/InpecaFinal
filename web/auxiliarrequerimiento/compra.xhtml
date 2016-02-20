@@ -99,10 +99,22 @@
                                 <p:column style="text-align:center" headerText="Cantidad">
                                     #{req.cantidad} 
                                 </p:column >
+
                                 <p:column style="text-align:right" headerText="Precio Unitario ">
-                                    <h:outputText value="#{req.pcosto}">
-                                        <f:convertNumber type="currency" currencySymbol=" " />
-                                    </h:outputText>
+                                    <p:rowEditor>
+                                        <p:cellEditor>
+                                            <f:facet name="output">
+                                                <h:outputText value="#{req.pcosto}">
+                                                    <f:convertNumber type="currency" currencySymbol=" " />
+                                                </h:outputText>
+                                            </f:facet>    
+                                            <f:facet name="input">
+                                                <p:inputText value="#{req.pcosto}">
+                                                    <f:convertNumber type="currency" currencySymbol=" " />
+                                                </p:inputText>
+                                            </f:facet>    
+                                        </p:cellEditor>
+                                    </p:rowEditor>
                                 </p:column>
                                 <p:column style="text-align:right" headerText="SUB TOTAL">
                                     <h:outputText value="#{req.subtotal}"> 
