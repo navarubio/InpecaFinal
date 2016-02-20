@@ -95,13 +95,13 @@
                                 </p:column>
 
                                 <p:column style="width:10%" headerText="Eliminar">
-                                    <p:commandLink value="Eliminar" />
+                                    <p:commandLink value="Eliminar" actionListener="#{requerimientosController.eliminar(req)}" update="listado" />
                                 </p:column>
 
                                 <p:columnGroup type="footer">
                                     <p:row>
-                                        <p:column colspan="6" style="text-align:right" footerText="Monto Total del Requerimiento" />
-                                        <p:column style="text-align: right"  footerText="BsF #{requerimientosController.totalgeneral}" />
+                                        <p:column colspan="6" style="text-align:right" footerText="Total del Requerimiento" />
+                                        <p:column style="text-align: right"  footerText="BsF #{requerimientosController.totaltotal()}" />
                                     </p:row>
                                 </p:columnGroup>                            
                             </p:dataTable>
