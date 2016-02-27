@@ -8,6 +8,7 @@ import Modelo.Articulo;
 import Modelo.Auxiliarrequerimiento;
 import Modelo.Departamento;
 import Modelo.Estatusrequerimiento;
+import Modelo.Proveedor;
 import Modelo.Requerimiento;
 import Modelo.Usuario;
 import java.io.Serializable;
@@ -37,6 +38,7 @@ public class RequerimientosController implements Serializable {
 
     private List<Articulo> articulos = null;
     private List<Requerimiento> requerimientos = null;
+    private List<Requerimiento> requerimientosfiltrados;
     private List<Requerimiento> listarequerimiento = new ArrayList();
     private String codigo = null;
     private String descripcion = null;
@@ -49,6 +51,23 @@ public class RequerimientosController implements Serializable {
     private int id = 0;
 
     private Auxiliarrequerimiento codAux;
+    private Auxiliarrequerimiento auxiliar;
+
+    public Auxiliarrequerimiento getAuxiliar() {
+        return auxiliar;
+    }
+
+    public void setAuxiliar(Auxiliarrequerimiento auxiliar) {
+        this.auxiliar = auxiliar;
+    }
+
+    public List<Requerimiento> getRequerimientosfiltrados() {
+        return requerimientosfiltrados;
+    }
+
+    public void setRequerimientosfiltrados(List<Requerimiento> requerimientosfiltrados) {
+        this.requerimientosfiltrados = requerimientosfiltrados;
+    }
 
     public double getSubtotal() {
         return subtotal;
@@ -142,6 +161,8 @@ public class RequerimientosController implements Serializable {
     private Articulo articulo;
     @Inject
     private Requerimiento requer;
+    @Inject
+    private Proveedor provee;
 
     @PostConstruct
     public void init() {
@@ -193,6 +214,14 @@ public class RequerimientosController implements Serializable {
         dpto = departamentoEJB.buscarDepartamento(usua);
         statusreq.setIdestatusrequerimiento(statu);
         return dpto;
+    }
+
+    public void buscarArticulo() {
+        articulo = requer.getCodigo();
+    }
+
+    public void buscarProveedor() {
+
     }
 
     public void anexar() {
@@ -279,4 +308,36 @@ public class RequerimientosController implements Serializable {
             FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
         }
     }
+
+    public void modificar(Requerimiento requerim) {
+        requerimientoEJB.edit(requerim);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Su Requerimiento fue Modificado"));
+    }
+
+    public void cancelModificar() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Se cancelo moficiacion"));
+    }
+
+    public void asignarSeleccion(Requerimiento requ) {
+        requer = requ;
+    }
+
+    public List<Requerimiento> buscando() {
+        List<Requerimiento> listado = null;
+        listado = requerimientoEJB.buscarrequerimientos(auxrequer);
+        return listado;
+    }
+
+    public void asignar(Auxiliarrequerimiento aux) {
+        this.auxiliar = aux;
+        this.auxrequer = aux;
+//        this.requerimientosfiltrados = requerimientoEJB.buscarrequerimientos(aux);
+    }
+
+    public List<Requerimiento> buscarRequerimiento(Auxiliarrequerimiento auxi) {
+        requerimientosfiltrados = requerimientoEJB.buscarrequerimientos(auxi);
+        auxrequer = auxi;
+        return requerimientosfiltrados;
+    }
+
 }

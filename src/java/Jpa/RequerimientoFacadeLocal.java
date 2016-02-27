@@ -33,6 +33,7 @@ public interface RequerimientoFacadeLocal {
 
     int count();
     
-    List<Requerimiento> buscarRequerimientos (Auxiliarrequerimiento auxireq);
+    List<Requerimiento> buscarrequerimientos (Auxiliarrequerimiento auxireq);
     
+    List<Requerimiento> requerimientosAuxiliar (int idaux);
 }

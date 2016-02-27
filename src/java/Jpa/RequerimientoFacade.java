@@ -52,14 +52,29 @@ public class RequerimientoFacade extends AbstractFacade<Requerimiento> implement
     }
 
     @Override
-    public List<Requerimiento> buscarRequerimientos(Auxiliarrequerimiento auxireq) {
+    public List<Requerimiento> buscarrequerimientos(Auxiliarrequerimiento auxireq) {
         String consulta;
-        List<Requerimiento> lista= null;
+        List<Requerimiento> lista = null;
         try {
             consulta = "From Requerimiento r where r.idauxiliarrequerimiento.idauxiliarrequerimiento = ?1";
             Query query = em.createQuery(consulta);
             query.setParameter(1, auxireq.getIdauxiliarrequerimiento());
-            lista=query.getResultList();
+            lista = query.getResultList();
+        } catch (Exception e) {
+            throw e;
+        }
+        return lista;
+    }
+
+    @Override
+    public List<Requerimiento> requerimientosAuxiliar(int idaux) {
+        String consulta;
+        List<Requerimiento> lista = null;
+        try {
+            consulta = "From Requerimiento r where r.idauxiliarrequerimiento.idauxiliarrequerimiento = ?1";
+            Query query = em.createQuery(consulta);
+            query.setParameter(1, idaux);
+            lista = query.getResultList();
         } catch (Exception e) {
             throw e;
         }

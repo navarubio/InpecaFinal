@@ -12,13 +12,11 @@ import javax.inject.Named;
 @Named
 @ViewScoped
 
-public class ProcesarcomprasController implements Serializable{
+public class ProcesarrequerimientosController implements Serializable{
     
     @Inject
-    private ComprasController comprasController;
-    @Inject
-    private RequerimientosController requerimientosController;
-
+    private RequerimientosController requerimientoscontroller;
+    
     private Auxiliarrequerimiento auxiliar;
     private Requerimiento reque;
 
@@ -40,7 +38,7 @@ public class ProcesarcomprasController implements Serializable{
     
     @PostConstruct
     public void init(){
-        this.auxiliar= comprasController.getAuxiliarrequerimiento();
-//        this.reque=comprasController.getRequerimiento();
+        this.auxiliar= requerimientoscontroller.getAuxrequer();
+        this.reque=requerimientoscontroller.getRequer();
     }
 }

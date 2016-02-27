@@ -27,6 +27,8 @@ public interface ArticuloFacadeLocal {
     List<Articulo> findAll();
 
     List<Articulo> findRange(int[] range);
+    
+    Articulo buscarArticulo(String codigo);
 
     int count();
     

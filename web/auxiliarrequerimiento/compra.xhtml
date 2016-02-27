@@ -16,8 +16,10 @@
             </ui:define>
 
             <ui:define name="body">
-                <p:growl autoUpdate="true" showDetail="true" showSummary="false"/>
-                <h:form>
+                <p:growl id="msgs" showDetail="true" /> 
+
+                <h:form id="formulario" >
+
                     <div id="imag2">
                         <img src="../resources/images/LogoInpeca.jpg" width="155" height="58" alt="Logo Inpeca"/>
                     </div>      
@@ -53,18 +55,21 @@
                                     <p:outputLabel for="depto" value="DEPARTAMENTO" styleClass="optionalLbl"/>
                                     <p:outputLabel id="depto" value="#{requerimientosController.buscarDepartamento().departamento}" styleClass="optionalLbl"/>
                                     <p:outputLabel for="proveedor" value="Proveedor" styleClass="optionalLbl"/>
-                                    <p:selectOneMenu id="provee" value="#{requerimientosController.requer.codigo}" converter="omnifaces.SelectItemsConverter" filter="true" filterMatchMode="contains"> 
+                                    <p:selectOneMenu id="provee" value="#{comprasController.provee}" converter="omnifaces.SelectItemsConverter" filter="true" filterMatchMode="contains"> 
+                                        <p:ajax event="change" update="rif"/>                              
+
                                         <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
                                         <f:selectItems value="#{comprasController.proveedores}"
                                                        var="idarticuloItem"
                                                        itemLabel="#{idarticuloItem.razonsocial}"  itemValue="#{idarticuloItem}" /> 
                                     </p:selectOneMenu>
+
                                     <p:outputLabel for="rif" value="R.I.F." styleClass="optionalLbl"/>
-                                    <p:outputLabel id="rif" value="#{requerimientosController.buscarDepartamento().departamento}" styleClass="optionalLbl"/>
+                                    <p:outputLabel id="rif" value="#{comprasController.provee.rifproveedor}" styleClass="optionalLbl"/>
                                     <p:outputLabel for="fechacompra" value="Fecha Compra" />
                                     <p:calendar id="fechacompra" pattern="dd/MM/yyyy" value="#{requerimientosController.auxrequer.fecharequerimiento}" showOn="button" navigator="true"/>
                                     <p:outputLabel for="observa" value="Observaciones" styleClass="optionalLbl"/>
-                                    <p:inputTextarea id="observa"  rows="2" cols="50" label="Observaciones" value="#{requerimientosController.auxrequer.descripcion}" required="true" />
+                                    <p:inputTextarea id="observa"  rows="2" cols="50" label="Observaciones" value="#{requerimientosController.auxrequer.descripcion}" required="true"/>
 
                                 </p:panelGrid>                                
                             </p:fieldset>
@@ -88,33 +93,20 @@
                                 <p:commandButton value="Anexar" icon="ui-icon-plusthick"  action="#{requerimientosController.anexar()}" update="listado"/>  
                             </p:panelGrid>
                         </p:fieldset>
-                        <p:panel>
-                            <p:dataTable id="listado"  value="#{comprasController.buscarRequerimiento(comprasController.auxiliarrequerimiento)}" var="req" emptyMessage="No hay articulos para mostrar">
+                        <p:panel id="panelart"  >
+                            <p:dataTable id="listado" value="#{comprasController.requerimientosFiltrados}"
+                                         var="req" emptyMessage="No hay articulos para mostrar">
                                 <p:column style="width:8%"  headerText="Codigo Articulo">
-                                    #{req.codigo.codigo} 
+                                    <h:outputText value="#{req.codigo.codigo}" />
                                 </p:column>
                                 <p:column style="width:35%"  headerText="Descripcion del Articulo">
-                                    #{req.codigo} 
+                                    <h:outputText value="#{req.codigo.descripcion}"/>  
                                 </p:column>
                                 <p:column style="text-align:center" headerText="Cantidad">
-                                    #{req.cantidad} 
+                                    <h:outputText style="width:10px"  value="#{req.cantidad}"/>
                                 </p:column >
-
                                 <p:column style="text-align:right" headerText="Precio Unitario ">
-                                    <p:rowEditor>
-                                        <p:cellEditor>
-                                            <f:facet name="output">
-                                                <h:outputText value="#{req.pcosto}">
-                                                    <f:convertNumber type="currency" currencySymbol=" " />
-                                                </h:outputText>
-                                            </f:facet>    
-                                            <f:facet name="input">
-                                                <p:inputText value="#{req.pcosto}">
-                                                    <f:convertNumber type="currency" currencySymbol=" " />
-                                                </p:inputText>
-                                            </f:facet>    
-                                        </p:cellEditor>
-                                    </p:rowEditor>
+                                    <h:outputText style="width:10px"  value="#{req.pcosto}"/>
                                 </p:column>
                                 <p:column style="text-align:right" headerText="SUB TOTAL">
                                     <h:outputText value="#{req.subtotal}"> 
@@ -132,29 +124,37 @@
                                     </h:outputText>
                                 </p:column>
 
-                                <p:column style="width:10%" headerText="Eliminar">
-                                    <p:commandLink value="Eliminar" />
+                                <p:column style="width:10%" headerText="Editar">
+                                    <p:commandLink value="Editar" actionListener="#{requerimientosController.asignarSeleccion(req)}" oncomplete="PF('wdialogo').show();"/>
                                 </p:column>
 
                                 <p:columnGroup type="footer">
                                     <p:row>
                                         <p:column colspan="4" style="text-align:right" footerText="TOTALES" />
-                                        <p:column style="text-align: right"  footerText="#{procesarcomprasController.auxiliar.subtotal}" /> 
-                                        <p:column style="text-align: right"  footerText="#{procesarcomprasController.auxiliar.montoiva}" />
-                                        <p:column style="text-align: right"  footerText="#{procesarcomprasController.auxiliar.montototal}" />                                        
+                                        <p:column style="text-align: right"  footerText="#{requerimientosController.auxrequer.subtotal}" /> 
+                                        <p:column style="text-align: right"  footerText="#{requerimientosController.auxrequer.montoiva}" />
+                                        <p:column style="text-align: right"  footerText="#{requerimientosController.auxrequer.montototal}" />                                        
                                     </p:row>
-                                </p:columnGroup>                            
-                            </p:dataTable>
-
-                            <p:commandButton value="Registrar" actionListener="#{requerimientosController.registrar()}" update=":growl" action="/auxiliarrequerimiento/List?faces-redirect=true"/>
+                                </p:columnGroup>       
+                            </p:dataTable> 
+                            <p:commandButton value="Registrar" actionListener="#{requerimientosController.registrar()}" update=":msgs" action="/auxiliarrequerimiento/List?faces-redirect=true"/>
                             <p:commandButton value="Cancelar" />
-
                         </p:panel>
                     </p:panel>
-                </h:form>
-
+                </h:form>     
+                <p:dialog id="dialogo" widgetVar="wdialogo" header="Editar Cantidad y Precio" modal="false" resizable="false" closeOnEscape="true" draggable="true">
+                    <h:form>
+                        <h:panelGrid  columns="4">
+                            <p:outputLabel for="cantidad" value="Cantidad" />
+                            <p:inputText id="cantidad" label="#{comprasController.requerimiento.cantidad}" value="#{requerimientosController.cantidad}" style="text-align:right"/>
+                            <p:outputLabel for="precio"  value="Precio sin IVA" styleClass="optionalLbl"/>
+                            <p:inputText id="precio"  label="#{requerimientosController.articulo.pcosto}"  size="20" value="#{requerimientosController.pcosto}" style="text-align:right"/>
+                            <p:commandButton value="Registrar" icon="ui-icon-check" update=":formulario:listado" action="#{requerimientosController.modificar(requerim)}" oncomplete="PF('wdialogo')" />                             
+                            <p:commandButton value="Cancelar" icon="ui-icon-close" immediate="true" onclick="PF('wdialogo').hide()" />
+                        </h:panelGrid>
+                    </h:form>
+                </p:dialog>
             </ui:define>
-
         </ui:composition>
     </body>
 </html>

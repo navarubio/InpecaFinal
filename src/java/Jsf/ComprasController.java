@@ -14,6 +14,9 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -32,13 +35,41 @@ public class ComprasController implements Serializable{
     private ArticuloFacadeLocal articuloEJB;
     
     private Auxiliarrequerimiento auxiliarrequerimiento;
-    private Requerimiento requerimiento;
     
+    @Inject
+    private Requerimiento requerimiento;
     
     private List<Auxiliarrequerimiento> auxiliarrequerimientos;
     private List<Requerimiento> requerimientos;
     private List<Proveedor> proveedores;
     private List<Articulo> articulos;
+    private int idAuxiliar=0;
+    private List<Requerimiento> requerimientosFiltrados;
+    
+    
+    public int getIdAuxiliar() {
+        return idAuxiliar;
+    }
+
+    public void setIdAuxiliar(int idAuxiliar) {
+        this.idAuxiliar = idAuxiliar;
+    }
+         
+    @Inject
+    private Proveedor provee;
+
+    @Inject
+    private RequerimientosController requerimientosController;
+    
+    
+    
+    public Proveedor getProvee() {
+        return provee;
+    }
+    
+    public void setProvee(Proveedor provee) {
+        this.provee = provee;
+    }
   
     public List<Auxiliarrequerimiento> getAuxiliarrequerimientos() {
         return auxiliarrequerimientos;
@@ -87,7 +118,14 @@ public class ComprasController implements Serializable{
     public void setRequerimiento(Requerimiento requerimiento) {
         this.requerimiento = requerimiento;
     }
-    
+
+    public List<Requerimiento> getRequerimientosFiltrados() {
+        return requerimientosFiltrados;
+    }
+
+    public void setRequerimientosFiltrados(List<Requerimiento> requerimientosFiltrados) {
+        this.requerimientosFiltrados = requerimientosFiltrados;
+    }
     
     @PostConstruct
     public void init (){
@@ -95,18 +133,44 @@ public class ComprasController implements Serializable{
         requerimientos=requerimientoEJB.findAll();
         proveedores=proveedorEJB.findAll();
         articulos=articuloEJB.findAll();
+//        this.auxiliarrequerimiento=requerimientosController.getAuxrequer();
+        
     }
 
-    public void asignar(Auxiliarrequerimiento aux, Requerimiento requeri){
+    public void asignar(Auxiliarrequerimiento aux){
         this.auxiliarrequerimiento = aux;
-        this.requerimiento=requeri;
+        this.idAuxiliar=aux.getIdauxiliarrequerimiento();  
+        this.requerimientosFiltrados = requerimientosController.buscarRequerimiento(aux);
     }
     
-    public List<Requerimiento> buscarRequerimiento (Auxiliarrequerimiento auxiliarrequerimiento){
+    public List<Requerimiento> buscarrequerimiento (){
         List<Requerimiento> listado = null;
-        listado = requerimientoEJB.buscarRequerimientos(auxiliarrequerimiento);
+        listado = requerimientoEJB.buscarrequerimientos(auxiliarrequerimiento);
         return listado;
     }
     
+    public List<Requerimiento> requerimientosAuxiliar (){
+        List<Requerimiento> listado = null;
+        listado = requerimientoEJB.requerimientosAuxiliar(auxiliarrequerimiento.getIdauxiliarrequerimiento());
+        return listado;
+    }
+    
+    public void asignarProveedor (Proveedor proveed){
+        provee = proveed;
+    }
+
+    public void modificar(Requerimiento requerim) {
+        requerimientoEJB.edit(requerim);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Su Requerimiento fue Modificado"));
+    }
+    
+    public void asignarrequerimiento(Requerimiento requeri){
+        requerimiento=requeri;
+    }
+    
+    
+    public List<Requerimiento> solicitarRequerimientosFiltro (){
+        return requerimientosFiltrados;
+    }
     
 }
