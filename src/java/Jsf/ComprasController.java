@@ -159,18 +159,32 @@ public class ComprasController implements Serializable{
         provee = proveed;
     }
 
-    public void modificar(Requerimiento requerim) {
-        requerimientoEJB.edit(requerim);
+    public void modificar() {
+        requerimientoEJB.edit(requerimiento);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Su Requerimiento fue Modificado"));
     }
     
-    public void asignarrequerimiento(Requerimiento requeri){
+    public void asignarRequerimiento(Requerimiento requeri){
         requerimiento=requeri;
     }
-    
     
     public List<Requerimiento> solicitarRequerimientosFiltro (){
         return requerimientosFiltrados;
     }
+    
+    public void actualizarRequerimiento (){
+        double subtotal =0;
+        double alicuota=0;
+        double iva=0;
+        double total=0;
+        subtotal = requerimiento.getCantidad()*requerimiento.getPcosto();
+        alicuota=requerimiento.getCodigo().getIdgravamen().getAlicuota();
+        iva= subtotal*alicuota;
+        total=subtotal+iva;
+        requerimiento.setSubtotal(subtotal);
+        requerimiento.setTributoiva(iva);
+        requerimiento.setTotal(total);                
+    }
+    
     
 }

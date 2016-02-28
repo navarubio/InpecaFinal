@@ -97,14 +97,26 @@
                     <p:panel id="panelart"  >
                         <p:dataTable id="listado" value="#{comprasController.requerimientosFiltrados}"
                                      var="req" emptyMessage="No hay articulos para mostrar" >
+                            <p:column style="width: 32px">
+                                <p:rowEditor/>
+                            </p:column>
+                            
                             <p:column style="width:8%"  headerText="Codigo Articulo">
                                 <h:outputText value="#{req.codigo.codigo}" />
                             </p:column>
                             <p:column style="width:35%"  headerText="Descripcion del Articulo">
                                 <h:outputText value="#{req.codigo.descripcion}"/>  
                             </p:column>
-                            <p:column style="text-align:center" headerText="Cantidad">                                
-                                <h:outputText style="width:10px"  value="#{req.cantidad}"/>
+
+                            <p:column style="text-align:center" headerText="Cantidad">
+                                <p:cellEditor>
+                                    <f:facet name="outputText">
+                                        <h:outputText style="width:10px"  value="#{req.cantidad}"/>
+                                    </f:facet>
+                                    <f:facet name="inputText">
+                                        <p:inputText style="width:10px"  value="#{req.cantidad}"/>
+                                    </f:facet>
+                                </p:cellEditor>
                             </p:column >
                             <p:column style="text-align:right" headerText="Precio Unitario ">
                                 <h:outputText style="width:10px"  value="#{req.pcosto}"/>
@@ -126,8 +138,8 @@
                             </p:column>
 
                             <p:column style="width:10%" headerText="Editar">
-                                <p:commandLink actionListener="#{comprasController.asignarRequerimiento(req)}" value="Editar" update=":dialogo" oncomplete="PF('wdialogo').show();" >
-                           
+                                <p:commandLink actionListener="#{comprasController.asignarRequerimiento(req)}" value="Editar" oncomplete="PF('wdialogo').show();" >
+                                    <!--update=":dialogo" -->
                                 </p:commandLink>
                             </p:column>
                             <p:columnGroup type="footer">
@@ -143,19 +155,19 @@
                         <p:commandButton value="Cancelar" />
                     </p:panel>
                 </h:form>
-                <p:dialog id="dialogo" widgetVar="wdialogo" header="Modificar cantidad y precio del Articulo" modal="true" closeOnEscape="true" 
+                <!--p:dialog id="dialogo" widgetVar="wdialogo" header="Modificar cantidad y precio del Articulo" modal="true" closeOnEscape="true" 
                           resizable="false" showEffect="explode" appendTo="@(body)"  >
                     <h:form>
                         <h:panelGrid  columns="4">
                             <p:outputLabel for="cantidad" value="Cantidad" />
-                            <p:inputText id="cantidad" label="#{comprasController.requerimiento.cantidad}" value="#{comprasController.requerimiento.cantidad}" style="text-align:right"/>
+                            <p:inputText id="cantidad" label=".{comprasController.requerimiento.cantidad}" value=".{comprasController.requerimiento.cantidad}" style="text-align:right"/>
                             <p:outputLabel for="precio"  value="Precio sin IVA" styleClass="optionalLbl"/>
-                            <p:inputText id="precio"  label="#{comprasController.requerimiento.pcosto}"  size="20" value="#{comprasController.requerimiento.pcosto}" style="text-align:right"/>
-                            <p:commandButton value="Grabar" icon="ui-icon-check" actionListener="#{comprasController.modificar()}"  oncomplete="PF('wdialogo').hide();" />                             
+                            <p:inputText id="precio"  label=".{comprasController.requerimiento.pcosto}"  size="20" value=".{comprasController.requerimiento.pcosto}" style="text-align:right"/>
+                            <p:commandButton value="Grabar" icon="ui-icon-check" actionListener=".{comprasController.modificar()}"  oncomplete="PF('wdialogo').hide();" />                             
                             <p:commandButton value="Cancelar" icon="ui-icon-close" immediate="true" onclick="PF('wdialogo').hide();" /> 
                         </h:panelGrid>
                     </h:form>
-                </p:dialog>
+                </p:dialog-->
             </ui:define>
         </ui:composition>
     </body>

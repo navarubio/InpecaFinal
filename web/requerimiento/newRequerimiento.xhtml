@@ -63,7 +63,7 @@
                             </p:panelGrid>
                         </p:fieldset>
                         <p:panel>
-                            <p:dataTable id="listado" widgetVar="listadoreq" value="#{requerimientosController.buscarRequerimiento()}" 
+                            <p:dataTable id="listado" widgetVar="listadoreq" value="#{requerimientosController.listarequerimiento}" 
                                          var="req" emptyMessage="No hay articulos para mostrar" rowKey="#{req.codigo.codigo}"
                                          selectionMode="single" >
                                 <p:column style="width:8%"  headerText="Codigo Articulo">

@@ -336,7 +336,12 @@ public class RequerimientosController implements Serializable {
 
     public List<Requerimiento> buscarRequerimiento(Auxiliarrequerimiento auxi) {
         requerimientosfiltrados = requerimientoEJB.buscarrequerimientos(auxi);
-        auxrequer = auxi;
+        auxiliar = auxi;
+        auxrequer = auxiliar;
+        return requerimientosfiltrados;
+    }
+    public List<Requerimiento> buscarRequerimientosGenerales() {
+        
         return requerimientosfiltrados;
     }
 
