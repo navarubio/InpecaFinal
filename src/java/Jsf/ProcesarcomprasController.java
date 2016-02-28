@@ -43,4 +43,5 @@ public class ProcesarcomprasController implements Serializable{
         this.auxiliar= comprasController.getAuxiliarrequerimiento();
 //        this.reque=comprasController.getRequerimiento();
     }
+    
 }
