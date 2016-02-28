@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DetallecompraCreateDlg" widgetVar="DetallecompraCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateDetallecompraTitle}">
+            <h:form id="DetallecompraCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{detallecompraController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateDetallecompraLabel_iddetallecompra}" for="iddetallecompra" />
+                        <p:inputText id="iddetallecompra" value="#{detallecompraController.selected.iddetallecompra}" title="#{bundle.CreateDetallecompraTitle_iddetallecompra}" required="true" requiredMessage="#{bundle.CreateDetallecompraRequiredMessage_iddetallecompra}"/>
+                        <p:outputLabel value="#{bundle.CreateDetallecompraLabel_cantidad}" for="cantidad" />
+                        <p:inputText id="cantidad" value="#{detallecompraController.selected.cantidad}" title="#{bundle.CreateDetallecompraTitle_cantidad}" />
+                        <p:outputLabel value="#{bundle.CreateDetallecompraLabel_pcosto}" for="pcosto" />
+                        <p:inputText id="pcosto" value="#{detallecompraController.selected.pcosto}" title="#{bundle.CreateDetallecompraTitle_pcosto}" />
+                        <p:outputLabel value="#{bundle.CreateDetallecompraLabel_tributoiva}" for="tributoiva" />
+                        <p:inputText id="tributoiva" value="#{detallecompraController.selected.tributoiva}" title="#{bundle.CreateDetallecompraTitle_tributoiva}" />
+                        <p:outputLabel value="#{bundle.CreateDetallecompraLabel_totalapagar}" for="totalapagar" />
+                        <p:inputText id="totalapagar" value="#{detallecompraController.selected.totalapagar}" title="#{bundle.CreateDetallecompraTitle_totalapagar}" />
+                        <p:outputLabel value="#{bundle.CreateDetallecompraLabel_idcompra}" for="idcompra" />
+                        <p:selectOneMenu id="idcompra" value="#{detallecompraController.selected.idcompra}" >
+                            <f:selectItems value="#{compraController.itemsAvailableSelectOne}"
+                                           var="idcompraItem"
+                                           itemValue="#{idcompraItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateDetallecompraLabel_idestatuscontable}" for="idestatuscontable" />
+                        <p:selectOneMenu id="idestatuscontable" value="#{detallecompraController.selected.idestatuscontable}" >
+                            <f:selectItems value="#{estatuscontableController.itemsAvailableSelectOne}"
+                                           var="idestatuscontableItem"
+                                           itemValue="#{idestatuscontableItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateDetallecompraLabel_idplandecuenta}" for="idplandecuenta" />
+                        <p:selectOneMenu id="idplandecuenta" value="#{detallecompraController.selected.idplandecuenta}" >
+                            <f:selectItems value="#{plandecuentaController.itemsAvailableSelectOne}"
+                                           var="idplandecuentaItem"
+                                           itemValue="#{idplandecuentaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateDetallecompraLabel_codigo}" for="codigo" />
+                        <p:selectOneMenu id="codigo" value="#{detallecompraController.selected.codigo}" >
+                            <f:selectItems value="#{articuloController.itemsAvailableSelectOne}"
+                                           var="codigoItem"
+                                           itemValue="#{codigoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{detallecompraController.create}" value="#{bundle.Save}" update="display,:DetallecompraListForm:datalist,:growl" oncomplete="handleSubmit(args,'DetallecompraCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DetallecompraCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

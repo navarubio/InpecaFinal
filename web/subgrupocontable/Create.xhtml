@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SubgrupocontableCreateDlg" widgetVar="SubgrupocontableCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSubgrupocontableTitle}">
+            <h:form id="SubgrupocontableCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{subgrupocontableController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateSubgrupocontableLabel_idsubgrupocontable}" for="idsubgrupocontable" />
+                        <p:inputText id="idsubgrupocontable" value="#{subgrupocontableController.selected.idsubgrupocontable}" title="#{bundle.CreateSubgrupocontableTitle_idsubgrupocontable}" required="true" requiredMessage="#{bundle.CreateSubgrupocontableRequiredMessage_idsubgrupocontable}"/>
+                        <p:outputLabel value="#{bundle.CreateSubgrupocontableLabel_subgrupocontable}" for="subgrupocontable" />
+                        <p:inputText id="subgrupocontable" value="#{subgrupocontableController.selected.subgrupocontable}" title="#{bundle.CreateSubgrupocontableTitle_subgrupocontable}" />
+                        <p:outputLabel value="#{bundle.CreateSubgrupocontableLabel_idgrupocontable}" for="idgrupocontable" />
+                        <p:selectOneMenu id="idgrupocontable" value="#{subgrupocontableController.selected.idgrupocontable}" >
+                            <f:selectItems value="#{grupocontableController.itemsAvailableSelectOne}"
+                                           var="idgrupocontableItem"
+                                           itemValue="#{idgrupocontableItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{subgrupocontableController.create}" value="#{bundle.Save}" update="display,:SubgrupocontableListForm:datalist,:growl" oncomplete="handleSubmit(args,'SubgrupocontableCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SubgrupocontableCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

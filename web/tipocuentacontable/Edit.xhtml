@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TipocuentacontableEditDlg" widgetVar="TipocuentacontableEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.actual.EditTipocuentacontableTitle}">
+            <h:form id="TipocuentacontableEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tipocuentacontableController.selected != null}">
+                        <p:outputLabel value="#{bundle.actual.EditTipocuentacontableLabel_idtipocuentacontable}" for="idtipocuentacontable" />
+                        <p:inputText id="idtipocuentacontable" value="#{tipocuentacontableController.selected.idtipocuentacontable}" title="#{bundle.actual.EditTipocuentacontableTitle_idtipocuentacontable}" required="true" requiredMessage="#{bundle.actual.EditTipocuentacontableRequiredMessage_idtipocuentacontable}"/>
+                        <p:outputLabel value="#{bundle.actual.EditTipocuentacontableLabel_tipocuentacontable}" for="tipocuentacontable" />
+                        <p:inputText id="tipocuentacontable" value="#{tipocuentacontableController.selected.tipocuentacontable}" title="#{bundle.actual.EditTipocuentacontableTitle_tipocuentacontable}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tipocuentacontableController.update}" value="#{bundle.actual.Save}" update="display,:TipocuentacontableListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TipocuentacontableEditDialog');"/>
+                    <p:commandButton value="#{bundle.actual.Cancel}" onclick="TipocuentacontableEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

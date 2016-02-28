@@ -6,6 +6,8 @@ import Jpa.ProveedorFacadeLocal;
 import Jpa.RequerimientoFacadeLocal;
 import Modelo.Articulo;
 import Modelo.Auxiliarrequerimiento;
+import Modelo.Detallecompra;
+import Modelo.Compra;
 import Modelo.Proveedor;
 import Modelo.Requerimiento;
 import java.io.Serializable;
@@ -38,7 +40,29 @@ public class ComprasController implements Serializable {
 
     @Inject
     private Requerimiento requerimiento;
+    
+    @Inject
+    private Compra compra;
+    @Inject
+    private Detallecompra detallecompra;
 
+    public Compra getCompra() {
+        return compra;
+    }
+
+    public void setCompra(Compra compra) {
+        this.compra = compra;
+    }
+
+    public Detallecompra getDetallecompra() {
+        return detallecompra;
+    }
+
+    public void setDetallecompra(Detallecompra detallecompra) {
+        this.detallecompra = detallecompra;
+    }
+    
+    
     private List<Auxiliarrequerimiento> auxiliarrequerimientos;
     private List<Requerimiento> requerimientos;
     private List<Proveedor> proveedores;
@@ -187,7 +211,7 @@ public class ComprasController implements Serializable {
 
     public void registrar() {
         try {
-/*            auxrequer.setIddepartamento(dpto);
+/*            compra.setIdcompra(idAuxiliar); setIddepartamento(dpto);
             auxrequer.setIdusuario(usa);
             auxrequer.setIdestatusrequerimiento(statusreq);
             auxrequer.setSubtotal(totalsubtotal);

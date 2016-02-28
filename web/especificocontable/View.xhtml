@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EspecificocontableViewDlg" widgetVar="EspecificocontableViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewEspecificocontableTitle}">
+            <h:form id="EspecificocontableViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{especificocontableController.selected != null}">
+                        <h:outputText value="#{bundle.ViewEspecificocontableLabel_idespecificocontable}"/>
+                        <h:outputText value="#{especificocontableController.selected.idespecificocontable}" title="#{bundle.ViewEspecificocontableTitle_idespecificocontable}"/>
+                        <h:outputText value="#{bundle.ViewEspecificocontableLabel_especificocontable}"/>
+                        <h:outputText value="#{especificocontableController.selected.especificocontable}" title="#{bundle.ViewEspecificocontableTitle_especificocontable}"/>
+                        <h:outputText value="#{bundle.ViewEspecificocontableLabel_idgrupocontable}"/>
+                        <h:outputText value="#{especificocontableController.selected.idgrupocontable}" title="#{bundle.ViewEspecificocontableTitle_idgrupocontable}"/>
+                        <h:outputText value="#{bundle.ViewEspecificocontableLabel_idsubgrupocontable}"/>
+                        <h:outputText value="#{especificocontableController.selected.idsubgrupocontable}" title="#{bundle.ViewEspecificocontableTitle_idsubgrupocontable}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="EspecificocontableViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

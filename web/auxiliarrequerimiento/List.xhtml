@@ -11,10 +11,16 @@
 
         <ui:define name="title">
             <h:outputText value="#{bundle.ListAuxiliarrequerimientoTitle}"></h:outputText>
+            <h:outputStylesheet library="css" name="index.css" />     
         </ui:define>
 
         <ui:define name="body">
             <h:form id="AuxiliarrequerimientoListForm">
+                <div id="imag2">
+                    <img src="../resources/images/LogoInpeca.jpg" width="155" height="58" alt="Logo Inpeca" />
+                </div>     
+                <img src="../resources/images/lists.png" width="70" height="70" alt="Solicitudes" align="right" />
+
                 <p:panel header="#{bundle.ListAuxiliarrequerimientoTitle}">
                     <p:dataTable id="datalist" value="#{auxiliarrequerimientoController.items}" var="item"
                                  selectionMode="single" selection="#{auxiliarrequerimientoController.selected}"

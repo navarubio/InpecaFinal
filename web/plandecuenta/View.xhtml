@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PlandecuentaViewDlg" widgetVar="PlandecuentaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPlandecuentaTitle}">
+            <h:form id="PlandecuentaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{plandecuentaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPlandecuentaLabel_idplandecuenta}"/>
+                        <h:outputText value="#{plandecuentaController.selected.idplandecuenta}" title="#{bundle.ViewPlandecuentaTitle_idplandecuenta}"/>
+                        <h:outputText value="#{bundle.ViewPlandecuentaLabel_idgeneralcuenta}"/>
+                        <h:outputText value="#{plandecuentaController.selected.idgeneralcuenta}" title="#{bundle.ViewPlandecuentaTitle_idgeneralcuenta}"/>
+                        <h:outputText value="#{bundle.ViewPlandecuentaLabel_descripcioncuenta}"/>
+                        <h:outputText value="#{plandecuentaController.selected.descripcioncuenta}" title="#{bundle.ViewPlandecuentaTitle_descripcioncuenta}"/>
+                        <h:outputText value="#{bundle.ViewPlandecuentaLabel_saldogeneral}"/>
+                        <h:outputText value="#{plandecuentaController.selected.saldogeneral}" title="#{bundle.ViewPlandecuentaTitle_saldogeneral}"/>
+                        <h:outputText value="#{bundle.ViewPlandecuentaLabel_fujodeefectivo}"/>
+                        <h:outputText value="#{plandecuentaController.selected.fujodeefectivo}" title="#{bundle.ViewPlandecuentaTitle_fujodeefectivo}"/>
+                        <h:outputText value="#{bundle.ViewPlandecuentaLabel_idgrupocontable}"/>
+                        <h:outputText value="#{plandecuentaController.selected.idgrupocontable}" title="#{bundle.ViewPlandecuentaTitle_idgrupocontable}"/>
+                        <h:outputText value="#{bundle.ViewPlandecuentaLabel_idsubgrupocontable}"/>
+                        <h:outputText value="#{plandecuentaController.selected.idsubgrupocontable}" title="#{bundle.ViewPlandecuentaTitle_idsubgrupocontable}"/>
+                        <h:outputText value="#{bundle.ViewPlandecuentaLabel_idespecificocontable}"/>
+                        <h:outputText value="#{plandecuentaController.selected.idespecificocontable}" title="#{bundle.ViewPlandecuentaTitle_idespecificocontable}"/>
+                        <h:outputText value="#{bundle.ViewPlandecuentaLabel_idsubespecificocontable}"/>
+                        <h:outputText value="#{plandecuentaController.selected.idsubespecificocontable}" title="#{bundle.ViewPlandecuentaTitle_idsubespecificocontable}"/>
+                        <h:outputText value="#{bundle.ViewPlandecuentaLabel_idtipocuentacontable}"/>
+                        <h:outputText value="#{plandecuentaController.selected.idtipocuentacontable}" title="#{bundle.ViewPlandecuentaTitle_idtipocuentacontable}"/>
+                        <h:outputText value="#{bundle.ViewPlandecuentaLabel_idtiposaldocontable}"/>
+                        <h:outputText value="#{plandecuentaController.selected.idtiposaldocontable}" title="#{bundle.ViewPlandecuentaTitle_idtiposaldocontable}"/>
+                        <h:outputText value="#{bundle.ViewPlandecuentaLabel_idtipopartidacontable}"/>
+                        <h:outputText value="#{plandecuentaController.selected.idtipopartidacontable}" title="#{bundle.ViewPlandecuentaTitle_idtipopartidacontable}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PlandecuentaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

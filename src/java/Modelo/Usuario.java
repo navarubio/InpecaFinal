@@ -44,6 +44,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuario.findByUsuario", query = "SELECT u FROM Usuario u WHERE u.usuario = :usuario"),
     @NamedQuery(name = "Usuario.findByClave", query = "SELECT u FROM Usuario u WHERE u.clave = :clave")})
 public class Usuario implements Serializable {
+    @OneToMany(mappedBy = "idusuario")
+    private Collection<Compra> compraCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -221,6 +223,15 @@ public class Usuario implements Serializable {
     @Override
     public String toString() {
         return nombre;
+    }
+
+    @XmlTransient
+    public Collection<Compra> getCompraCollection() {
+        return compraCollection;
+    }
+
+    public void setCompraCollection(Collection<Compra> compraCollection) {
+        this.compraCollection = compraCollection;
     }
     
 }

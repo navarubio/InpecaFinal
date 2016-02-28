@@ -6,6 +6,7 @@
 package Modelo;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -17,11 +18,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -38,6 +41,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Auxiliarrequerimiento.findByDescripcion", query = "SELECT a FROM Auxiliarrequerimiento a WHERE a.descripcion = :descripcion"),
     @NamedQuery(name = "Auxiliarrequerimiento.findByFecharequerimiento", query = "SELECT a FROM Auxiliarrequerimiento a WHERE a.fecharequerimiento = :fecharequerimiento")})
 public class Auxiliarrequerimiento implements Serializable {
+    @OneToMany(mappedBy = "idauxiliarrequerimiento")
+    private Collection<Compra> compraCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -193,6 +198,15 @@ public class Auxiliarrequerimiento implements Serializable {
     @Override
     public String toString() {
         return "Modelo.Auxiliarrequerimiento[ idauxiliarrequerimiento=" + idauxiliarrequerimiento + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Compra> getCompraCollection() {
+        return compraCollection;
+    }
+
+    public void setCompraCollection(Collection<Compra> compraCollection) {
+        this.compraCollection = compraCollection;
     }
     
 }

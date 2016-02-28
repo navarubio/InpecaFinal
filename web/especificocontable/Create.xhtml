@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EspecificocontableCreateDlg" widgetVar="EspecificocontableCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateEspecificocontableTitle}">
+            <h:form id="EspecificocontableCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{especificocontableController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateEspecificocontableLabel_idespecificocontable}" for="idespecificocontable" />
+                        <p:inputText id="idespecificocontable" value="#{especificocontableController.selected.idespecificocontable}" title="#{bundle.CreateEspecificocontableTitle_idespecificocontable}" required="true" requiredMessage="#{bundle.CreateEspecificocontableRequiredMessage_idespecificocontable}"/>
+                        <p:outputLabel value="#{bundle.CreateEspecificocontableLabel_especificocontable}" for="especificocontable" />
+                        <p:inputText id="especificocontable" value="#{especificocontableController.selected.especificocontable}" title="#{bundle.CreateEspecificocontableTitle_especificocontable}" />
+                        <p:outputLabel value="#{bundle.CreateEspecificocontableLabel_idgrupocontable}" for="idgrupocontable" />
+                        <p:selectOneMenu id="idgrupocontable" value="#{especificocontableController.selected.idgrupocontable}" >
+                            <f:selectItems value="#{grupocontableController.itemsAvailableSelectOne}"
+                                           var="idgrupocontableItem"
+                                           itemValue="#{idgrupocontableItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateEspecificocontableLabel_idsubgrupocontable}" for="idsubgrupocontable" />
+                        <p:selectOneMenu id="idsubgrupocontable" value="#{especificocontableController.selected.idsubgrupocontable}" >
+                            <f:selectItems value="#{subgrupocontableController.itemsAvailableSelectOne}"
+                                           var="idsubgrupocontableItem"
+                                           itemValue="#{idsubgrupocontableItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{especificocontableController.create}" value="#{bundle.Save}" update="display,:EspecificocontableListForm:datalist,:growl" oncomplete="handleSubmit(args,'EspecificocontableCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EspecificocontableCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
