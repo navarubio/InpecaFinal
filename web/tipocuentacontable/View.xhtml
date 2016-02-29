@@ -8,16 +8,16 @@
 
     <ui:composition>
 
-        <p:dialog id="TipocuentacontableViewDlg" widgetVar="TipocuentacontableViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.actual.ViewTipocuentacontableTitle}">
+        <p:dialog id="TipocuentacontableViewDlg" widgetVar="TipocuentacontableViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTipocuentacontableTitle}">
             <h:form id="TipocuentacontableViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tipocuentacontableController.selected != null}">
-                        <h:outputText value="#{bundle.actual.ViewTipocuentacontableLabel_idtipocuentacontable}"/>
-                        <h:outputText value="#{tipocuentacontableController.selected.idtipocuentacontable}" title="#{bundle.actual.ViewTipocuentacontableTitle_idtipocuentacontable}"/>
-                        <h:outputText value="#{bundle.actual.ViewTipocuentacontableLabel_tipocuentacontable}"/>
-                        <h:outputText value="#{tipocuentacontableController.selected.tipocuentacontable}" title="#{bundle.actual.ViewTipocuentacontableTitle_tipocuentacontable}"/>
+                        <h:outputText value="#{bundle.ViewTipocuentacontableLabel_idtipocuentacontable}"/>
+                        <h:outputText value="#{tipocuentacontableController.selected.idtipocuentacontable}" title="#{bundle.ViewTipocuentacontableTitle_idtipocuentacontable}"/>
+                        <h:outputText value="#{bundle.ViewTipocuentacontableLabel_tipocuentacontable}"/>
+                        <h:outputText value="#{tipocuentacontableController.selected.tipocuentacontable}" title="#{bundle.ViewTipocuentacontableTitle_tipocuentacontable}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.actual.Close}" onclick="TipocuentacontableViewDialog.hide()"/>
+                    <p:commandButton value="#{bundle.Close}" onclick="TipocuentacontableViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

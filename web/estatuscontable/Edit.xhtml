@@ -8,17 +8,17 @@
 
     <ui:composition>
 
-        <p:dialog id="EstatuscontableEditDlg" widgetVar="EstatuscontableEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.actual.EditEstatuscontableTitle}">
+        <p:dialog id="EstatuscontableEditDlg" widgetVar="EstatuscontableEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditEstatuscontableTitle}">
             <h:form id="EstatuscontableEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{estatuscontableController.selected != null}">
-                        <p:outputLabel value="#{bundle.actual.EditEstatuscontableLabel_idestatuscontable}" for="idestatuscontable" />
-                        <p:inputText id="idestatuscontable" value="#{estatuscontableController.selected.idestatuscontable}" title="#{bundle.actual.EditEstatuscontableTitle_idestatuscontable}" required="true" requiredMessage="#{bundle.actual.EditEstatuscontableRequiredMessage_idestatuscontable}"/>
-                        <p:outputLabel value="#{bundle.actual.EditEstatuscontableLabel_estatuscontable}" for="estatuscontable" />
-                        <p:inputText id="estatuscontable" value="#{estatuscontableController.selected.estatuscontable}" title="#{bundle.actual.EditEstatuscontableTitle_estatuscontable}" />
+                        <p:outputLabel value="#{bundle.EditEstatuscontableLabel_idestatuscontable}" for="idestatuscontable" />
+                        <p:inputText id="idestatuscontable" value="#{estatuscontableController.selected.idestatuscontable}" title="#{bundle.EditEstatuscontableTitle_idestatuscontable}" required="true" requiredMessage="#{bundle.EditEstatuscontableRequiredMessage_idestatuscontable}"/>
+                        <p:outputLabel value="#{bundle.EditEstatuscontableLabel_estatuscontable}" for="estatuscontable" />
+                        <p:inputText id="estatuscontable" value="#{estatuscontableController.selected.estatuscontable}" title="#{bundle.EditEstatuscontableTitle_estatuscontable}" />
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{estatuscontableController.update}" value="#{bundle.actual.Save}" update="display,:EstatuscontableListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EstatuscontableEditDialog');"/>
-                    <p:commandButton value="#{bundle.actual.Cancel}" onclick="EstatuscontableEditDialog.hide()"/>
+                    <p:commandButton actionListener="#{estatuscontableController.update}" value="#{bundle.Save}" update="display,:EstatuscontableListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EstatuscontableEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EstatuscontableEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

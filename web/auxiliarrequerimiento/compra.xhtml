@@ -67,9 +67,9 @@
                                     <p:outputLabel for="rif" value="R.I.F." styleClass="optionalLbl"/>
                                     <p:outputLabel id="rif" value="#{comprasController.provee.rifproveedor}" styleClass="optionalLbl"/>
                                     <p:outputLabel for="fechacompra" value="Fecha Compra" />
-                                    <p:calendar id="fechacompra" pattern="dd/MM/yyyy" value="#{requerimientosController.auxrequer.fecharequerimiento}" showOn="button" navigator="true"/>
+                                    <p:calendar id="fechacompra" pattern="dd/MM/yyyy" value="#{comprasController.compra.fechaorden}" showOn="button" navigator="true"/>
                                     <p:outputLabel for="observa" value="Observaciones" styleClass="optionalLbl"/>
-                                    <p:inputTextarea id="observa"  rows="2" cols="50" label="Observaciones" value="#{requerimientosController.auxrequer.descripcion}" required="true"/>
+                                    <p:inputTextarea id="observa"  rows="2" cols="50" label="Observaciones" value="#{comprasController.compra.observacionescompra}" required="true"/>
 
                                 </p:panelGrid>                                
                             </p:fieldset>
@@ -139,7 +139,7 @@
                                 </p:row>
                             </p:columnGroup>       
                         </p:dataTable> 
-                        <p:commandButton value="Registrar" actionListener="#{requerimientosController.registrar()}" update=":msgs" action="/auxiliarrequerimiento/List?faces-redirect=true"/>
+                        <p:commandButton value="Registrar" actionListener="#{comprasController.registrar()}" update=":msgs" action="/auxiliarrequerimiento/List?faces-redirect=true"/>
                         <p:commandButton value="Cancelar" />
                     </p:panel>
                 </h:form>

@@ -10,12 +10,12 @@
 
 
         <ui:define name="title">
-            <h:outputText value="#{bundle.actual.ListTipocuentacontableTitle}"></h:outputText>
+            <h:outputText value="#{bundle.ListTipocuentacontableTitle}"></h:outputText>
         </ui:define>
 
         <ui:define name="body">
             <h:form id="TipocuentacontableListForm">
-                <p:panel header="#{bundle.actual.ListTipocuentacontableTitle}">
+                <p:panel header="#{bundle.ListTipocuentacontableTitle}">
                     <p:dataTable id="datalist" value="#{tipocuentacontableController.items}" var="item"
                                  selectionMode="single" selection="#{tipocuentacontableController.selected}"
                                  paginator="true"
@@ -29,21 +29,21 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.actual.ListTipocuentacontableTitle_idtipocuentacontable}"/>
+                                <h:outputText value="#{bundle.ListTipocuentacontableTitle_idtipocuentacontable}"/>
                             </f:facet>
                             <h:outputText value="#{item.idtipocuentacontable}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.actual.ListTipocuentacontableTitle_tipocuentacontable}"/>
+                                <h:outputText value="#{bundle.ListTipocuentacontableTitle_tipocuentacontable}"/>
                             </f:facet>
                             <h:outputText value="#{item.tipocuentacontable}"/>
                         </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.actual.Create}" actionListener="#{tipocuentacontableController.prepareCreate}" update=":TipocuentacontableCreateForm" oncomplete="PF('TipocuentacontableCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.actual.View}" update=":TipocuentacontableViewForm" oncomplete="PF('TipocuentacontableViewDialog').show()" disabled="#{empty tipocuentacontableController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.actual.Edit}" update=":TipocuentacontableEditForm" oncomplete="PF('TipocuentacontableEditDialog').show()" disabled="#{empty tipocuentacontableController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.actual.Delete}" actionListener="#{tipocuentacontableController.destroy}" update=":growl,datalist" disabled="#{empty tipocuentacontableController.selected}"/>
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{tipocuentacontableController.prepareCreate}" update=":TipocuentacontableCreateForm" oncomplete="PF('TipocuentacontableCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":TipocuentacontableViewForm" oncomplete="PF('TipocuentacontableViewDialog').show()" disabled="#{empty tipocuentacontableController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":TipocuentacontableEditForm" oncomplete="PF('TipocuentacontableEditDialog').show()" disabled="#{empty tipocuentacontableController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{tipocuentacontableController.destroy}" update=":growl,datalist" disabled="#{empty tipocuentacontableController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

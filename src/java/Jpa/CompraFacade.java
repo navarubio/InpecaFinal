@@ -9,13 +9,13 @@ import Modelo.Compra;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
+ 
 /**
  *
  * @author Inpeca
  */
 @Stateless
-public class CompraFacade extends AbstractFacade<Compra> {
+public class CompraFacade extends AbstractFacade<Compra> implements CompraFacadeLocal{
     @PersistenceContext(unitName = "InpecaPU")
     private EntityManager em;
 

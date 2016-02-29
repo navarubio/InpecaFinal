@@ -8,17 +8,17 @@
 
     <ui:composition>
 
-        <p:dialog id="TipocuentacontableEditDlg" widgetVar="TipocuentacontableEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.actual.EditTipocuentacontableTitle}">
+        <p:dialog id="TipocuentacontableEditDlg" widgetVar="TipocuentacontableEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTipocuentacontableTitle}">
             <h:form id="TipocuentacontableEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tipocuentacontableController.selected != null}">
-                        <p:outputLabel value="#{bundle.actual.EditTipocuentacontableLabel_idtipocuentacontable}" for="idtipocuentacontable" />
-                        <p:inputText id="idtipocuentacontable" value="#{tipocuentacontableController.selected.idtipocuentacontable}" title="#{bundle.actual.EditTipocuentacontableTitle_idtipocuentacontable}" required="true" requiredMessage="#{bundle.actual.EditTipocuentacontableRequiredMessage_idtipocuentacontable}"/>
-                        <p:outputLabel value="#{bundle.actual.EditTipocuentacontableLabel_tipocuentacontable}" for="tipocuentacontable" />
-                        <p:inputText id="tipocuentacontable" value="#{tipocuentacontableController.selected.tipocuentacontable}" title="#{bundle.actual.EditTipocuentacontableTitle_tipocuentacontable}" />
+                        <p:outputLabel value="#{bundle.EditTipocuentacontableLabel_idtipocuentacontable}" for="idtipocuentacontable" />
+                        <p:inputText id="idtipocuentacontable" value="#{tipocuentacontableController.selected.idtipocuentacontable}" title="#{bundle.EditTipocuentacontableTitle_idtipocuentacontable}" required="true" requiredMessage="#{bundle.EditTipocuentacontableRequiredMessage_idtipocuentacontable}"/>
+                        <p:outputLabel value="#{bundle.EditTipocuentacontableLabel_tipocuentacontable}" for="tipocuentacontable" />
+                        <p:inputText id="tipocuentacontable" value="#{tipocuentacontableController.selected.tipocuentacontable}" title="#{bundle.EditTipocuentacontableTitle_tipocuentacontable}" />
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{tipocuentacontableController.update}" value="#{bundle.actual.Save}" update="display,:TipocuentacontableListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TipocuentacontableEditDialog');"/>
-                    <p:commandButton value="#{bundle.actual.Cancel}" onclick="TipocuentacontableEditDialog.hide()"/>
+                    <p:commandButton actionListener="#{tipocuentacontableController.update}" value="#{bundle.Save}" update="display,:TipocuentacontableListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TipocuentacontableEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TipocuentacontableEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

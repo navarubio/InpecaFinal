@@ -16,7 +16,6 @@
     <h:body>
 
         <p:growl id="growl" life="3000" />
-
         <p:layout fullPage="true">
             <p:layoutUnit position="north" size="65" header="#{bundle.AppName}">
                 <h:form id="menuForm">
@@ -30,25 +29,30 @@
                             <p:menuitem value="Proveedores" outcome="/proveedor/List.xhtml" />
                             <p:menuitem value="Articulos" outcome="/articulo/List.xhtml" />
                             <p:menuitem value="Facturacion" outcome="/cliente/List.xhtml" />
-                            <p:menuitem value="Compras" outcome="/auxiliarrequerimiento/List.xhtml" />
+                            <p:menuitem value="Requerimientos" outcome="/auxiliarrequerimiento/List.xhtml"/>
+                            <p:menuitem value="Compras" outcome="/compra/List.xhtml"/>
                             <p:menuitem value="Articulos Requeridos" outcome="/requerimiento/List.xhtml" />
+                            <p:menuitem value="Articulos Comprados" outcome="/detallecompra/List.xhtml" />
                         </p:submenu>  
                         <p:submenu label="#{bundle.Opera}" icon="ui-icon-cart">
-                            <p:menuitem value="Requerimientos" outcome="/requerimiento/List.xhtml" />
                             <p:menuitem value="Inventario Materia Prima" outcome="/articulo/List.xhtml" />
                             <p:menuitem value="Inventario Insumos" outcome="/articulo/List.xhtml" />   
                             <p:menuitem value="Despachos" outcome="/articulo/List.xhtml" />  
                             <p:menuitem value="Calculos Resistencia" outcome="/articulo/List.xhtml" />  
-                            
+                            <p:menuitem value="Nominas" outcome="/articulo/List.xhtml" />  
                         </p:submenu>    
                         <p:submenu label="#{bundle.Contab}" icon="ui-icon-calculator">
                             <p:menuitem value="Ingresos" outcome="/cliente/List.xhtml" />
-                            <p:menuitem value="Compras" outcome="/compra/List.xhtml" />
+                            <p:menuitem value="Contabilizar Ingresos" outcome="/compra/List.xhtml" />
+                            <p:menuitem value="Contabilizar Egresos" outcome="/compra/List.xhtml" />
                             <p:menuitem value="Plan de Cuentas" outcome="/plandecuenta/List.xhtml" />
-                            <p:menuitem value="Grupo Contable (N1)" outcome="/grupocontable/List.xhtml" />
-                            <p:menuitem value="SubGrupo Contable (N2)" outcome="/subgrupocontable/List.xhtml" />
-                            <p:menuitem value="Especifico Contable (N3)" outcome="/especificocontable/List.xhtml" />
-                            <p:menuitem value="SubEspecifico Contable (N4)" outcome="/subespecificocontable/List.xhtml" />
+                            <p:menuitem value="Grupo Contable(N1)" outcome="/grupocontable/List.xhtml" />
+                            <p:menuitem value="SubGrupo Contable(N2)" outcome="/subgrupocontable/List.xhtml" />
+                            <p:menuitem value="Especifico Contable(N3)" outcome="/especificocontable/List.xhtml" />
+                            <p:menuitem value="SubEspecifico Contable(N4)" outcome="/subespecificocontable/List.xhtml" />
+                            <p:menuitem value="Tipo Cuenta Contable" outcome="/tipocuentacontable/List.xhtml" />
+                            <p:menuitem value="Tipo Saldo Contable" outcome="/tiposaldocontable/List.xhtml" />
+                            <p:menuitem value="Tipo Partida Contable" outcome="/tipopartidacontable/List.xhtml" />
                             <p:menuitem value="Centro de Activos" outcome="/articulo/List.xhtml" />   
                             <p:menuitem value="Centro Contable" outcome="/articulo/List.xhtml" />  
                         </p:submenu>    
@@ -65,6 +69,8 @@
                             <p:menuitem value="Personalidadjuridica" outcome="/personalidadjuridica/List.xhtml" />
                             <p:menuitem value="Tipopago" outcome="/tipopago/List.xhtml" />
                             <p:menuitem value="Tipoproveedor" outcome="/tipoproveedor/List.xhtml" />
+                            <p:menuitem value="Estatus Contable" outcome="/estatuscontable/List.xhtml" />
+                            <p:menuitem value="Estatus Requerimiento" outcome="/estatusrequerimiento/List.xhtml" />                            
                             <p:menuitem value="Usuario" outcome="/usuario/List.xhtml" />
                         </p:submenu>                    
                     </p:menubar>

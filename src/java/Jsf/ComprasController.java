@@ -2,6 +2,7 @@ package Jsf;
 
 import Jpa.ArticuloFacadeLocal;
 import Jpa.AuxiliarrequerimientoFacadeLocal;
+import Jpa.CompraFacadeLocal;
 import Jpa.ProveedorFacadeLocal;
 import Jpa.RequerimientoFacadeLocal;
 import Modelo.Articulo;
@@ -10,6 +11,7 @@ import Modelo.Detallecompra;
 import Modelo.Compra;
 import Modelo.Proveedor;
 import Modelo.Requerimiento;
+import Modelo.Usuario;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -35,9 +37,14 @@ public class ComprasController implements Serializable {
     private ProveedorFacadeLocal proveedorEJB;
     @EJB
     private ArticuloFacadeLocal articuloEJB;
+    @EJB
+    private CompraFacadeLocal compraEJB;
 
     private Auxiliarrequerimiento auxiliarrequerimiento;
 
+    @Inject 
+    private Auxiliarrequerimiento auxiliar;
+            
     @Inject
     private Requerimiento requerimiento;
     
@@ -163,7 +170,9 @@ public class ComprasController implements Serializable {
     public void asignar(Auxiliarrequerimiento aux) {
         this.auxiliarrequerimiento = aux;
         this.idAuxiliar = aux.getIdauxiliarrequerimiento();
+        this.auxiliar= aux;
         this.requerimientosFiltrados = requerimientosController.buscarRequerimiento(aux);
+        this.compra.setIdauxiliarrequerimiento(auxiliar);
     }
 
     public List<Requerimiento> buscarrequerimiento() {
@@ -211,14 +220,15 @@ public class ComprasController implements Serializable {
 
     public void registrar() {
         try {
-/*            compra.setIdcompra(idAuxiliar); setIddepartamento(dpto);
-            auxrequer.setIdusuario(usa);
-            auxrequer.setIdestatusrequerimiento(statusreq);
-            auxrequer.setSubtotal(totalsubtotal);
-            auxrequer.setMontoiva(totaliva);
-            auxrequer.setMontototal(totalgeneral);
+            compra.setRifproveedor(provee); 
+            compra.setSubtotal(auxiliar.getSubtotal());
+                compra.setIva(auxiliar.getMontoiva());
+            compra.setTotal(auxiliar.getMontototal()); 
+            Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");            
+            compra.setIdusuario(us);
 
-            auxiliarrequerimientoEJB.create(auxrequer);*/
+            compraEJB.create(compra);
+            
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Su Requerimiento fue Almacenado"));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error al Grabar Requerimiento"));

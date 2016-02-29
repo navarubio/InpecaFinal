@@ -8,17 +8,17 @@
 
     <ui:composition>
 
-        <p:dialog id="TipocuentacontableCreateDlg" widgetVar="TipocuentacontableCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.actual.CreateTipocuentacontableTitle}">
+        <p:dialog id="TipocuentacontableCreateDlg" widgetVar="TipocuentacontableCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTipocuentacontableTitle}">
             <h:form id="TipocuentacontableCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tipocuentacontableController.selected != null}">
-                        <p:outputLabel value="#{bundle.actual.CreateTipocuentacontableLabel_idtipocuentacontable}" for="idtipocuentacontable" />
-                        <p:inputText id="idtipocuentacontable" value="#{tipocuentacontableController.selected.idtipocuentacontable}" title="#{bundle.actual.CreateTipocuentacontableTitle_idtipocuentacontable}" required="true" requiredMessage="#{bundle.actual.CreateTipocuentacontableRequiredMessage_idtipocuentacontable}"/>
-                        <p:outputLabel value="#{bundle.actual.CreateTipocuentacontableLabel_tipocuentacontable}" for="tipocuentacontable" />
-                        <p:inputText id="tipocuentacontable" value="#{tipocuentacontableController.selected.tipocuentacontable}" title="#{bundle.actual.CreateTipocuentacontableTitle_tipocuentacontable}" />
+                        <p:outputLabel value="#{bundle.CreateTipocuentacontableLabel_idtipocuentacontable}" for="idtipocuentacontable" />
+                        <p:inputText id="idtipocuentacontable" value="#{tipocuentacontableController.selected.idtipocuentacontable}" title="#{bundle.CreateTipocuentacontableTitle_idtipocuentacontable}" required="true" requiredMessage="#{bundle.CreateTipocuentacontableRequiredMessage_idtipocuentacontable}"/>
+                        <p:outputLabel value="#{bundle.CreateTipocuentacontableLabel_tipocuentacontable}" for="tipocuentacontable" />
+                        <p:inputText id="tipocuentacontable" value="#{tipocuentacontableController.selected.tipocuentacontable}" title="#{bundle.CreateTipocuentacontableTitle_tipocuentacontable}" />
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{tipocuentacontableController.create}" value="#{bundle.actual.Save}" update="display,:TipocuentacontableListForm:datalist,:growl" oncomplete="handleSubmit(args,'TipocuentacontableCreateDialog');"/>
-                    <p:commandButton value="#{bundle.actual.Cancel}" onclick="TipocuentacontableCreateDialog.hide()"/>
+                    <p:commandButton actionListener="#{tipocuentacontableController.create}" value="#{bundle.Save}" update="display,:TipocuentacontableListForm:datalist,:growl" oncomplete="handleSubmit(args,'TipocuentacontableCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TipocuentacontableCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
