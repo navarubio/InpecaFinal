@@ -12,16 +12,17 @@
             <h:form id="SubgrupocontableCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{subgrupocontableController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateSubgrupocontableLabel_idsubgrupocontable}" for="idsubgrupocontable" />
-                        <p:inputText id="idsubgrupocontable" value="#{subgrupocontableController.selected.idsubgrupocontable}" title="#{bundle.CreateSubgrupocontableTitle_idsubgrupocontable}" required="true" requiredMessage="#{bundle.CreateSubgrupocontableRequiredMessage_idsubgrupocontable}"/>
-                        <p:outputLabel value="#{bundle.CreateSubgrupocontableLabel_subgrupocontable}" for="subgrupocontable" />
-                        <p:inputText id="subgrupocontable" value="#{subgrupocontableController.selected.subgrupocontable}" title="#{bundle.CreateSubgrupocontableTitle_subgrupocontable}" />
                         <p:outputLabel value="#{bundle.CreateSubgrupocontableLabel_idgrupocontable}" for="idgrupocontable" />
                         <p:selectOneMenu id="idgrupocontable" value="#{subgrupocontableController.selected.idgrupocontable}" >
                             <f:selectItems value="#{grupocontableController.itemsAvailableSelectOne}"
                                            var="idgrupocontableItem"
                                            itemValue="#{idgrupocontableItem}"/>
                         </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateSubgrupocontableLabel_idsubgrupocontable}" for="idsubgrupocontable" />
+                        <p:inputText id="idsubgrupocontable" value="#{subgrupocontableController.selected.idsubgrupocontable}" title="#{bundle.CreateSubgrupocontableTitle_idsubgrupocontable}" required="true" requiredMessage="#{bundle.CreateSubgrupocontableRequiredMessage_idsubgrupocontable}"/>
+                        <p:outputLabel value="#{bundle.CreateSubgrupocontableLabel_subgrupocontable}" for="subgrupocontable" />
+                        <p:inputText id="subgrupocontable" value="#{subgrupocontableController.selected.subgrupocontable}" title="#{bundle.CreateSubgrupocontableTitle_subgrupocontable}" />
+
                     </p:panelGrid>
                     <p:commandButton actionListener="#{subgrupocontableController.create}" value="#{bundle.Save}" update="display,:SubgrupocontableListForm:datalist,:growl" oncomplete="handleSubmit(args,'SubgrupocontableCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="SubgrupocontableCreateDialog.hide()"/>

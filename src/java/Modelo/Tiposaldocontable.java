@@ -99,7 +99,7 @@ public class Tiposaldocontable implements Serializable {
 
     @Override
     public String toString() {
-        return "Modelo.Tiposaldocontable[ idtiposaldocontable=" + idtiposaldocontable + " ]";
+        return tiposaldocontable;
     }
     
 }

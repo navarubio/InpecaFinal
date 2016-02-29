@@ -61,43 +61,43 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPlandecuentaTitle_idgrupocontable}"/>
                             </f:facet>
-                            <h:outputText value="#{item.idgrupocontable}"/>
+                            <h:outputText value="#{item.idgrupocontable.grupocontable}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPlandecuentaTitle_idsubgrupocontable}"/>
                             </f:facet>
-                            <h:outputText value="#{item.idsubgrupocontable}"/>
+                            <h:outputText value="#{item.idsubgrupocontable.subgrupocontable}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPlandecuentaTitle_idespecificocontable}"/>
                             </f:facet>
-                            <h:outputText value="#{item.idespecificocontable}"/>
+                            <h:outputText value="#{item.idespecificocontable.especificocontable}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPlandecuentaTitle_idsubespecificocontable}"/>
                             </f:facet>
-                            <h:outputText value="#{item.idsubespecificocontable}"/>
+                            <h:outputText value="#{item.idsubespecificocontable.subespecificocontable}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPlandecuentaTitle_idtipocuentacontable}"/>
                             </f:facet>
-                            <h:outputText value="#{item.idtipocuentacontable}"/>
+                            <h:outputText value="#{item.idtipocuentacontable.tipocuentacontable}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPlandecuentaTitle_idtiposaldocontable}"/>
                             </f:facet>
-                            <h:outputText value="#{item.idtiposaldocontable}"/>
+                            <h:outputText value="#{item.idtiposaldocontable.tiposaldocontable}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPlandecuentaTitle_idtipopartidacontable}"/>
                             </f:facet>
-                            <h:outputText value="#{item.idtipopartidacontable}"/>
+                            <h:outputText value="#{item.idtipopartidacontable.tipopartidacontable}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{plandecuentaController.prepareCreate}" update=":PlandecuentaCreateForm" oncomplete="PF('PlandecuentaCreateDialog').show()"/>

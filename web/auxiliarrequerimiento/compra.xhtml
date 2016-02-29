@@ -30,22 +30,22 @@
                             <p:fieldset legend="Datos Requerimiento" >
                                 <p:panelGrid columns="2">
                                     <p:outputLabel for="numero" value="Solicitud" styleClass="optionalLbl"/>
-                                    <p:outputLabel id="numero" value="REQ- #{procesarcomprasController.auxiliar.idauxiliarrequerimiento}" styleClass="optionalLbl"/>
+                                    <p:outputLabel id="numero" value="REQ- #{comprasController.auxiliarrequerimiento.idauxiliarrequerimiento}" styleClass="optionalLbl"/>
                                     <p:outputLabel for="usuario" value="Usuario" styleClass="optionalLbl"/>
-                                    <p:outputLabel id="usuario" value="#{procesarcomprasController.auxiliar.idusuario.nombre}" styleClass="optionalLbl"/>
+                                    <p:outputLabel id="usuario" value="#{comprasController.auxiliarrequerimiento.idusuario.nombre}" styleClass="optionalLbl"/>
                                     <p:outputLabel for="departamento" value="Departamento" styleClass="optionalLbl"/>
-                                    <p:outputLabel id="departamento" value="#{procesarcomprasController.auxiliar.iddepartamento.departamento}" styleClass="optionalLbl"/>
+                                    <p:outputLabel id="departamento" value="#{comprasController.auxiliarrequerimiento.iddepartamento.departamento}" styleClass="optionalLbl"/>
 
                                     <p:outputLabel for="proveedor" value="Proveedor Referido" styleClass="optionalLbl"/>
-                                    <p:outputLabel id="proveedor" value="#{procesarcomprasController.auxiliar.posibleproveedor}"/>
+                                    <p:outputLabel id="proveedor" value="#{comprasController.auxiliarrequerimiento.posibleproveedor}"/>
                                     <p:outputLabel for="telefono" value="Telefonos" styleClass="optionalLbl"/>
-                                    <p:outputLabel id="telefono" value="#{procesarcomprasController.auxiliar.telefonoproveedor}"/>
+                                    <p:outputLabel id="telefono" value="#{comprasController.auxiliarrequerimiento.telefonoproveedor}"/>
                                     <p:outputLabel for="fechasolicitud" value="Fecha Solicitud" />
-                                    <p:outputLabel id="fechasolicitud" value="#{procesarcomprasController.auxiliar.fecharequerimiento}">
+                                    <p:outputLabel id="fechasolicitud" value="#{comprasController.auxiliarrequerimiento.fecharequerimiento}">
                                         <f:convertDateTime pattern="dd/MM/yyyy"/>
                                     </p:outputLabel>
                                     <p:outputLabel for="resena" value="Breve Reseña" styleClass="optionalLbl"/>
-                                    <p:outputLabel id="resena" value="#{procesarcomprasController.auxiliar.descripcion}" />
+                                    <p:outputLabel id="resena" value="#{comprasController.auxiliarrequerimiento.descripcion}" />
                                 </p:panelGrid>
                             </p:fieldset>
                             <p:fieldset legend="Datos Compra" >
@@ -151,7 +151,7 @@
                             <p:inputText id="cantidad" label="#{comprasController.requerimiento.cantidad}" value="#{comprasController.requerimiento.cantidad}" style="text-align:right"/>
                             <p:outputLabel for="precio"  value="Precio sin IVA" styleClass="optionalLbl"/>
                             <p:inputText id="precio"  label="#{comprasController.requerimiento.pcosto}"  size="20" value="#{comprasController.requerimiento.pcosto}" style="text-align:right"/>
-                            <p:commandButton value="Grabar" icon="ui-icon-check" actionListener="#{comprasController.modificar()}"  oncomplete="PF('wdialogo').hide();" />                             
+                            <p:commandButton value="Grabar" icon="ui-icon-check" actionListener="#{comprasController.modificar()}"  oncomplete="PF('wdialogo').hide();"/>                             
                             <p:commandButton value="Cancelar" icon="ui-icon-close" immediate="true" onclick="PF('wdialogo').hide();" /> 
                         </h:panelGrid>
                     </h:form>

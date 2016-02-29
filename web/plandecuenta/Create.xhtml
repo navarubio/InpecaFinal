@@ -12,17 +12,7 @@
             <h:form id="PlandecuentaCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{plandecuentaController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreatePlandecuentaLabel_idplandecuenta}" for="idplandecuenta" />
-                        <p:inputText id="idplandecuenta" value="#{plandecuentaController.selected.idplandecuenta}" title="#{bundle.CreatePlandecuentaTitle_idplandecuenta}" required="true" requiredMessage="#{bundle.CreatePlandecuentaRequiredMessage_idplandecuenta}"/>
-                        <p:outputLabel value="#{bundle.CreatePlandecuentaLabel_idgeneralcuenta}" for="idgeneralcuenta" />
-                        <p:inputText id="idgeneralcuenta" value="#{plandecuentaController.selected.idgeneralcuenta}" title="#{bundle.CreatePlandecuentaTitle_idgeneralcuenta}" />
-                        <p:outputLabel value="#{bundle.CreatePlandecuentaLabel_descripcioncuenta}" for="descripcioncuenta" />
-                        <p:inputText id="descripcioncuenta" value="#{plandecuentaController.selected.descripcioncuenta}" title="#{bundle.CreatePlandecuentaTitle_descripcioncuenta}" />
-                        <p:outputLabel value="#{bundle.CreatePlandecuentaLabel_saldogeneral}" for="saldogeneral" />
-                        <p:inputText id="saldogeneral" value="#{plandecuentaController.selected.saldogeneral}" title="#{bundle.CreatePlandecuentaTitle_saldogeneral}" />
-                        <p:outputLabel value="#{bundle.CreatePlandecuentaLabel_fujodeefectivo}" for="fujodeefectivo" />
-                        <p:inputText id="fujodeefectivo" value="#{plandecuentaController.selected.fujodeefectivo}" title="#{bundle.CreatePlandecuentaTitle_fujodeefectivo}" />
-                        <p:outputLabel value="#{bundle.CreatePlandecuentaLabel_idgrupocontable}" for="idgrupocontable" />
+                                                <p:outputLabel value="#{bundle.CreatePlandecuentaLabel_idgrupocontable}" for="idgrupocontable" />
                         <p:selectOneMenu id="idgrupocontable" value="#{plandecuentaController.selected.idgrupocontable}" >
                             <f:selectItems value="#{grupocontableController.itemsAvailableSelectOne}"
                                            var="idgrupocontableItem"
@@ -46,6 +36,17 @@
                                            var="idsubespecificocontableItem"
                                            itemValue="#{idsubespecificocontableItem}"/>
                         </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePlandecuentaLabel_idgeneralcuenta}" for="idgeneralcuenta" />
+                        <p:inputText id="idgeneralcuenta" value="#{plandecuentaController.selected.idgeneralcuenta}" title="#{bundle.CreatePlandecuentaTitle_idgeneralcuenta}" />
+                        <p:outputLabel value="#{bundle.CreatePlandecuentaLabel_idplandecuenta}" for="idplandecuenta" />
+                        <p:inputText id="idplandecuenta" value="#{plandecuentaController.selected.idplandecuenta}" title="#{bundle.CreatePlandecuentaTitle_idplandecuenta}" required="true" requiredMessage="#{bundle.CreatePlandecuentaRequiredMessage_idplandecuenta}"/>
+                        <p:outputLabel value="#{bundle.CreatePlandecuentaLabel_descripcioncuenta}" for="descripcioncuenta" />
+                        <p:inputText id="descripcioncuenta" value="#{plandecuentaController.selected.descripcioncuenta}" title="#{bundle.CreatePlandecuentaTitle_descripcioncuenta}" />
+                        <p:outputLabel value="#{bundle.CreatePlandecuentaLabel_saldogeneral}" for="saldogeneral" />
+                        <p:inputText id="saldogeneral" value="#{plandecuentaController.selected.saldogeneral}" title="#{bundle.CreatePlandecuentaTitle_saldogeneral}" />
+                        <p:outputLabel value="#{bundle.CreatePlandecuentaLabel_fujodeefectivo}" for="fujodeefectivo" />
+                        <p:inputText id="fujodeefectivo" value="#{plandecuentaController.selected.fujodeefectivo}" title="#{bundle.CreatePlandecuentaTitle_fujodeefectivo}" />
+
                         <p:outputLabel value="#{bundle.CreatePlandecuentaLabel_idtipocuentacontable}" for="idtipocuentacontable" />
                         <p:selectOneMenu id="idtipocuentacontable" value="#{plandecuentaController.selected.idtipocuentacontable}" >
                             <f:selectItems value="#{tipocuentacontableController.itemsAvailableSelectOne}"

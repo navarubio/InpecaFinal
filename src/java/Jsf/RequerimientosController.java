@@ -202,7 +202,7 @@ public class RequerimientosController implements Serializable {
     public void setAuxrequer(Auxiliarrequerimiento auxrequer) {
         this.auxrequer = auxrequer;
     }
-
+ 
     public Usuario getUsuario() {
         Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
         usa = us;

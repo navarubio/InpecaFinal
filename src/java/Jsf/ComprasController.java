@@ -25,7 +25,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 @Named
-@RequestScoped
+@SessionScoped
 
 public class ComprasController implements Serializable {
 
@@ -42,12 +42,12 @@ public class ComprasController implements Serializable {
 
     private Auxiliarrequerimiento auxiliarrequerimiento;
 
-    @Inject 
+    @Inject
     private Auxiliarrequerimiento auxiliar;
-            
+
     @Inject
     private Requerimiento requerimiento;
-    
+
     @Inject
     private Compra compra;
     @Inject
@@ -68,14 +68,15 @@ public class ComprasController implements Serializable {
     public void setDetallecompra(Detallecompra detallecompra) {
         this.detallecompra = detallecompra;
     }
-    
-    
+
     private List<Auxiliarrequerimiento> auxiliarrequerimientos;
     private List<Requerimiento> requerimientos;
     private List<Proveedor> proveedores;
     private List<Articulo> articulos;
     private int idAuxiliar = 0;
     private List<Requerimiento> requerimientosFiltrados;
+    private List<Detallecompra> detallesCompras;
+    
 
     public int getIdAuxiliar() {
         return idAuxiliar;
@@ -90,8 +91,6 @@ public class ComprasController implements Serializable {
 
     @Inject
     private RequerimientosController requerimientosController;
-    
-
 
     public Proveedor getProvee() {
         return provee;
@@ -157,6 +156,14 @@ public class ComprasController implements Serializable {
         this.requerimientosFiltrados = requerimientosFiltrados;
     }
 
+    public List<Detallecompra> getDetallesCompras() {
+        return detallesCompras;
+    }
+
+    public void setDetallesCompras(List<Detallecompra> detallesCompras) {
+        this.detallesCompras = detallesCompras;
+    }
+
     @PostConstruct
     public void init() {
         auxiliarrequerimientos = auxiliarrequerimientoEJB.findAll();
@@ -170,7 +177,7 @@ public class ComprasController implements Serializable {
     public void asignar(Auxiliarrequerimiento aux) {
         this.auxiliarrequerimiento = aux;
         this.idAuxiliar = aux.getIdauxiliarrequerimiento();
-        this.auxiliar= aux;
+        this.auxiliar = aux;
         this.requerimientosFiltrados = requerimientosController.buscarRequerimiento(aux);
         this.compra.setIdauxiliarrequerimiento(auxiliar);
     }
@@ -192,7 +199,43 @@ public class ComprasController implements Serializable {
     }
 
     public void modificar() {
+        double subtotal = 0;
+        double alicuota = 0;
+        double iva = 0;
+        double total = 0;
+        subtotal = requerimiento.getCantidad() * requerimiento.getPcosto();
+        alicuota = requerimiento.getCodigo().getIdgravamen().getAlicuota();
+        iva = (subtotal * alicuota)/100;
+        total = subtotal + iva;
+        requerimiento.setSubtotal(subtotal);
+        requerimiento.setTributoiva(iva);
+        requerimiento.setTotal(total);
+        
         requerimientoEJB.edit(requerimiento);
+  
+/*        for (Detallecompra dc : requerimientosFiltrados) {
+                Articulo arti = rq.getCodigo();
+                requer.setIdauxiliarrequerimiento(codAux);
+                requer.setCodigo(arti);
+                requer.setCantidad(rq.getCantidad());
+                requer.setPcosto(rq.getPcosto());
+                requer.setSubtotal(rq.getSubtotal());
+                requer.setTributoiva(rq.getTributoiva());
+                requer.setTotal(rq.getTotal());
+                requerimientoEJB.create(requer);
+            }
+
+        double totaltotal;
+        double montotgeneral = 0;
+        double montotiva = 0;
+        double montotsubtotal = 0;
+
+        for (Requerimiento requeri : listarequerimiento) {
+            montotgeneral += requeri.getTotal();
+            montotiva += requeri.getTributoiva();
+            montotsubtotal += requeri.getSubtotal();
+        }*/
+        
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Su Requerimiento fue Modificado"));
     }
 
@@ -220,15 +263,15 @@ public class ComprasController implements Serializable {
 
     public void registrar() {
         try {
-            compra.setRifproveedor(provee); 
+            compra.setRifproveedor(provee);
             compra.setSubtotal(auxiliar.getSubtotal());
-                compra.setIva(auxiliar.getMontoiva());
-            compra.setTotal(auxiliar.getMontototal()); 
-            Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");            
+            compra.setIva(auxiliar.getMontoiva());
+            compra.setTotal(auxiliar.getMontototal());
+            Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
             compra.setIdusuario(us);
 
             compraEJB.create(compra);
-            
+
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Su Requerimiento fue Almacenado"));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error al Grabar Requerimiento"));

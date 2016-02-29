@@ -12,10 +12,6 @@
             <h:form id="EspecificocontableEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{especificocontableController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditEspecificocontableLabel_idespecificocontable}" for="idespecificocontable" />
-                        <p:inputText id="idespecificocontable" value="#{especificocontableController.selected.idespecificocontable}" title="#{bundle.EditEspecificocontableTitle_idespecificocontable}" required="true" requiredMessage="#{bundle.EditEspecificocontableRequiredMessage_idespecificocontable}"/>
-                        <p:outputLabel value="#{bundle.EditEspecificocontableLabel_especificocontable}" for="especificocontable" />
-                        <p:inputText id="especificocontable" value="#{especificocontableController.selected.especificocontable}" title="#{bundle.EditEspecificocontableTitle_especificocontable}" />
                         <p:outputLabel value="#{bundle.EditEspecificocontableLabel_idgrupocontable}" for="idgrupocontable" />
                         <p:selectOneMenu id="idgrupocontable" value="#{especificocontableController.selected.idgrupocontable}" >
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
@@ -30,6 +26,11 @@
                                            var="idsubgrupocontableItem"
                                            itemValue="#{idsubgrupocontableItem}"/>
                         </p:selectOneMenu>
+
+                        <p:outputLabel value="#{bundle.EditEspecificocontableLabel_idespecificocontable}" for="idespecificocontable" />
+                        <p:inputText id="idespecificocontable" value="#{especificocontableController.selected.idespecificocontable}" title="#{bundle.EditEspecificocontableTitle_idespecificocontable}" required="true" requiredMessage="#{bundle.EditEspecificocontableRequiredMessage_idespecificocontable}"/>
+                        <p:outputLabel value="#{bundle.EditEspecificocontableLabel_especificocontable}" for="especificocontable" />
+                        <p:inputText id="especificocontable" value="#{especificocontableController.selected.especificocontable}" title="#{bundle.EditEspecificocontableTitle_especificocontable}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{especificocontableController.update}" value="#{bundle.Save}" update="display,:EspecificocontableListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EspecificocontableEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="EspecificocontableEditDialog.hide()"/>

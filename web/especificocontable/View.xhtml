@@ -12,14 +12,15 @@
             <h:form id="EspecificocontableViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{especificocontableController.selected != null}">
-                        <h:outputText value="#{bundle.ViewEspecificocontableLabel_idespecificocontable}"/>
-                        <h:outputText value="#{especificocontableController.selected.idespecificocontable}" title="#{bundle.ViewEspecificocontableTitle_idespecificocontable}"/>
-                        <h:outputText value="#{bundle.ViewEspecificocontableLabel_especificocontable}"/>
-                        <h:outputText value="#{especificocontableController.selected.especificocontable}" title="#{bundle.ViewEspecificocontableTitle_especificocontable}"/>
                         <h:outputText value="#{bundle.ViewEspecificocontableLabel_idgrupocontable}"/>
                         <h:outputText value="#{especificocontableController.selected.idgrupocontable}" title="#{bundle.ViewEspecificocontableTitle_idgrupocontable}"/>
                         <h:outputText value="#{bundle.ViewEspecificocontableLabel_idsubgrupocontable}"/>
                         <h:outputText value="#{especificocontableController.selected.idsubgrupocontable}" title="#{bundle.ViewEspecificocontableTitle_idsubgrupocontable}"/>
+
+                        <h:outputText value="#{bundle.ViewEspecificocontableLabel_idespecificocontable}"/>
+                        <h:outputText value="#{especificocontableController.selected.idespecificocontable}" title="#{bundle.ViewEspecificocontableTitle_idespecificocontable}"/>
+                        <h:outputText value="#{bundle.ViewEspecificocontableLabel_especificocontable}"/>
+                        <h:outputText value="#{especificocontableController.selected.especificocontable}" title="#{bundle.ViewEspecificocontableTitle_especificocontable}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="EspecificocontableViewDialog.hide()"/>
                 </h:panelGroup>

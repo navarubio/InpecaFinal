@@ -12,16 +12,17 @@
             <h:form id="SubespecificocontableViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{subespecificocontableController.selected != null}">
-                        <h:outputText value="#{bundle.ViewSubespecificocontableLabel_idsubespecificocontable}"/>
-                        <h:outputText value="#{subespecificocontableController.selected.idsubespecificocontable}" title="#{bundle.ViewSubespecificocontableTitle_idsubespecificocontable}"/>
-                        <h:outputText value="#{bundle.ViewSubespecificocontableLabel_subespecificocontable}"/>
-                        <h:outputText value="#{subespecificocontableController.selected.subespecificocontable}" title="#{bundle.ViewSubespecificocontableTitle_subespecificocontable}"/>
                         <h:outputText value="#{bundle.ViewSubespecificocontableLabel_idgrupocontable}"/>
                         <h:outputText value="#{subespecificocontableController.selected.idgrupocontable}" title="#{bundle.ViewSubespecificocontableTitle_idgrupocontable}"/>
                         <h:outputText value="#{bundle.ViewSubespecificocontableLabel_idsubgrupocontable}"/>
                         <h:outputText value="#{subespecificocontableController.selected.idsubgrupocontable}" title="#{bundle.ViewSubespecificocontableTitle_idsubgrupocontable}"/>
                         <h:outputText value="#{bundle.ViewSubespecificocontableLabel_idespecificocontable}"/>
                         <h:outputText value="#{subespecificocontableController.selected.idespecificocontable}" title="#{bundle.ViewSubespecificocontableTitle_idespecificocontable}"/>
+
+                        <h:outputText value="#{bundle.ViewSubespecificocontableLabel_idsubespecificocontable}"/>
+                        <h:outputText value="#{subespecificocontableController.selected.idsubespecificocontable}" title="#{bundle.ViewSubespecificocontableTitle_idsubespecificocontable}"/>
+                        <h:outputText value="#{bundle.ViewSubespecificocontableLabel_subespecificocontable}"/>
+                        <h:outputText value="#{subespecificocontableController.selected.subespecificocontable}" title="#{bundle.ViewSubespecificocontableTitle_subespecificocontable}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="SubespecificocontableViewDialog.hide()"/>
                 </h:panelGroup>
