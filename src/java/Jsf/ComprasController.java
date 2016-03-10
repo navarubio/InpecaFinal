@@ -3,12 +3,14 @@ package Jsf;
 import Jpa.ArticuloFacadeLocal;
 import Jpa.AuxiliarrequerimientoFacadeLocal;
 import Jpa.CompraFacadeLocal;
+import Jpa.DepartamentoFacadeLocal;
 import Jpa.ProveedorFacadeLocal;
 import Jpa.RequerimientoFacadeLocal;
 import Modelo.Articulo;
 import Modelo.Auxiliarrequerimiento;
 import Modelo.Detallecompra;
 import Modelo.Compra;
+import Modelo.Departamento;
 import Modelo.Proveedor;
 import Modelo.Requerimiento;
 import Modelo.Usuario;
@@ -16,6 +18,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -25,7 +28,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 @Named
-@SessionScoped
+@RequestScoped
 
 public class ComprasController implements Serializable {
 
@@ -39,8 +42,12 @@ public class ComprasController implements Serializable {
     private ArticuloFacadeLocal articuloEJB;
     @EJB
     private CompraFacadeLocal compraEJB;
+    @EJB
+    private DepartamentoFacadeLocal departamentoEJB;
 
     private Auxiliarrequerimiento auxiliarrequerimiento;
+    private Usuario usa;
+    private Departamento dpto;
 
     @Inject
     private Auxiliarrequerimiento auxiliar;
@@ -76,7 +83,6 @@ public class ComprasController implements Serializable {
     private int idAuxiliar = 0;
     private List<Requerimiento> requerimientosFiltrados;
     private List<Detallecompra> detallesCompras;
-    
 
     public int getIdAuxiliar() {
         return idAuxiliar;
@@ -178,7 +184,7 @@ public class ComprasController implements Serializable {
         this.auxiliarrequerimiento = aux;
         this.idAuxiliar = aux.getIdauxiliarrequerimiento();
         this.auxiliar = aux;
-        this.requerimientosFiltrados = requerimientosController.buscarRequerimiento(aux);
+        requerimientosFiltrados = requerimientosAuxiliar();
         this.compra.setIdauxiliarrequerimiento(auxiliar);
     }
 
@@ -190,7 +196,7 @@ public class ComprasController implements Serializable {
 
     public List<Requerimiento> requerimientosAuxiliar() {
         List<Requerimiento> listado = null;
-        listado = requerimientoEJB.requerimientosAuxiliar(auxiliarrequerimiento.getIdauxiliarrequerimiento());
+        listado = requerimientoEJB.requerimientosAuxiliar(idAuxiliar);
         return listado;
     }
 
@@ -205,37 +211,36 @@ public class ComprasController implements Serializable {
         double total = 0;
         subtotal = requerimiento.getCantidad() * requerimiento.getPcosto();
         alicuota = requerimiento.getCodigo().getIdgravamen().getAlicuota();
-        iva = (subtotal * alicuota)/100;
+        iva = (subtotal * alicuota) / 100;
         total = subtotal + iva;
         requerimiento.setSubtotal(subtotal);
         requerimiento.setTributoiva(iva);
         requerimiento.setTotal(total);
-        
+
         requerimientoEJB.edit(requerimiento);
-  
-/*        for (Detallecompra dc : requerimientosFiltrados) {
-                Articulo arti = rq.getCodigo();
-                requer.setIdauxiliarrequerimiento(codAux);
-                requer.setCodigo(arti);
-                requer.setCantidad(rq.getCantidad());
-                requer.setPcosto(rq.getPcosto());
-                requer.setSubtotal(rq.getSubtotal());
-                requer.setTributoiva(rq.getTributoiva());
-                requer.setTotal(rq.getTotal());
-                requerimientoEJB.create(requer);
-            }
 
-        double totaltotal;
-        double montotgeneral = 0;
-        double montotiva = 0;
-        double montotsubtotal = 0;
+        /*        for (Detallecompra dc : requerimientosFiltrados) {
+         Articulo arti = rq.getCodigo();
+         requer.setIdauxiliarrequerimiento(codAux);
+         requer.setCodigo(arti);
+         requer.setCantidad(rq.getCantidad());
+         requer.setPcosto(rq.getPcosto());
+         requer.setSubtotal(rq.getSubtotal());
+         requer.setTributoiva(rq.getTributoiva());
+         requer.setTotal(rq.getTotal());
+         requerimientoEJB.create(requer);
+         }
 
-        for (Requerimiento requeri : listarequerimiento) {
-            montotgeneral += requeri.getTotal();
-            montotiva += requeri.getTributoiva();
-            montotsubtotal += requeri.getSubtotal();
-        }*/
-        
+         double totaltotal;
+         double montotgeneral = 0;
+         double montotiva = 0;
+         double montotsubtotal = 0;
+
+         for (Requerimiento requeri : listarequerimiento) {
+         montotgeneral += requeri.getTotal();
+         montotiva += requeri.getTributoiva();
+         montotsubtotal += requeri.getSubtotal();
+         }*/
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Su Requerimiento fue Modificado"));
     }
 
@@ -280,4 +285,26 @@ public class ComprasController implements Serializable {
         }
     }
 
+    public Usuario getUsuario() {
+        Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+        usa = us;
+        return us;
+    }
+
+    public Departamento buscarDepartamento() {
+        Usuario usua = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+        dpto = departamentoEJB.buscarDepartamento(usua);
+//        statusreq.setIdestatusrequerimiento(statu);
+        return dpto;
+    }
+
+    public List<Requerimiento> buscarRequerimiento(Auxiliarrequerimiento auxi) {
+        requerimientosFiltrados = requerimientoEJB.buscarrequerimientos(auxiliar);
+        return requerimientosFiltrados;
+    }
+
+    public List<Requerimiento> requerimientosAuxiliar (int idaux) {
+        requerimientosFiltrados = requerimientoEJB.requerimientosAuxiliar(idAuxiliar);
+        return requerimientosFiltrados;
+    }
 }

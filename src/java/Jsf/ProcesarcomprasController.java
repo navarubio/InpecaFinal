@@ -40,7 +40,8 @@ public class ProcesarcomprasController implements Serializable{
     
     @PostConstruct
     public void init(){
-        this.auxiliar= comprasController.getAuxiliarrequerimiento();
+//        this.auxiliar= comprasController.getAuxiliarrequerimiento();
+        
 //        this.reque=comprasController.getRequerimiento();
     }
     
