@@ -25,7 +25,7 @@
                     </div>      
                     <img src="../resources/images/lists.png" width="70" height="70" alt="Clientes" align="right" />
 
-                    <p:panel header="PROCESAMIENTO DE COMPRAS">
+                    <p:panel id="panel1" header="PROCESAMIENTO DE COMPRAS">
                         <p:panelGrid columns="2">
                             <p:fieldset legend="Datos Requerimiento" >
                                 <p:panelGrid columns="2">
@@ -146,12 +146,12 @@
                 <p:dialog id="dialogo" widgetVar="wdialogo" header="Modificar cantidad y precio del Articulo" modal="true" closeOnEscape="true" 
                           resizable="false" showEffect="explode" appendTo="@(body)"  >
                     <h:form>
-                        <h:panelGrid  columns="4">
+                        <h:panelGrid  id="display" columns="4">
                             <p:outputLabel for="cantidad" value="Cantidad" />
                             <p:inputText id="cantidad" label="#{comprasController.requerimiento.cantidad}" value="#{comprasController.requerimiento.cantidad}" style="text-align:right"/>
                             <p:outputLabel for="precio"  value="Precio sin IVA" styleClass="optionalLbl"/>
                             <p:inputText id="precio"  label="#{comprasController.requerimiento.pcosto}"  size="20" value="#{comprasController.requerimiento.pcosto}" style="text-align:right"/>
-                            <p:commandButton value="Grabar" icon="ui-icon-check" actionListener="#{comprasController.modificar()}"  oncomplete="PF('wdialogo').hide();"/>                             
+                            <p:commandButton value="Grabar" icon="ui-icon-check" actionListener="#{comprasController.modificar()}"  oncomplete="PF('wdialogo').hide();" update="display" />                             
                             <p:commandButton value="Cancelar" icon="ui-icon-close" immediate="true" onclick="PF('wdialogo').hide();" /> 
                         </h:panelGrid>
                     </h:form>
