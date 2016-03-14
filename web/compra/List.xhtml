@@ -20,8 +20,8 @@
                                  selectionMode="single" selection="#{compraController.selected}"
                                  paginator="true"
                                  rowKey="#{item.idcompra}"
-                                 rows="10"
-                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 rows="15"
+                                 rowsPerPageTemplate="20,30,40,50,60"
                                  >
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
@@ -35,12 +35,31 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCompraTitle_idauxiliarrequerimiento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idauxiliarrequerimiento}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCompraTitle_rifproveedor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rifproveedor}"/>
+                        </p:column>                     
+                        <p:column>
+                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCompraTitle_fechaorden}"/>
                             </f:facet>
                             <h:outputText value="#{item.fechaorden}">
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
                             </h:outputText>
                         </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCompraTitle_observacionescompra}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.observacionescompra}"/>
+                        </p:column>
+ 
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCompraTitle_subtotal}"/>
@@ -58,12 +77,6 @@
                                 <h:outputText value="#{bundle.ListCompraTitle_total}"/>
                             </f:facet>
                             <h:outputText value="#{item.total}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCompraTitle_observacionescompra}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.observacionescompra}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -93,21 +106,9 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCompraTitle_idauxiliarrequerimiento}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idauxiliarrequerimiento}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCompraTitle_idusuario}"/>
                             </f:facet>
-                            <h:outputText value="#{item.idusuario}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCompraTitle_rifproveedor}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.rifproveedor}"/>
+                            <h:outputText value="#{item.idusuario.iddepartamento.departamento}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">

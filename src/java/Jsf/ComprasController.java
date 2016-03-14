@@ -4,6 +4,8 @@ import Jpa.ArticuloFacadeLocal;
 import Jpa.AuxiliarrequerimientoFacadeLocal;
 import Jpa.CompraFacadeLocal;
 import Jpa.DepartamentoFacadeLocal;
+import Jpa.DetallecompraFacadeLocal;
+import Jpa.EstatusrequerimientoFacadeLocal;
 import Jpa.ProveedorFacadeLocal;
 import Jpa.RequerimientoFacadeLocal;
 import Modelo.Articulo;
@@ -11,6 +13,7 @@ import Modelo.Auxiliarrequerimiento;
 import Modelo.Detallecompra;
 import Modelo.Compra;
 import Modelo.Departamento;
+import Modelo.Estatusrequerimiento;
 import Modelo.Proveedor;
 import Modelo.Requerimiento;
 import Modelo.Usuario;
@@ -28,7 +31,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 @Named
-@RequestScoped
+@SessionScoped
 
 public class ComprasController implements Serializable {
 
@@ -44,10 +47,14 @@ public class ComprasController implements Serializable {
     private CompraFacadeLocal compraEJB;
     @EJB
     private DepartamentoFacadeLocal departamentoEJB;
-
+    @EJB
+    private DetallecompraFacadeLocal detallecompraEJB;
+    @EJB
+    private EstatusrequerimientoFacadeLocal estatusrequerimientoEJB;
     private Auxiliarrequerimiento auxiliarrequerimiento;
     private Usuario usa;
     private Departamento dpto;
+    private Compra codCompra;
 
     @Inject
     private Auxiliarrequerimiento auxiliar;
@@ -83,6 +90,7 @@ public class ComprasController implements Serializable {
     private int idAuxiliar = 0;
     private List<Requerimiento> requerimientosFiltrados;
     private List<Detallecompra> detallesCompras;
+    private List<Detallecompra> detallesactuales;
 
     public int getIdAuxiliar() {
         return idAuxiliar;
@@ -194,6 +202,12 @@ public class ComprasController implements Serializable {
         return listado;
     }
 
+/*    public List<Detallecompra> buscardetallecompra() {
+        List<Detallecompra> listado = null;
+        listado = detallecompraEJB.buscardetalle(compra);
+        return listado;
+    }*/
+    
     public List<Requerimiento> requerimientosAuxiliar() {
         List<Requerimiento> listado = null;
         listado = requerimientoEJB.requerimientosAuxiliar(idAuxiliar);
@@ -208,7 +222,11 @@ public class ComprasController implements Serializable {
         double subtotal = 0;
         double alicuota = 0;
         double iva = 0;
+        double montotgeneral = 0;
+        double montotiva = 0;
+        double montotsubtotal = 0;
         double total = 0;
+        List<Requerimiento> requerimientosactulizado;
         subtotal = requerimiento.getCantidad() * requerimiento.getPcosto();
         alicuota = requerimiento.getCodigo().getIdgravamen().getAlicuota();
         iva = (subtotal * alicuota) / 100;
@@ -219,28 +237,18 @@ public class ComprasController implements Serializable {
 
         requerimientoEJB.edit(requerimiento);
 
-        /*        for (Detallecompra dc : requerimientosFiltrados) {
-         Articulo arti = rq.getCodigo();
-         requer.setIdauxiliarrequerimiento(codAux);
-         requer.setCodigo(arti);
-         requer.setCantidad(rq.getCantidad());
-         requer.setPcosto(rq.getPcosto());
-         requer.setSubtotal(rq.getSubtotal());
-         requer.setTributoiva(rq.getTributoiva());
-         requer.setTotal(rq.getTotal());
-         requerimientoEJB.create(requer);
-         }
+        requerimientosactulizado = buscarrequerimiento();
+        for (Requerimiento requeri : requerimientosactulizado) {
+            montotgeneral += requeri.getTotal();
+            montotiva += requeri.getTributoiva();
+            montotsubtotal += requeri.getSubtotal();
+        }
+        
+        auxiliarrequerimiento.setSubtotal(montotsubtotal);
+        auxiliarrequerimiento.setMontoiva(montotiva);
+        auxiliarrequerimiento.setMontototal(montotgeneral);
 
-         double totaltotal;
-         double montotgeneral = 0;
-         double montotiva = 0;
-         double montotsubtotal = 0;
-
-         for (Requerimiento requeri : listarequerimiento) {
-         montotgeneral += requeri.getTotal();
-         montotiva += requeri.getTributoiva();
-         montotsubtotal += requeri.getSubtotal();
-         }*/
+        auxiliarrequerimientoEJB.edit(auxiliarrequerimiento);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Su Requerimiento fue Modificado"));
     }
 
@@ -266,17 +274,34 @@ public class ComprasController implements Serializable {
         requerimiento.setTotal(total);
     }
 
-    public void registrar() {
+    public void registrar() {        
         try {
             compra.setRifproveedor(provee);
             compra.setSubtotal(auxiliar.getSubtotal());
             compra.setIva(auxiliar.getMontoiva());
             compra.setTotal(auxiliar.getMontototal());
             Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
-            compra.setIdusuario(us);
-
+            compra.setIdusuario(us);            
             compraEJB.create(compra);
-
+            Estatusrequerimiento statusreque = null;
+            statusreque= estatusrequerimientoEJB.cambiarestatusaProcesado();
+            auxiliarrequerimiento.setIdestatusrequerimiento(statusreque);
+            auxiliarrequerimientoEJB.edit(auxiliarrequerimiento);
+            
+            
+            codCompra = compraEJB.ultimacompraInsertada();
+            for (Requerimiento rq : requerimientosFiltrados) {
+                Articulo arti = rq.getCodigo();
+                detallecompra.setIdcompra(codCompra);
+                detallecompra.setCodigo(arti);
+                detallecompra.setCantidad(rq.getCantidad());
+                detallecompra.setPcosto(rq.getPcosto());
+                detallecompra.setSubtotal(rq.getSubtotal());
+                detallecompra.setTributoiva(rq.getTributoiva());
+                detallecompra.setTotalapagar(rq.getTotal());
+                detallecompraEJB.create(detallecompra);
+            }
+            
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Su Requerimiento fue Almacenado"));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error al Grabar Requerimiento"));
@@ -303,7 +328,7 @@ public class ComprasController implements Serializable {
         return requerimientosFiltrados;
     }
 
-    public List<Requerimiento> requerimientosAuxiliar (int idaux) {
+    public List<Requerimiento> requerimientosAuxiliar(int idaux) {
         requerimientosFiltrados = requerimientoEJB.requerimientosAuxiliar(idAuxiliar);
         return requerimientosFiltrados;
     }

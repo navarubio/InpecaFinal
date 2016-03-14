@@ -5,6 +5,7 @@ import Jsf.util.JsfUtil;
 import Jsf.util.JsfUtil.PersistAction;
 import Jpa.ProveedorFacade;
 import Jpa.ProveedorFacadeLocal;
+import Modelo.Usuario;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,6 +20,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.inject.Inject;
 
 @ManagedBean(name = "proveedorController")
 @SessionScoped
@@ -28,6 +30,8 @@ public class ProveedorController implements Serializable {
     private ProveedorFacadeLocal ejbFacade;
     private List<Proveedor> items = null;
     private Proveedor selected;
+    @Inject
+    private Usuario usa;
 
     public ProveedorController() {
     }
@@ -53,7 +57,15 @@ public class ProveedorController implements Serializable {
     public Proveedor prepareCreate() {
         selected = new Proveedor();
         initializeEmbeddableKey();
+        usa = getUsuario();
+        selected.setIdusuario(usa);
         return selected;
+    }
+
+    public Usuario getUsuario() {
+        Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+        usa = us;
+        return us;
     }
 
     public void create() {

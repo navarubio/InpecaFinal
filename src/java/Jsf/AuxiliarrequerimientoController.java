@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.enterprise.context.RequestScoped;
@@ -27,8 +28,14 @@ public class AuxiliarrequerimientoController implements Serializable {
     @EJB
     private AuxiliarrequerimientoFacadeLocal ejbFacade;
     private List<Auxiliarrequerimiento> items = null;
+    private List<Auxiliarrequerimiento> requerimientosactivos = null;
     private Auxiliarrequerimiento selected;
 
+    @PostConstruct
+    public void init (){
+        requerimientosactivos = ejbFacade.buscarrequerimientosActivos();
+    }
+   
     public AuxiliarrequerimientoController() {
     }
 
@@ -48,6 +55,19 @@ public class AuxiliarrequerimientoController implements Serializable {
 
     private AuxiliarrequerimientoFacadeLocal getFacade() {
         return ejbFacade;
+    }
+
+    public List<Auxiliarrequerimiento> getRequerimientosactivos() {
+        return requerimientosactivos;
+    }
+
+    public void setRequerimientosactivos(List<Auxiliarrequerimiento> requerimientosactivos) {
+        this.requerimientosactivos = requerimientosactivos;
+    }
+    
+    public List<Auxiliarrequerimiento> buscarRequerimientosActivos() {
+        requerimientosactivos = ejbFacade.buscarrequerimientosActivos();
+        return requerimientosactivos;
     }
 
     public Auxiliarrequerimiento prepareCreate() {

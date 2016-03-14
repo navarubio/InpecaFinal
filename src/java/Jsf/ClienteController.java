@@ -4,6 +4,7 @@ import Modelo.Cliente;
 import Jsf.util.JsfUtil;
 import Jsf.util.JsfUtil.PersistAction;
 import Jpa.ClienteFacadeLocal;
+import Modelo.Usuario;
 
 import java.io.Serializable;
 import java.util.List;
@@ -18,6 +19,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.inject.Inject;
 
 @ManagedBean(name = "clienteController")
 @SessionScoped
@@ -27,6 +29,8 @@ public class ClienteController implements Serializable {
     private ClienteFacadeLocal ejbFacade;
     private List<Cliente> items = null;
     private Cliente selected;
+    @Inject
+    private Usuario usa;
 
     public ClienteController() {
     }
@@ -52,7 +56,15 @@ public class ClienteController implements Serializable {
     public Cliente prepareCreate() {
         selected = new Cliente();
         initializeEmbeddableKey();
+        usa = getUsuario();
+        selected.setIdusuario(usa);
         return selected;
+    }
+
+    public Usuario getUsuario() {
+        Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+        usa = us;
+        return us;
     }
 
     public void create() {

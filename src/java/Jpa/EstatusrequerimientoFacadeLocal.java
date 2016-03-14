@@ -30,4 +30,6 @@ public interface EstatusrequerimientoFacadeLocal {
 
     int count();
     
+    Estatusrequerimiento cambiarestatusaProcesado();
+    
 }

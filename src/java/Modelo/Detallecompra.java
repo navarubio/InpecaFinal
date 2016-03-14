@@ -31,6 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Detallecompra.findByIddetallecompra", query = "SELECT d FROM Detallecompra d WHERE d.iddetallecompra = :iddetallecompra"),
     @NamedQuery(name = "Detallecompra.findByCantidad", query = "SELECT d FROM Detallecompra d WHERE d.cantidad = :cantidad"),
     @NamedQuery(name = "Detallecompra.findByPcosto", query = "SELECT d FROM Detallecompra d WHERE d.pcosto = :pcosto"),
+    @NamedQuery(name = "Detallecompra.findBySubtotal", query = "SELECT d FROM Detallecompra d WHERE d.subtotal= :subtotal"),
     @NamedQuery(name = "Detallecompra.findByTributoiva", query = "SELECT d FROM Detallecompra d WHERE d.tributoiva = :tributoiva"),
     @NamedQuery(name = "Detallecompra.findByTotalapagar", query = "SELECT d FROM Detallecompra d WHERE d.totalapagar = :totalapagar")})
 public class Detallecompra implements Serializable {
@@ -45,6 +46,8 @@ public class Detallecompra implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "pcosto")
     private Double pcosto;
+    @Column(name = "subtotal")
+    private Double subtotal;
     @Column(name = "tributoiva")
     private Double tributoiva;
     @Column(name = "totalapagar")
@@ -91,6 +94,14 @@ public class Detallecompra implements Serializable {
 
     public void setPcosto(Double pcosto) {
         this.pcosto = pcosto;
+    }
+
+    public Double getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(Double subtotal) {
+        this.subtotal = subtotal;
     }
 
     public Double getTributoiva() {

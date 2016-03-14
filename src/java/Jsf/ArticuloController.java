@@ -4,6 +4,7 @@ import Modelo.Articulo;
 import Jsf.util.JsfUtil;
 import Jsf.util.JsfUtil.PersistAction;
 import Jpa.ArticuloFacadeLocal;
+import Modelo.Usuario;
 
 import java.io.Serializable;
 import java.util.List;
@@ -18,6 +19,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.inject.Inject;
 
 @ManagedBean(name = "articuloController")
 @SessionScoped
@@ -27,6 +29,8 @@ public class ArticuloController implements Serializable {
     private ArticuloFacadeLocal ejbFacade;
     private List<Articulo> items = null;
     private Articulo selected;
+    @Inject
+    private Usuario usa;
 
     public ArticuloController() {
     }
@@ -52,7 +56,15 @@ public class ArticuloController implements Serializable {
     public Articulo prepareCreate() {
         selected = new Articulo();
         initializeEmbeddableKey();
+        usa=getUsuario();
+        selected.setIdusuario(usa);
         return selected;
+    }
+
+    public Usuario getUsuario() {
+        Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+        usa = us;
+        return us;
     }
 
     public void create() {
@@ -60,6 +72,7 @@ public class ArticuloController implements Serializable {
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
+
     }
 
     public void update() {

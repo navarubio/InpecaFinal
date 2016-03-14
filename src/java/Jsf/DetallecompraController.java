@@ -4,6 +4,7 @@ import Modelo.Detallecompra;
 import Jsf.util.JsfUtil;
 import Jsf.util.JsfUtil.PersistAction;
 import Jpa.DetallecompraFacade;
+import Jpa.DetallecompraFacadeLocal;
 
 import java.io.Serializable;
 import java.util.List;
@@ -24,7 +25,7 @@ import javax.faces.convert.FacesConverter;
 public class DetallecompraController implements Serializable {
 
     @EJB
-    private Jpa.DetallecompraFacade ejbFacade;
+    private Jpa.DetallecompraFacadeLocal ejbFacade;
     private List<Detallecompra> items = null;
     private Detallecompra selected;
 
@@ -45,7 +46,7 @@ public class DetallecompraController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private DetallecompraFacade getFacade() {
+    private DetallecompraFacadeLocal getFacade() {
         return ejbFacade;
     }
 

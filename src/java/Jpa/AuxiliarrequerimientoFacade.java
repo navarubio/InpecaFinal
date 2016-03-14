@@ -18,7 +18,8 @@ import javax.persistence.Query;
  * @author Inpeca
  */
 @Stateless
-public class AuxiliarrequerimientoFacade extends AbstractFacade<Auxiliarrequerimiento> implements AuxiliarrequerimientoFacadeLocal{
+public class AuxiliarrequerimientoFacade extends AbstractFacade<Auxiliarrequerimiento> implements AuxiliarrequerimientoFacadeLocal {
+
     @PersistenceContext(unitName = "InpecaPU")
     private EntityManager em;
 
@@ -30,5 +31,20 @@ public class AuxiliarrequerimientoFacade extends AbstractFacade<Auxiliarrequerim
     public AuxiliarrequerimientoFacade() {
         super(Auxiliarrequerimiento.class);
     }
-    
+
+    @Override
+    public List<Auxiliarrequerimiento> buscarrequerimientosActivos() {
+        String consulta;
+        int idstatus = 1;
+        List<Auxiliarrequerimiento> lista = null;
+        try {
+            consulta = "From Auxiliarrequerimiento a where a.idestatusrequerimiento.idestatusrequerimiento = ?1";
+            Query query = em.createQuery(consulta);
+            query.setParameter(1, idstatus);
+            lista = query.getResultList();
+        } catch (Exception e) {
+            throw e;
+        }
+        return lista;
+    }
 }

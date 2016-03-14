@@ -30,4 +30,5 @@ public interface CompraFacadeLocal {
 
     int count();
     
+    Compra ultimacompraInsertada();
 }

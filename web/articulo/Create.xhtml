@@ -45,9 +45,8 @@
                         <p:selectOneMenu id="idgravamen" value="#{articuloController.selected.idgravamen}" >
                             <f:selectItems value="#{gravamenController.itemsAvailableSelectOne}"
                                            var="idgravamenItem"
-                                           itemValue="#{idgravamenItem}" itemLabel="#{idgravamenItem.alicuota}%  #{idgravamenItem.categoria}  " />
+                                           itemValue="#{idgravamenItem}" itemLabel="#{idgravamenItem.alicuota}%  #{idgravamenItem.categoria}" />
                         </p:selectOneMenu>
-                        
                     </p:panelGrid>
                     <p:commandButton actionListener="#{articuloController.create}" value="#{bundle.Save}" update="display,:ArticuloListForm:datalist,:growl" oncomplete="handleSubmit(args,'ArticuloCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="ArticuloCreateDialog.hide()"/>

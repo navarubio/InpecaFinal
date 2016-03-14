@@ -6,9 +6,11 @@
 package Jpa;
 
 import Modelo.Estatusrequerimiento;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,4 +30,23 @@ public class EstatusrequerimientoFacade extends AbstractFacade<Estatusrequerimie
         super(Estatusrequerimiento.class);
     }
     
+    @Override
+    public Estatusrequerimiento cambiarestatusaProcesado() {
+        String consulta;
+        int idstatus=2;
+        Estatusrequerimiento estatus = new Estatusrequerimiento();
+        try {
+            consulta = "From Estatusrequerimiento e where e.idestatusrequerimiento= ?1";
+            Query query = em.createQuery(consulta);
+            query.setParameter(1, idstatus);
+            List<Estatusrequerimiento> lista = query.getResultList();
+            if (!lista.isEmpty()) {
+                estatus = lista.get(0);
+            }
+
+        } catch (Exception e) {
+            throw e;
+        }
+        return estatus;
+    }
 }
