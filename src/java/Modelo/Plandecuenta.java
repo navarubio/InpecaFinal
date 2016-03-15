@@ -211,7 +211,7 @@ public class Plandecuenta implements Serializable {
 
     @Override
     public String toString() {
-        return "Modelo.Plandecuenta[ idplandecuenta=" + idplandecuenta + " ]";
+        return descripcioncuenta;
     }
     
 }

@@ -48,6 +48,15 @@
                                            var="idgravamenItem"
                                            itemValue="#{idgravamenItem}"/>
                         </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditArticuloLabel_idgravamen}" for="idplandecuenta" />
+                        <p:selectOneMenu id="idplandecuenta" value="#{articuloController.selected.idplandecuenta}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{plandecuentaController.itemsAvailableSelectOne}"
+                                           var="idplandecuentaItem"
+                                           itemValue="#{idplandecuentaItem}"/>
+                        </p:selectOneMenu>
+
+
                     </p:panelGrid>
                     <p:commandButton actionListener="#{articuloController.update}" value="#{bundle.Save}" update="display,:ArticuloListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ArticuloEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="ArticuloEditDialog.hide()"/>

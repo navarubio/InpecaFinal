@@ -76,7 +76,11 @@ public class Articulo implements Serializable {
     @JoinColumn(name = "idmedida", referencedColumnName = "idmedida")
     @ManyToOne
     private Medida idmedida;
+    @JoinColumn(name = "idplandecuenta", referencedColumnName = "idplandecuenta")
+    @ManyToOne
+    private Plandecuenta idplandecuenta;
 
+    
     public Articulo() {
     }
 
@@ -170,6 +174,14 @@ public class Articulo implements Serializable {
 
     public void setIdmedida(Medida idmedida) {
         this.idmedida = idmedida;
+    }
+
+    public Plandecuenta getIdplandecuenta() {
+        return idplandecuenta;
+    }
+
+    public void setIdplandecuenta(Plandecuenta idplandecuenta) {
+        this.idplandecuenta = idplandecuenta;
     }
 
     @Override

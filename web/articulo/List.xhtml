@@ -92,6 +92,12 @@
                             </f:facet>
                             <h:outputText value="#{item.idusuario.nombre}"/>
                         </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListArticuloTitle_cuentacontable}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idplandecuenta.descripcioncuenta}"/>
+                        </p:column>
 
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{articuloController.prepareCreate}" update=":ArticuloCreateForm" oncomplete="PF('ArticuloCreateDialog').show()"/>
