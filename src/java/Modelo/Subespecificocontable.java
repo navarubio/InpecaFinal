@@ -6,21 +6,16 @@
 package Modelo;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -31,6 +26,10 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Subespecificocontable.findAll", query = "SELECT s FROM Subespecificocontable s"),
+    @NamedQuery(name = "Subespecificocontable.findByCodigocuenta", query = "SELECT s FROM Subespecificocontable s WHERE s.codigocuenta = :codigocuenta"),
+    @NamedQuery(name = "Subespecificocontable.findByIdgrupocontable", query = "SELECT s FROM Subespecificocontable s WHERE s.idgrupocontable = :idgrupocontable"),
+    @NamedQuery(name = "Subespecificocontable.findByIdsubgrupocontable", query = "SELECT s FROM Subespecificocontable s WHERE s.idsubgrupocontable = :idsubgrupocontable"),
+    @NamedQuery(name = "Subespecificocontable.findByIdespecificocontable", query = "SELECT s FROM Subespecificocontable s WHERE s.idespecificocontable = :idespecificocontable"),
     @NamedQuery(name = "Subespecificocontable.findByIdsubespecificocontable", query = "SELECT s FROM Subespecificocontable s WHERE s.idsubespecificocontable = :idsubespecificocontable"),
     @NamedQuery(name = "Subespecificocontable.findBySubespecificocontable", query = "SELECT s FROM Subespecificocontable s WHERE s.subespecificocontable = :subespecificocontable")})
 public class Subespecificocontable implements Serializable {
@@ -38,28 +37,57 @@ public class Subespecificocontable implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
+    @Column(name = "codigocuenta")
+    private Integer codigocuenta;
+    @Column(name = "idgrupocontable")
+    private Integer idgrupocontable;
+    @Column(name = "idsubgrupocontable")
+    private Integer idsubgrupocontable;
+    @Column(name = "idespecificocontable")
+    private Integer idespecificocontable;
     @Column(name = "idsubespecificocontable")
     private Integer idsubespecificocontable;
     @Size(max = 100)
     @Column(name = "subespecificocontable")
     private String subespecificocontable;
-    @OneToMany(mappedBy = "idsubespecificocontable")
-    private Collection<Plandecuenta> plandecuentaCollection;
-    @JoinColumn(name = "idgrupocontable", referencedColumnName = "idgrupocontable")
-    @ManyToOne
-    private Grupocontable idgrupocontable;
-    @JoinColumn(name = "idsubgrupocontable", referencedColumnName = "idsubgrupocontable")
-    @ManyToOne
-    private Subgrupocontable idsubgrupocontable;
-    @JoinColumn(name = "idespecificocontable", referencedColumnName = "idespecificocontable")
-    @ManyToOne
-    private Especificocontable idespecificocontable;
 
     public Subespecificocontable() {
     }
 
-    public Subespecificocontable(Integer idsubespecificocontable) {
-        this.idsubespecificocontable = idsubespecificocontable;
+    public Subespecificocontable(Integer codigocuenta) {
+        this.codigocuenta = codigocuenta;
+    }
+
+    public Integer getCodigocuenta() {
+        return codigocuenta;
+    }
+
+    public void setCodigocuenta(Integer codigocuenta) {
+        this.codigocuenta = codigocuenta;
+    }
+
+    public Integer getIdgrupocontable() {
+        return idgrupocontable;
+    }
+
+    public void setIdgrupocontable(Integer idgrupocontable) {
+        this.idgrupocontable = idgrupocontable;
+    }
+
+    public Integer getIdsubgrupocontable() {
+        return idsubgrupocontable;
+    }
+
+    public void setIdsubgrupocontable(Integer idsubgrupocontable) {
+        this.idsubgrupocontable = idsubgrupocontable;
+    }
+
+    public Integer getIdespecificocontable() {
+        return idespecificocontable;
+    }
+
+    public void setIdespecificocontable(Integer idespecificocontable) {
+        this.idespecificocontable = idespecificocontable;
     }
 
     public Integer getIdsubespecificocontable() {
@@ -78,43 +106,10 @@ public class Subespecificocontable implements Serializable {
         this.subespecificocontable = subespecificocontable;
     }
 
-    @XmlTransient
-    public Collection<Plandecuenta> getPlandecuentaCollection() {
-        return plandecuentaCollection;
-    }
-
-    public void setPlandecuentaCollection(Collection<Plandecuenta> plandecuentaCollection) {
-        this.plandecuentaCollection = plandecuentaCollection;
-    }
-
-    public Grupocontable getIdgrupocontable() {
-        return idgrupocontable;
-    }
-
-    public void setIdgrupocontable(Grupocontable idgrupocontable) {
-        this.idgrupocontable = idgrupocontable;
-    }
-
-    public Subgrupocontable getIdsubgrupocontable() {
-        return idsubgrupocontable;
-    }
-
-    public void setIdsubgrupocontable(Subgrupocontable idsubgrupocontable) {
-        this.idsubgrupocontable = idsubgrupocontable;
-    }
-
-    public Especificocontable getIdespecificocontable() {
-        return idespecificocontable;
-    }
-
-    public void setIdespecificocontable(Especificocontable idespecificocontable) {
-        this.idespecificocontable = idespecificocontable;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idsubespecificocontable != null ? idsubespecificocontable.hashCode() : 0);
+        hash += (codigocuenta != null ? codigocuenta.hashCode() : 0);
         return hash;
     }
 
@@ -125,7 +120,7 @@ public class Subespecificocontable implements Serializable {
             return false;
         }
         Subespecificocontable other = (Subespecificocontable) object;
-        if ((this.idsubespecificocontable == null && other.idsubespecificocontable != null) || (this.idsubespecificocontable != null && !this.idsubespecificocontable.equals(other.idsubespecificocontable))) {
+        if ((this.codigocuenta == null && other.codigocuenta != null) || (this.codigocuenta != null && !this.codigocuenta.equals(other.codigocuenta))) {
             return false;
         }
         return true;
@@ -133,7 +128,7 @@ public class Subespecificocontable implements Serializable {
 
     @Override
     public String toString() {
-        return subespecificocontable;
+        return "("+ idsubespecificocontable +") "+ subespecificocontable;
     }
     
 }

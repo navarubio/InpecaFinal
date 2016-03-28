@@ -11,10 +11,16 @@
 
         <ui:define name="title">
             <h:outputText value="#{bundle.ListCompraTitle}"></h:outputText>
+            <h:outputStylesheet library="css" name="index.css" />  
         </ui:define>
 
         <ui:define name="body">
             <h:form id="CompraListForm">
+                <div id="imag2">
+                    <img src="../resources/images/LogoInpeca.jpg" width="155" height="58" alt="Logo Inpeca" />
+                </div>     
+                <img src="../resources/images/lists.png" width="70" height="70" alt="Solicitudes" align="right" />
+
                 <p:panel header="#{bundle.ListCompraTitle}">
                     <p:dataTable id="datalist" value="#{compraController.items}" var="item"
                                  selectionMode="single" selection="#{compraController.selected}"
@@ -27,17 +33,24 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
+                        <p:column style="width:5%">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCompraTitle_idcompra}"/>
                             </f:facet>
-                            <h:outputText value="#{item.idcompra}"/>
+                            <h:outputText value="CMP-#{item.idcompra}"/>
                         </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCompraTitle_solicitante}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idusuario.iddepartamento.departamento}"/>
+                        </p:column>
+
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCompraTitle_idauxiliarrequerimiento}"/>
                             </f:facet>
-                            <h:outputText value="#{item.idauxiliarrequerimiento}"/>
+                            <h:outputText value="REQ-#{item.idauxiliarrequerimiento.idauxiliarrequerimiento}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -45,7 +58,14 @@
                             </f:facet>
                             <h:outputText value="#{item.rifproveedor}"/>
                         </p:column>                     
-                        <p:column>
+                        <p:column style="width:20%">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCompraTitle_razonsocial}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rifproveedor.razonsocial}"/>
+                        </p:column>                     
+
+                        <p:column style="text-align: center">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCompraTitle_fechaorden}"/>
                             </f:facet>
@@ -53,63 +73,63 @@
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
                             </h:outputText>
                         </p:column>
-                        <p:column>
+                        <p:column width="300" >
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCompraTitle_observacionescompra}"/>
                             </f:facet>
                             <h:outputText value="#{item.observacionescompra}"/>
                         </p:column>
- 
-                        <p:column>
+
+                        <p:column style="text-align: right">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCompraTitle_subtotal}"/>
                             </f:facet>
-                            <h:outputText value="#{item.subtotal}"/>
+                            <h:outputText value="#{item.subtotal}">
+                                <f:convertNumber type="currency" currencySymbol=" " />
+                            </h:outputText>
                         </p:column>
-                        <p:column>
+                        <p:column style="text-align: right">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCompraTitle_iva}"/>
                             </f:facet>
-                            <h:outputText value="#{item.iva}"/>
+                            <h:outputText value="#{item.iva}">
+                                <f:convertNumber type="currency" currencySymbol=" " />
+                            </h:outputText>
                         </p:column>
-                        <p:column>
+                        <p:column style="text-align: right">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCompraTitle_total}"/>
                             </f:facet>
-                            <h:outputText value="#{item.total}"/>
+                            <h:outputText value="#{item.total}">
+                                <f:convertNumber type="currency" currencySymbol=" " />
+                            </h:outputText>
+                        </p:column>
+                        <!--p:column>
+                            <f:facet name="header">
+                                <h:outputText value=".{bundle.ListCompraTitle_numerofactura}"/>
+                            </f:facet>
+                            <h:outputText value=".{item.numerofactura}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCompraTitle_numerofactura}"/>
+                                <h:outputText value=".{bundle.ListCompraTitle_controlfactura}"/>
                             </f:facet>
-                            <h:outputText value="#{item.numerofactura}"/>
+                            <h:outputText value=".{item.controlfactura}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCompraTitle_controlfactura}"/>
+                                <h:outputText value=".{bundle.ListCompraTitle_fechafactura}"/>
                             </f:facet>
-                            <h:outputText value="#{item.controlfactura}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCompraTitle_fechafactura}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fechafactura}">
+                            <h:outputText value=".{item.fechafactura}">
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
                             </h:outputText>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCompraTitle_observacionespago}"/>
+                                <h:outputText value=".{bundle.ListCompraTitle_observacionespago}"/>
                             </f:facet>
-                            <h:outputText value="#{item.observacionespago}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCompraTitle_idusuario}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idusuario.iddepartamento.departamento}"/>
-                        </p:column>
+                            <h:outputText value=".{item.observacionespago}"/>
+                        </p:column-->
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCompraTitle_idestatusfactura}"/>

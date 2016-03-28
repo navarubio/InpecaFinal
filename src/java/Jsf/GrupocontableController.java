@@ -56,18 +56,18 @@ public class GrupocontableController implements Serializable {
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("GrupocontableCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundlecontable").getString("GrupocontableCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("GrupocontableUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundlecontable").getString("GrupocontableUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("GrupocontableDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundlecontable").getString("GrupocontableDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
@@ -100,11 +100,11 @@ public class GrupocontableController implements Serializable {
                 if (msg.length() > 0) {
                     JsfUtil.addErrorMessage(msg);
                 } else {
-                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundlecontable").getString("PersistenceErrorOccured"));
                 }
             } catch (Exception ex) {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
-                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundlecontable").getString("PersistenceErrorOccured"));
             }
         }
     }
@@ -153,7 +153,7 @@ public class GrupocontableController implements Serializable {
             }
             if (object instanceof Grupocontable) {
                 Grupocontable o = (Grupocontable) object;
-                return getStringKey(o.getIdgrupocontable());
+                return getStringKey(o.getCodigocuenta());
             } else {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Grupocontable.class.getName()});
                 return null;

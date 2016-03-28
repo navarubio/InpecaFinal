@@ -34,11 +34,11 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton "/>
 
-                        <p:column style="width:4%">
+                        <p:column style="width:5%">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAuxiliarrequerimientoTitle_idauxiliarrequerimiento}"/>
                             </f:facet>
-                            <h:outputText value="#{item.idauxiliarrequerimiento}"/>
+                            <h:outputText value="REQ-#{item.idauxiliarrequerimiento}"/>
                         </p:column >
                         <p:column style="width:14%">
                             <f:facet name="header">
@@ -58,7 +58,7 @@
                             </f:facet>
                             <h:outputText value="#{item.descripcion}"/>
                         </p:column>
-                        <p:column width="80" sortBy="#{item.fecharequerimiento}" >
+                        <p:column style="text-align: center" width="80" sortBy="#{item.fecharequerimiento}" >
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAuxiliarrequerimientoTitle_fecharequerimiento}"/>
                             </f:facet>
@@ -66,25 +66,26 @@
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
                             </h:outputText>
                         </p:column>
-                        <p:column>
+                        <p:column style="text-align: center" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAuxiliarrequerimientoTitle_iddepartamento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.iddepartamento.departamento}"/>
+                        </p:column>                        
+                        <p:column style="text-align: center">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAuxiliarrequerimientoTitle_idusuario}"/>
                             </f:facet>
                             <h:outputText value="#{item.idusuario.nombre}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAuxiliarrequerimientoTitle_iddepartamento}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.iddepartamento.departamento}"/>
-                        </p:column>
-                        <p:column>
+
+                        <p:column style="text-align: center">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAuxiliarrequerimientoTitle_idestatusrequerimiento}"/>
                             </f:facet>
                             <h:outputText value="#{item.idestatusrequerimiento.estatusrequerimiento}"/>
                         </p:column>
-                        <p:column headerText="Procesar">
+                        <p:column style="text-align: center" headerText="Procesar">
                             <h:commandLink action="compra.xhtml" actionListener="#{comprasController.asignar(item)}"> 
                                 <h:graphicImage library="images" name="procesarp.jpg"/>
                             </h:commandLink>      

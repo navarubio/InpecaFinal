@@ -48,6 +48,30 @@ public class SubgrupocontableController implements Serializable {
     private SubgrupocontableFacade getFacade() {
         return ejbFacade;
     }
+    
+    private String text;
+    private String fragmento;
+
+    public String getFragmento() {
+        return fragmento;
+    }
+
+    public void setFragmento(String fragmento) {
+        this.fragmento = fragmento;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+    
+    public String codigocuentaarmado(){
+        text=text+fragmento+000;
+        return text;
+    }
 
     public Subgrupocontable prepareCreate() {
         selected = new Subgrupocontable();
@@ -56,18 +80,18 @@ public class SubgrupocontableController implements Serializable {
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("SubgrupocontableCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundlecontable").getString("SubgrupocontableCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("SubgrupocontableUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundlecontable").getString("SubgrupocontableUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("SubgrupocontableDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundlecontable").getString("SubgrupocontableDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
@@ -100,11 +124,11 @@ public class SubgrupocontableController implements Serializable {
                 if (msg.length() > 0) {
                     JsfUtil.addErrorMessage(msg);
                 } else {
-                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundlecontable").getString("PersistenceErrorOccured"));
                 }
             } catch (Exception ex) {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
-                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundlecontable").getString("PersistenceErrorOccured"));
             }
         }
     }
@@ -153,7 +177,7 @@ public class SubgrupocontableController implements Serializable {
             }
             if (object instanceof Subgrupocontable) {
                 Subgrupocontable o = (Subgrupocontable) object;
-                return getStringKey(o.getIdsubgrupocontable());
+                return getStringKey(o.getCodigocuenta());
             } else {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Subgrupocontable.class.getName()});
                 return null;

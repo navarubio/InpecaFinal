@@ -12,5 +12,13 @@
             <base-name>/bundle.actual</base-name>
             <var>bundle.actual</var>
         </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundlesubgrupo</base-name>
+            <var>bundlesubgrupo</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundlecontable</base-name>
+            <var>bundlecontable</var>
+        </resource-bundle>
     </application>
 </faces-config>

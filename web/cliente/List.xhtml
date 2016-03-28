@@ -27,8 +27,8 @@
                                  selectionMode="single" selection="#{clienteController.selected}"
                                  paginator="true"
                                  rowKey="#{item.rifcliente}"
-                                 rows="10"
-                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 rows="15"
+                                 rowsPerPageTemplate="15,20,30,40,50"
                                  >
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
@@ -64,7 +64,7 @@
                             </f:facet>
                             <h:outputText value="#{item.correo}"/>
                         </p:column>
-                        <p:column>
+                        <p:column style="text-align: center">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListClienteTitle_fechainscripcion}"/>
                             </f:facet>

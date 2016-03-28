@@ -10,18 +10,18 @@
 
 
         <ui:define name="title">
-            <h:outputText value="#{bundle.ListPlandecuentaTitle}"></h:outputText>
+            <h:outputText value="#{bundlecontable.ListPlandecuentaTitle}"></h:outputText>
         </ui:define>
 
         <ui:define name="body">
             <h:form id="PlandecuentaListForm">
-                <p:panel header="#{bundle.ListPlandecuentaTitle}">
+                <p:panel header="#{bundlecontable.ListPlandecuentaTitle}">
                     <p:dataTable id="datalist" value="#{plandecuentaController.items}" var="item"
                                  selectionMode="single" selection="#{plandecuentaController.selected}"
                                  paginator="true"
                                  rowKey="#{item.idplandecuenta}"
-                                 rows="10"
-                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 rows="15"
+                                 rowsPerPageTemplate="15,20,30,40,50"
                                  >
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
@@ -29,81 +29,81 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPlandecuentaTitle_idplandecuenta}"/>
+                                <h:outputText value="#{bundlecontable.ListPlandecuentaTitle_idplandecuenta}"/>
                             </f:facet>
                             <h:outputText value="#{item.idplandecuenta}"/>
                         </p:column>
-                        <p:column>
+                        <p:column style="text-align: center">
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPlandecuentaTitle_idgeneralcuenta}"/>
+                                <h:outputText value="#{bundlecontable.ListPlandecuentaTitle_idgrupocontable}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idgrupocontable}"/>
+                        </p:column>
+                        <p:column style="text-align: center">
+                            <f:facet name="header" >
+                                <h:outputText value="#{bundlecontable.ListPlandecuentaTitle_idsubgrupocontable}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idsubgrupocontable}"/>
+                        </p:column>
+                        <p:column style="text-align: center">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundlecontable.ListPlandecuentaTitle_idespecificocontable}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idespecificocontable}"/>
+                        </p:column>
+                        <p:column style="text-align: center">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundlecontable.ListPlandecuentaTitle_idsubespecificocontable}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idsubespecificocontable}"/>
+                        </p:column>
+                        <p:column style="text-align: center">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundlecontable.ListPlandecuentaTitle_idgeneralcuenta}"/>
                             </f:facet>
                             <h:outputText value="#{item.idgeneralcuenta}"/>
                         </p:column>
-                        <p:column>
+                        <p:column width="340">
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPlandecuentaTitle_descripcioncuenta}"/>
+                                <h:outputText value="#{bundlecontable.ListPlandecuentaTitle_descripcioncuenta}"/>
                             </f:facet>
                             <h:outputText value="#{item.descripcioncuenta}"/>
                         </p:column>
-                        <p:column>
+                        <p:column style="text-align: right">
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPlandecuentaTitle_saldogeneral}"/>
+                                <h:outputText value="#{bundlecontable.ListPlandecuentaTitle_saldogeneral}"/>
                             </f:facet>
                             <h:outputText value="#{item.saldogeneral}"/>
                         </p:column>
-                        <p:column>
+                        <p:column style="text-align: right">
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPlandecuentaTitle_fujodeefectivo}"/>
+                                <h:outputText value="#{bundlecontable.ListPlandecuentaTitle_fujodeefectivo}"/>
                             </f:facet>
                             <h:outputText value="#{item.fujodeefectivo}"/>
                         </p:column>
-                        <p:column>
+                        <p:column style="text-align: center">
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPlandecuentaTitle_idgrupocontable}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idgrupocontable.grupocontable}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPlandecuentaTitle_idsubgrupocontable}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idsubgrupocontable.subgrupocontable}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPlandecuentaTitle_idespecificocontable}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idespecificocontable.especificocontable}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPlandecuentaTitle_idsubespecificocontable}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idsubespecificocontable.subespecificocontable}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPlandecuentaTitle_idtipocuentacontable}"/>
+                                <h:outputText value="#{bundlecontable.ListPlandecuentaTitle_idtipocuentacontable}"/>
                             </f:facet>
                             <h:outputText value="#{item.idtipocuentacontable.tipocuentacontable}"/>
                         </p:column>
-                        <p:column>
+                        <p:column style="text-align: center">
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPlandecuentaTitle_idtiposaldocontable}"/>
+                                <h:outputText value="#{bundlecontable.ListPlandecuentaTitle_idtiposaldocontable}"/>
                             </f:facet>
                             <h:outputText value="#{item.idtiposaldocontable.tiposaldocontable}"/>
                         </p:column>
-                        <p:column>
+                        <p:column style="text-align: center">
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPlandecuentaTitle_idtipopartidacontable}"/>
+                                <h:outputText value="#{bundlecontable.ListPlandecuentaTitle_idtipopartidacontable}"/>
                             </f:facet>
                             <h:outputText value="#{item.idtipopartidacontable.tipopartidacontable}"/>
                         </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{plandecuentaController.prepareCreate}" update=":PlandecuentaCreateForm" oncomplete="PF('PlandecuentaCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":PlandecuentaViewForm" oncomplete="PF('PlandecuentaViewDialog').show()" disabled="#{empty plandecuentaController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":PlandecuentaEditForm" oncomplete="PF('PlandecuentaEditDialog').show()" disabled="#{empty plandecuentaController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{plandecuentaController.destroy}" update=":growl,datalist" disabled="#{empty plandecuentaController.selected}"/>
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundlecontable.Create}" actionListener="#{plandecuentaController.prepareCreate}" update=":PlandecuentaCreateForm" oncomplete="PF('PlandecuentaCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundlecontable.View}" update=":PlandecuentaViewForm" oncomplete="PF('PlandecuentaViewDialog').show()" disabled="#{empty plandecuentaController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundlecontable.Edit}" update=":PlandecuentaEditForm" oncomplete="PF('PlandecuentaEditDialog').show()" disabled="#{empty plandecuentaController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundlecontable.Delete}" actionListener="#{plandecuentaController.destroy}" update=":growl,datalist" disabled="#{empty plandecuentaController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

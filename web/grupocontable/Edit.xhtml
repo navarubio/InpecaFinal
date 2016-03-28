@@ -8,17 +8,19 @@
 
     <ui:composition>
 
-        <p:dialog id="GrupocontableEditDlg" widgetVar="GrupocontableEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditGrupocontableTitle}">
+        <p:dialog id="GrupocontableEditDlg" widgetVar="GrupocontableEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundlecontable.EditGrupocontableTitle}">
             <h:form id="GrupocontableEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{grupocontableController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditGrupocontableLabel_idgrupocontable}" for="idgrupocontable" />
-                        <p:inputText id="idgrupocontable" value="#{grupocontableController.selected.idgrupocontable}" title="#{bundle.EditGrupocontableTitle_idgrupocontable}" required="true" requiredMessage="#{bundle.EditGrupocontableRequiredMessage_idgrupocontable}"/>
-                        <p:outputLabel value="#{bundle.EditGrupocontableLabel_grupocontable}" for="grupocontable" />
-                        <p:inputText id="grupocontable" value="#{grupocontableController.selected.grupocontable}" title="#{bundle.EditGrupocontableTitle_grupocontable}" />
+                        <p:outputLabel value="#{bundlecontable.EditGrupocontableLabel_codigocuenta}" for="codigocuenta" />
+                        <p:inputText id="codigocuenta" value="#{grupocontableController.selected.codigocuenta}" title="#{bundlecontable.EditGrupocontableTitle_codigocuenta}" required="true" requiredMessage="#{bundlecontable.EditGrupocontableRequiredMessage_codigocuenta}"/>
+                        <p:outputLabel value="#{bundlecontable.EditGrupocontableLabel_idgrupocontable}" for="idgrupocontable" />
+                        <p:inputText id="idgrupocontable" value="#{grupocontableController.selected.idgrupocontable}" title="#{bundlecontable.EditGrupocontableTitle_idgrupocontable}" />
+                        <p:outputLabel value="#{bundlecontable.EditGrupocontableLabel_grupocontable}" for="grupocontable" />
+                        <p:inputText id="grupocontable" value="#{grupocontableController.selected.grupocontable}" title="#{bundlecontable.EditGrupocontableTitle_grupocontable}" />
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{grupocontableController.update}" value="#{bundle.Save}" update="display,:GrupocontableListForm:datalist,:growl" oncomplete="handleSubmit(args, 'GrupocontableEditDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="GrupocontableEditDialog.hide()"/>
+                    <p:commandButton actionListener="#{grupocontableController.update}" value="#{bundlecontable.Save}" update="display,:GrupocontableListForm:datalist,:growl" oncomplete="handleSubmit(args, 'GrupocontableEditDialog');"/>
+                    <p:commandButton value="#{bundlecontable.Cancel}" onclick="GrupocontableEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

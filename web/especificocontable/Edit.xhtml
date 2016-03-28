@@ -8,32 +8,23 @@
 
     <ui:composition>
 
-        <p:dialog id="EspecificocontableEditDlg" widgetVar="EspecificocontableEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditEspecificocontableTitle}">
+        <p:dialog id="EspecificocontableEditDlg" widgetVar="EspecificocontableEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundlecontable.EditEspecificocontableTitle}">
             <h:form id="EspecificocontableEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{especificocontableController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditEspecificocontableLabel_idgrupocontable}" for="idgrupocontable" />
-                        <p:selectOneMenu id="idgrupocontable" value="#{especificocontableController.selected.idgrupocontable}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{grupocontableController.itemsAvailableSelectOne}"
-                                           var="idgrupocontableItem"
-                                           itemValue="#{idgrupocontableItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditEspecificocontableLabel_idsubgrupocontable}" for="idsubgrupocontable" />
-                        <p:selectOneMenu id="idsubgrupocontable" value="#{especificocontableController.selected.idsubgrupocontable}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{subgrupocontableController.itemsAvailableSelectOne}"
-                                           var="idsubgrupocontableItem"
-                                           itemValue="#{idsubgrupocontableItem}"/>
-                        </p:selectOneMenu>
-
-                        <p:outputLabel value="#{bundle.EditEspecificocontableLabel_idespecificocontable}" for="idespecificocontable" />
-                        <p:inputText id="idespecificocontable" value="#{especificocontableController.selected.idespecificocontable}" title="#{bundle.EditEspecificocontableTitle_idespecificocontable}" required="true" requiredMessage="#{bundle.EditEspecificocontableRequiredMessage_idespecificocontable}"/>
-                        <p:outputLabel value="#{bundle.EditEspecificocontableLabel_especificocontable}" for="especificocontable" />
-                        <p:inputText id="especificocontable" value="#{especificocontableController.selected.especificocontable}" title="#{bundle.EditEspecificocontableTitle_especificocontable}" />
+                        <p:outputLabel value="#{bundlecontable.EditEspecificocontableLabel_codigocuenta}" for="codigocuenta" />
+                        <p:inputText id="codigocuenta" value="#{especificocontableController.selected.codigocuenta}" title="#{bundlecontable.EditEspecificocontableTitle_codigocuenta}" required="true" requiredMessage="#{bundlecontable.EditEspecificocontableRequiredMessage_codigocuenta}"/>
+                        <p:outputLabel value="#{bundlecontable.EditEspecificocontableLabel_idgrupocontable}" for="idgrupocontable" />
+                        <p:inputText id="idgrupocontable" value="#{especificocontableController.selected.idgrupocontable}" title="#{bundlecontable.EditEspecificocontableTitle_idgrupocontable}" />
+                        <p:outputLabel value="#{bundlecontable.EditEspecificocontableLabel_idsubgrupocontable}" for="idsubgrupocontable" />
+                        <p:inputText id="idsubgrupocontable" value="#{especificocontableController.selected.idsubgrupocontable}" title="#{bundlecontable.EditEspecificocontableTitle_idsubgrupocontable}" />
+                        <p:outputLabel value="#{bundlecontable.EditEspecificocontableLabel_idespecificocontable}" for="idespecificocontable" />
+                        <p:inputText id="idespecificocontable" value="#{especificocontableController.selected.idespecificocontable}" title="#{bundlecontable.EditEspecificocontableTitle_idespecificocontable}" />
+                        <p:outputLabel value="#{bundlecontable.EditEspecificocontableLabel_especificocontable}" for="especificocontable" />
+                        <p:inputText id="especificocontable" value="#{especificocontableController.selected.especificocontable}" title="#{bundlecontable.EditEspecificocontableTitle_especificocontable}" />
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{especificocontableController.update}" value="#{bundle.Save}" update="display,:EspecificocontableListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EspecificocontableEditDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="EspecificocontableEditDialog.hide()"/>
+                    <p:commandButton actionListener="#{especificocontableController.update}" value="#{bundlecontable.Save}" update="display,:EspecificocontableListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EspecificocontableEditDialog');"/>
+                    <p:commandButton value="#{bundlecontable.Cancel}" onclick="EspecificocontableEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

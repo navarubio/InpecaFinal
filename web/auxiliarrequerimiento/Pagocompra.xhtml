@@ -16,7 +16,7 @@
             </ui:define>
 
             <ui:define name="body">
-                <p:growl id="msgs" showDetail="true" autoUpdate="true" showSummary="false" /> 
+                <p:growl id="msgs" showDetail="true" /> 
 
                 <h:form id="formulario" >
 
@@ -55,8 +55,25 @@
                                     <p:outputLabel for="depto" value="DEPARTAMENTO" styleClass="optionalLbl"/>
                                     <p:outputLabel id="depto" value="#{comprasController.buscarDepartamento().departamento}" styleClass="optionalLbl"/>
                                     <p:outputLabel for="proveedor" value="Proveedor" styleClass="optionalLbl"/>
+                                    <p:outputLabel id="proveedor" value="#{comprasController.provee.razonsocial}"   /> 
+                                    <p:outputLabel for="rif" value="R.I.F." styleClass="optionalLbl"/>
+                                    <p:outputLabel id="rif" value="#{comprasController.provee.rifproveedor}" styleClass="optionalLbl"/>
+                                    <p:outputLabel for="fechacompra" value="Fecha Orden Compra" />
+                                    <p:outputLabel for="fechacompra" value="#{comprasController.compra.fechaorden}" >
+                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                    </p:outputLabel>
+                                    <p:outputLabel for="observa" value="Observaciones" styleClass="optionalLbl"/>
+                                    <p:outputLabel id="observa" value="#{comprasController.compra.observacionespago}" />
+                                </p:panelGrid>                                
+                            </p:fieldset>
+                            <p:fieldset legend="Datos del Pago" >
+                                <p:panelGrid columns="2">
+                                    <p:outputLabel for="usua" value="USUARIO" styleClass="optionalLbl"/>
+                                    <p:outputLabel id="usua" value="#{comprasController.usuario.nombre}" styleClass="optionalLbl"/>
+                                    <p:outputLabel for="depto" value="DEPARTAMENTO" styleClass="optionalLbl"/>
+                                    <p:outputLabel id="depto" value="#{comprasController.buscarDepartamento().departamento}" styleClass="optionalLbl"/>
+                                    <p:outputLabel for="proveedor" value="Proveedor" styleClass="optionalLbl"/>
                                     <p:selectOneMenu id="provee" value="#{comprasController.provee}" converter="omnifaces.SelectItemsConverter" filter="true" filterMatchMode="contains"> 
-                                        <p:ajax event="change" update="rif"/>                              
 
                                         <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
                                         <f:selectItems value="#{comprasController.proveedores}"
@@ -69,10 +86,12 @@
                                     <p:outputLabel for="fechacompra" value="Fecha Compra" />
                                     <p:calendar id="fechacompra" pattern="dd/MM/yyyy" value="#{comprasController.compra.fechaorden}" showOn="button" navigator="true"/>
                                     <p:outputLabel for="observa" value="Observaciones" styleClass="optionalLbl"/>
-                                    <p:inputTextarea id="observa"  rows="2" cols="50" label="Observaciones" value="#{comprasController.compra.observacionescompra}"/>
+                                    <p:inputTextarea id="observa"  rows="2" cols="50" label="Observaciones" value="#{comprasController.compra.observacionescompra}" required="true"/>
 
                                 </p:panelGrid>                                
                             </p:fieldset>
+
+
                         </p:panelGrid>
 
                         <!--p:fieldset legend="Datos de Articulos" toggleable="true" toggleSpeed="500" >
@@ -126,8 +145,8 @@
                             </p:column>
 
                             <p:column style="width:10%" headerText="Editar">
-                                <p:commandLink actionListener="#{comprasController.asignarRequerimiento(req)}" value="Editar" update=":dialogo" oncomplete="PF('wdialogo').show();" >
-                           
+                                <p:commandLink actionListener="#{comprasController.asignarRequerimiento(req)}" value="Editar" update="listado" oncomplete="PF('wdialogo').show();" >
+
                                 </p:commandLink>
                             </p:column>
                             <p:columnGroup type="footer">
@@ -139,10 +158,9 @@
                                 </p:row>
                             </p:columnGroup>       
                         </p:dataTable> 
-                        <p:commandButton value="Registrar" actionListener="#{comprasController.registrar()}"  action="/auxiliarrequerimiento/List?faces-redirect=true" update="formulario,:growl"/>
+                        <p:commandButton value="Registrar" actionListener="#{comprasController.registrar()}" update=":msgs" action="/auxiliarrequerimiento/List?faces-redirect=true"/>
                         <p:commandButton value="Cancelar" />
                     </p:panel>
-                    
                 </h:form>
                 <p:dialog id="dialogo" widgetVar="wdialogo" header="Modificar cantidad y precio del Articulo" modal="true" closeOnEscape="true" 
                           resizable="false" showEffect="explode" appendTo="@(body)"  >
@@ -152,7 +170,7 @@
                             <p:inputText id="cantidad" label="#{comprasController.requerimiento.cantidad}" value="#{comprasController.requerimiento.cantidad}" style="text-align:right"/>
                             <p:outputLabel for="precio"  value="Precio sin IVA" styleClass="optionalLbl"/>
                             <p:inputText id="precio"  label="#{comprasController.requerimiento.pcosto}"  size="20" value="#{comprasController.requerimiento.pcosto}" style="text-align:right"/>
-                            <p:commandButton value="Grabar" icon="ui-icon-check" actionListener="#{comprasController.modificar()}"  oncomplete="PF('wdialogo').hide();" update="display,:formulario:listado,:growl" />                             
+                            <p:commandButton value="Grabar" icon="ui-icon-check" actionListener="#{comprasController.modificar()}"  oncomplete="PF('wdialogo').hide();" update="display" />                             
                             <p:commandButton value="Cancelar" icon="ui-icon-close" immediate="true" onclick="PF('wdialogo').hide();" /> 
                         </h:panelGrid>
                     </h:form>

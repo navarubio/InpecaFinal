@@ -6,19 +6,16 @@
 package Modelo;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -29,6 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Grupocontable.findAll", query = "SELECT g FROM Grupocontable g"),
+    @NamedQuery(name = "Grupocontable.findByCodigocuenta", query = "SELECT g FROM Grupocontable g WHERE g.codigocuenta = :codigocuenta"),
     @NamedQuery(name = "Grupocontable.findByIdgrupocontable", query = "SELECT g FROM Grupocontable g WHERE g.idgrupocontable = :idgrupocontable"),
     @NamedQuery(name = "Grupocontable.findByGrupocontable", query = "SELECT g FROM Grupocontable g WHERE g.grupocontable = :grupocontable")})
 public class Grupocontable implements Serializable {
@@ -36,25 +34,27 @@ public class Grupocontable implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
+    @Column(name = "codigocuenta")
+    private Integer codigocuenta;
     @Column(name = "idgrupocontable")
     private Integer idgrupocontable;
     @Size(max = 100)
     @Column(name = "grupocontable")
     private String grupocontable;
-    @OneToMany(mappedBy = "idgrupocontable")
-    private Collection<Especificocontable> especificocontableCollection;
-    @OneToMany(mappedBy = "idgrupocontable")
-    private Collection<Plandecuenta> plandecuentaCollection;
-    @OneToMany(mappedBy = "idgrupocontable")
-    private Collection<Subespecificocontable> subespecificocontableCollection;
-    @OneToMany(mappedBy = "idgrupocontable")
-    private Collection<Subgrupocontable> subgrupocontableCollection;
 
     public Grupocontable() {
     }
 
-    public Grupocontable(Integer idgrupocontable) {
-        this.idgrupocontable = idgrupocontable;
+    public Grupocontable(Integer codigocuenta) {
+        this.codigocuenta = codigocuenta;
+    }
+
+    public Integer getCodigocuenta() {
+        return codigocuenta;
+    }
+
+    public void setCodigocuenta(Integer codigocuenta) {
+        this.codigocuenta = codigocuenta;
     }
 
     public Integer getIdgrupocontable() {
@@ -73,46 +73,10 @@ public class Grupocontable implements Serializable {
         this.grupocontable = grupocontable;
     }
 
-    @XmlTransient
-    public Collection<Especificocontable> getEspecificocontableCollection() {
-        return especificocontableCollection;
-    }
-
-    public void setEspecificocontableCollection(Collection<Especificocontable> especificocontableCollection) {
-        this.especificocontableCollection = especificocontableCollection;
-    }
-
-    @XmlTransient
-    public Collection<Plandecuenta> getPlandecuentaCollection() {
-        return plandecuentaCollection;
-    }
-
-    public void setPlandecuentaCollection(Collection<Plandecuenta> plandecuentaCollection) {
-        this.plandecuentaCollection = plandecuentaCollection;
-    }
-
-    @XmlTransient
-    public Collection<Subespecificocontable> getSubespecificocontableCollection() {
-        return subespecificocontableCollection;
-    }
-
-    public void setSubespecificocontableCollection(Collection<Subespecificocontable> subespecificocontableCollection) {
-        this.subespecificocontableCollection = subespecificocontableCollection;
-    }
-
-    @XmlTransient
-    public Collection<Subgrupocontable> getSubgrupocontableCollection() {
-        return subgrupocontableCollection;
-    }
-
-    public void setSubgrupocontableCollection(Collection<Subgrupocontable> subgrupocontableCollection) {
-        this.subgrupocontableCollection = subgrupocontableCollection;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idgrupocontable != null ? idgrupocontable.hashCode() : 0);
+        hash += (codigocuenta != null ? codigocuenta.hashCode() : 0);
         return hash;
     }
 
@@ -123,7 +87,7 @@ public class Grupocontable implements Serializable {
             return false;
         }
         Grupocontable other = (Grupocontable) object;
-        if ((this.idgrupocontable == null && other.idgrupocontable != null) || (this.idgrupocontable != null && !this.idgrupocontable.equals(other.idgrupocontable))) {
+        if ((this.codigocuenta == null && other.codigocuenta != null) || (this.codigocuenta != null && !this.codigocuenta.equals(other.codigocuenta))) {
             return false;
         }
         return true;

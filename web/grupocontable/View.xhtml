@@ -8,16 +8,18 @@
 
     <ui:composition>
 
-        <p:dialog id="GrupocontableViewDlg" widgetVar="GrupocontableViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewGrupocontableTitle}">
+        <p:dialog id="GrupocontableViewDlg" widgetVar="GrupocontableViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundlecontable.ViewGrupocontableTitle}">
             <h:form id="GrupocontableViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{grupocontableController.selected != null}">
-                        <h:outputText value="#{bundle.ViewGrupocontableLabel_idgrupocontable}"/>
-                        <h:outputText value="#{grupocontableController.selected.idgrupocontable}" title="#{bundle.ViewGrupocontableTitle_idgrupocontable}"/>
-                        <h:outputText value="#{bundle.ViewGrupocontableLabel_grupocontable}"/>
-                        <h:outputText value="#{grupocontableController.selected.grupocontable}" title="#{bundle.ViewGrupocontableTitle_grupocontable}"/>
+                        <h:outputText value="#{bundlecontable.ViewGrupocontableLabel_codigocuenta}"/>
+                        <h:outputText value="#{grupocontableController.selected.codigocuenta}" title="#{bundlecontable.ViewGrupocontableTitle_codigocuenta}"/>
+                        <h:outputText value="#{bundlecontable.ViewGrupocontableLabel_idgrupocontable}"/>
+                        <h:outputText value="#{grupocontableController.selected.idgrupocontable}" title="#{bundlecontable.ViewGrupocontableTitle_idgrupocontable}"/>
+                        <h:outputText value="#{bundlecontable.ViewGrupocontableLabel_grupocontable}"/>
+                        <h:outputText value="#{grupocontableController.selected.grupocontable}" title="#{bundlecontable.ViewGrupocontableTitle_grupocontable}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="GrupocontableViewDialog.hide()"/>
+                    <p:commandButton value="#{bundlecontable.Close}" onclick="GrupocontableViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

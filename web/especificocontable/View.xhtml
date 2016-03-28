@@ -8,21 +8,22 @@
 
     <ui:composition>
 
-        <p:dialog id="EspecificocontableViewDlg" widgetVar="EspecificocontableViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewEspecificocontableTitle}">
+        <p:dialog id="EspecificocontableViewDlg" widgetVar="EspecificocontableViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundlecontable.ViewEspecificocontableTitle}">
             <h:form id="EspecificocontableViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{especificocontableController.selected != null}">
-                        <h:outputText value="#{bundle.ViewEspecificocontableLabel_idgrupocontable}"/>
-                        <h:outputText value="#{especificocontableController.selected.idgrupocontable}" title="#{bundle.ViewEspecificocontableTitle_idgrupocontable}"/>
-                        <h:outputText value="#{bundle.ViewEspecificocontableLabel_idsubgrupocontable}"/>
-                        <h:outputText value="#{especificocontableController.selected.idsubgrupocontable}" title="#{bundle.ViewEspecificocontableTitle_idsubgrupocontable}"/>
-
-                        <h:outputText value="#{bundle.ViewEspecificocontableLabel_idespecificocontable}"/>
-                        <h:outputText value="#{especificocontableController.selected.idespecificocontable}" title="#{bundle.ViewEspecificocontableTitle_idespecificocontable}"/>
-                        <h:outputText value="#{bundle.ViewEspecificocontableLabel_especificocontable}"/>
-                        <h:outputText value="#{especificocontableController.selected.especificocontable}" title="#{bundle.ViewEspecificocontableTitle_especificocontable}"/>
+                        <h:outputText value="#{bundlecontable.ViewEspecificocontableLabel_codigocuenta}"/>
+                        <h:outputText value="#{especificocontableController.selected.codigocuenta}" title="#{bundlecontable.ViewEspecificocontableTitle_codigocuenta}"/>
+                        <h:outputText value="#{bundlecontable.ViewEspecificocontableLabel_idgrupocontable}"/>
+                        <h:outputText value="#{especificocontableController.selected.idgrupocontable}" title="#{bundlecontable.ViewEspecificocontableTitle_idgrupocontable}"/>
+                        <h:outputText value="#{bundlecontable.ViewEspecificocontableLabel_idsubgrupocontable}"/>
+                        <h:outputText value="#{especificocontableController.selected.idsubgrupocontable}" title="#{bundlecontable.ViewEspecificocontableTitle_idsubgrupocontable}"/>
+                        <h:outputText value="#{bundlecontable.ViewEspecificocontableLabel_idespecificocontable}"/>
+                        <h:outputText value="#{especificocontableController.selected.idespecificocontable}" title="#{bundlecontable.ViewEspecificocontableTitle_idespecificocontable}"/>
+                        <h:outputText value="#{bundlecontable.ViewEspecificocontableLabel_especificocontable}"/>
+                        <h:outputText value="#{especificocontableController.selected.especificocontable}" title="#{bundlecontable.ViewEspecificocontableTitle_especificocontable}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="EspecificocontableViewDialog.hide()"/>
+                    <p:commandButton value="#{bundlecontable.Close}" onclick="EspecificocontableViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

@@ -8,25 +8,21 @@
 
     <ui:composition>
 
-        <p:dialog id="SubgrupocontableEditDlg" widgetVar="SubgrupocontableEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditSubgrupocontableTitle}">
+        <p:dialog id="SubgrupocontableEditDlg" widgetVar="SubgrupocontableEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundlecontable.EditSubgrupocontableTitle}">
             <h:form id="SubgrupocontableEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{subgrupocontableController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditSubgrupocontableLabel_idgrupocontable}" for="idgrupocontable" />
-                        <p:selectOneMenu id="idgrupocontable" value="#{subgrupocontableController.selected.idgrupocontable}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{grupocontableController.itemsAvailableSelectOne}"
-                                           var="idgrupocontableItem"
-                                           itemValue="#{idgrupocontableItem}"/>
-                        </p:selectOneMenu>
-
-                        <p:outputLabel value="#{bundle.EditSubgrupocontableLabel_idsubgrupocontable}" for="idsubgrupocontable" />
-                        <p:inputText id="idsubgrupocontable" value="#{subgrupocontableController.selected.idsubgrupocontable}" title="#{bundle.EditSubgrupocontableTitle_idsubgrupocontable}" required="true" requiredMessage="#{bundle.EditSubgrupocontableRequiredMessage_idsubgrupocontable}"/>
-                        <p:outputLabel value="#{bundle.EditSubgrupocontableLabel_subgrupocontable}" for="subgrupocontable" />
-                        <p:inputText id="subgrupocontable" value="#{subgrupocontableController.selected.subgrupocontable}" title="#{bundle.EditSubgrupocontableTitle_subgrupocontable}" />
+                        <p:outputLabel value="#{bundlecontable.EditSubgrupocontableLabel_codigocuenta}" for="codigocuenta" />
+                        <p:inputText id="codigocuenta" value="#{subgrupocontableController.selected.codigocuenta}" title="#{bundlecontable.EditSubgrupocontableTitle_codigocuenta}" required="true" requiredMessage="#{bundlecontable.EditSubgrupocontableRequiredMessage_codigocuenta}"/>
+                        <p:outputLabel value="#{bundlecontable.EditSubgrupocontableLabel_idgrupocontable}" for="idgrupocontable" />
+                        <p:inputText id="idgrupocontable" value="#{subgrupocontableController.selected.idgrupocontable}" title="#{bundlecontable.EditSubgrupocontableTitle_idgrupocontable}" />
+                        <p:outputLabel value="#{bundlecontable.EditSubgrupocontableLabel_idsubgrupocontable}" for="idsubgrupocontable" />
+                        <p:inputText id="idsubgrupocontable" value="#{subgrupocontableController.selected.idsubgrupocontable}" title="#{bundlecontable.EditSubgrupocontableTitle_idsubgrupocontable}" />
+                        <p:outputLabel value="#{bundlecontable.EditSubgrupocontableLabel_subgrupocontable}" for="subgrupocontable" />
+                        <p:inputText id="subgrupocontable" value="#{subgrupocontableController.selected.subgrupocontable}" title="#{bundlecontable.EditSubgrupocontableTitle_subgrupocontable}" />
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{subgrupocontableController.update}" value="#{bundle.Save}" update="display,:SubgrupocontableListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SubgrupocontableEditDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="SubgrupocontableEditDialog.hide()"/>
+                    <p:commandButton actionListener="#{subgrupocontableController.update}" value="#{bundlecontable.Save}" update="display,:SubgrupocontableListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SubgrupocontableEditDialog');"/>
+                    <p:commandButton value="#{bundlecontable.Cancel}" onclick="SubgrupocontableEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

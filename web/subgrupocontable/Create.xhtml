@@ -8,24 +8,30 @@
 
     <ui:composition>
 
-        <p:dialog id="SubgrupocontableCreateDlg" widgetVar="SubgrupocontableCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSubgrupocontableTitle}">
+        <p:dialog id="SubgrupocontableCreateDlg" widgetVar="SubgrupocontableCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundlecontable.CreateSubgrupocontableTitle}">
             <h:form id="SubgrupocontableCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{subgrupocontableController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateSubgrupocontableLabel_idgrupocontable}" for="idgrupocontable" />
-                        <p:selectOneMenu id="idgrupocontable" value="#{subgrupocontableController.selected.idgrupocontable}" >
-                            <f:selectItems value="#{grupocontableController.itemsAvailableSelectOne}"
-                                           var="idgrupocontableItem"
-                                           itemValue="#{idgrupocontableItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateSubgrupocontableLabel_idsubgrupocontable}" for="idsubgrupocontable" />
-                        <p:inputText id="idsubgrupocontable" value="#{subgrupocontableController.selected.idsubgrupocontable}" title="#{bundle.CreateSubgrupocontableTitle_idsubgrupocontable}" required="true" requiredMessage="#{bundle.CreateSubgrupocontableRequiredMessage_idsubgrupocontable}"/>
-                        <p:outputLabel value="#{bundle.CreateSubgrupocontableLabel_subgrupocontable}" for="subgrupocontable" />
-                        <p:inputText id="subgrupocontable" value="#{subgrupocontableController.selected.subgrupocontable}" title="#{bundle.CreateSubgrupocontableTitle_subgrupocontable}" />
 
+                        <p:outputLabel value="#{bundlecontable.CreateSubgrupocontableLabel_idgrupocontable}" for="idgrupocontable" />
+                        <p:selectOneMenu id="idgrupocontable" value="#{subgrupocontableController.selected.idgrupocontable}" converter="omnifaces.SelectItemsConverter" >
+                            <p:ajax event="change" update="codigocuenta"/>   
+                            <f:selectItems value="#{grupocontableController.itemsAvailableSelectOne}"
+                                           var="grupocontableItem"
+                                           itemLabel="#{grupocontableItem.grupocontable}"  itemValue="#{grupocontableItem.idgrupocontable}"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{bundlecontable.CreateSubgrupocontableLabel_idsubgrupocontable}" for="idsubgrupocontable" />
+                        <p:inputText id="idsubgrupocontable" value="#{subgrupocontableController.selected.idsubgrupocontable}" title="#{bundlecontable.CreateSubgrupocontableTitle_idsubgrupocontable}" />
+
+                        <p:outputLabel value="#{bundlecontable.CreateSubgrupocontableLabel_codigocuenta}" for="codigocuenta" />
+                        <p:inputText id="codigocuenta" value="#{subgrupocontableController.selected.codigocuenta}" title="#{bundlecontable.CreateSubgrupocontableTitle_codigocuenta}" required="true" requiredMessage="#{bundlecontable.CreateSubgrupocontableRequiredMessage_codigocuenta}"/>
+                        
+                        <p:outputLabel value="#{bundlecontable.CreateSubgrupocontableLabel_subgrupocontable}" for="subgrupocontable" />
+                        <p:inputText  size="40" id="subgrupocontable" value="#{subgrupocontableController.selected.subgrupocontable}" title="#{bundlecontable.CreateSubgrupocontableTitle_subgrupocontable}" />
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{subgrupocontableController.create}" value="#{bundle.Save}" update="display,:SubgrupocontableListForm:datalist,:growl" oncomplete="handleSubmit(args,'SubgrupocontableCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="SubgrupocontableCreateDialog.hide()"/>
+                    <p:commandButton actionListener="#{subgrupocontableController.create}" value="#{bundlecontable.Save}" update="display,:SubgrupocontableListForm:datalist,:growl" oncomplete="handleSubmit(args,'SubgrupocontableCreateDialog');"/>
+                    <p:commandButton value="#{bundlecontable.Cancel}" onclick="SubgrupocontableCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

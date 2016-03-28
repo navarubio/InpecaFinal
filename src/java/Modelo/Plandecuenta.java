@@ -6,7 +6,6 @@
 package Modelo;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,12 +14,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -32,6 +29,10 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Plandecuenta.findAll", query = "SELECT p FROM Plandecuenta p"),
     @NamedQuery(name = "Plandecuenta.findByIdplandecuenta", query = "SELECT p FROM Plandecuenta p WHERE p.idplandecuenta = :idplandecuenta"),
+    @NamedQuery(name = "Plandecuenta.findByIdgrupocontable", query = "SELECT p FROM Plandecuenta p WHERE p.idgrupocontable = :idgrupocontable"),
+    @NamedQuery(name = "Plandecuenta.findByIdsubgrupocontable", query = "SELECT p FROM Plandecuenta p WHERE p.idsubgrupocontable = :idsubgrupocontable"),
+    @NamedQuery(name = "Plandecuenta.findByIdespecificocontable", query = "SELECT p FROM Plandecuenta p WHERE p.idespecificocontable = :idespecificocontable"),
+    @NamedQuery(name = "Plandecuenta.findByIdsubespecificocontable", query = "SELECT p FROM Plandecuenta p WHERE p.idsubespecificocontable = :idsubespecificocontable"),
     @NamedQuery(name = "Plandecuenta.findByIdgeneralcuenta", query = "SELECT p FROM Plandecuenta p WHERE p.idgeneralcuenta = :idgeneralcuenta"),
     @NamedQuery(name = "Plandecuenta.findByDescripcioncuenta", query = "SELECT p FROM Plandecuenta p WHERE p.descripcioncuenta = :descripcioncuenta"),
     @NamedQuery(name = "Plandecuenta.findBySaldogeneral", query = "SELECT p FROM Plandecuenta p WHERE p.saldogeneral = :saldogeneral"),
@@ -43,6 +44,14 @@ public class Plandecuenta implements Serializable {
     @NotNull
     @Column(name = "idplandecuenta")
     private Integer idplandecuenta;
+    @Column(name = "idgrupocontable")
+    private Integer idgrupocontable;
+    @Column(name = "idsubgrupocontable")
+    private Integer idsubgrupocontable;
+    @Column(name = "idespecificocontable")
+    private Integer idespecificocontable;
+    @Column(name = "idsubespecificocontable")
+    private Integer idsubespecificocontable;
     @Column(name = "idgeneralcuenta")
     private Integer idgeneralcuenta;
     @Size(max = 200)
@@ -53,18 +62,6 @@ public class Plandecuenta implements Serializable {
     private Double saldogeneral;
     @Column(name = "fujodeefectivo")
     private Integer fujodeefectivo;
-    @JoinColumn(name = "idgrupocontable", referencedColumnName = "idgrupocontable")
-    @ManyToOne
-    private Grupocontable idgrupocontable;
-    @JoinColumn(name = "idsubgrupocontable", referencedColumnName = "idsubgrupocontable")
-    @ManyToOne
-    private Subgrupocontable idsubgrupocontable;
-    @JoinColumn(name = "idespecificocontable", referencedColumnName = "idespecificocontable")
-    @ManyToOne
-    private Especificocontable idespecificocontable;
-    @JoinColumn(name = "idsubespecificocontable", referencedColumnName = "idsubespecificocontable")
-    @ManyToOne
-    private Subespecificocontable idsubespecificocontable;
     @JoinColumn(name = "idtipocuentacontable", referencedColumnName = "idtipocuentacontable")
     @ManyToOne
     private Tipocuentacontable idtipocuentacontable;
@@ -74,8 +71,6 @@ public class Plandecuenta implements Serializable {
     @JoinColumn(name = "idtipopartidacontable", referencedColumnName = "idtipopartidacontable")
     @ManyToOne
     private Tipopartidacontable idtipopartidacontable;
-    @OneToMany(mappedBy = "idplandecuenta")
-    private Collection<Detallecompra> detallecompraCollection;
 
     public Plandecuenta() {
     }
@@ -90,6 +85,38 @@ public class Plandecuenta implements Serializable {
 
     public void setIdplandecuenta(Integer idplandecuenta) {
         this.idplandecuenta = idplandecuenta;
+    }
+
+    public Integer getIdgrupocontable() {
+        return idgrupocontable;
+    }
+
+    public void setIdgrupocontable(Integer idgrupocontable) {
+        this.idgrupocontable = idgrupocontable;
+    }
+
+    public Integer getIdsubgrupocontable() {
+        return idsubgrupocontable;
+    }
+
+    public void setIdsubgrupocontable(Integer idsubgrupocontable) {
+        this.idsubgrupocontable = idsubgrupocontable;
+    }
+
+    public Integer getIdespecificocontable() {
+        return idespecificocontable;
+    }
+
+    public void setIdespecificocontable(Integer idespecificocontable) {
+        this.idespecificocontable = idespecificocontable;
+    }
+
+    public Integer getIdsubespecificocontable() {
+        return idsubespecificocontable;
+    }
+
+    public void setIdsubespecificocontable(Integer idsubespecificocontable) {
+        this.idsubespecificocontable = idsubespecificocontable;
     }
 
     public Integer getIdgeneralcuenta() {
@@ -124,38 +151,6 @@ public class Plandecuenta implements Serializable {
         this.fujodeefectivo = fujodeefectivo;
     }
 
-    public Grupocontable getIdgrupocontable() {
-        return idgrupocontable;
-    }
-
-    public void setIdgrupocontable(Grupocontable idgrupocontable) {
-        this.idgrupocontable = idgrupocontable;
-    }
-
-    public Subgrupocontable getIdsubgrupocontable() {
-        return idsubgrupocontable;
-    }
-
-    public void setIdsubgrupocontable(Subgrupocontable idsubgrupocontable) {
-        this.idsubgrupocontable = idsubgrupocontable;
-    }
-
-    public Especificocontable getIdespecificocontable() {
-        return idespecificocontable;
-    }
-
-    public void setIdespecificocontable(Especificocontable idespecificocontable) {
-        this.idespecificocontable = idespecificocontable;
-    }
-
-    public Subespecificocontable getIdsubespecificocontable() {
-        return idsubespecificocontable;
-    }
-
-    public void setIdsubespecificocontable(Subespecificocontable idsubespecificocontable) {
-        this.idsubespecificocontable = idsubespecificocontable;
-    }
-
     public Tipocuentacontable getIdtipocuentacontable() {
         return idtipocuentacontable;
     }
@@ -180,15 +175,6 @@ public class Plandecuenta implements Serializable {
         this.idtipopartidacontable = idtipopartidacontable;
     }
 
-    @XmlTransient
-    public Collection<Detallecompra> getDetallecompraCollection() {
-        return detallecompraCollection;
-    }
-
-    public void setDetallecompraCollection(Collection<Detallecompra> detallecompraCollection) {
-        this.detallecompraCollection = detallecompraCollection;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -211,7 +197,7 @@ public class Plandecuenta implements Serializable {
 
     @Override
     public String toString() {
-        return descripcioncuenta;
+        return  idplandecuenta + " " +descripcioncuenta;
     }
     
 }

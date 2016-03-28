@@ -8,18 +8,20 @@
 
     <ui:composition>
 
-        <p:dialog id="SubgrupocontableViewDlg" widgetVar="SubgrupocontableViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewSubgrupocontableTitle}">
+        <p:dialog id="SubgrupocontableViewDlg" widgetVar="SubgrupocontableViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundlecontable.ViewSubgrupocontableTitle}">
             <h:form id="SubgrupocontableViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{subgrupocontableController.selected != null}">
-                        <h:outputText value="#{bundle.ViewSubgrupocontableLabel_idgrupocontable}"/>
-                        <h:outputText value="#{subgrupocontableController.selected.idgrupocontable}" title="#{bundle.ViewSubgrupocontableTitle_idgrupocontable}"/>
-                        <h:outputText value="#{bundle.ViewSubgrupocontableLabel_idsubgrupocontable}"/>
-                        <h:outputText value="#{subgrupocontableController.selected.idsubgrupocontable}" title="#{bundle.ViewSubgrupocontableTitle_idsubgrupocontable}"/>
-                        <h:outputText value="#{bundle.ViewSubgrupocontableLabel_subgrupocontable}"/>
-                        <h:outputText value="#{subgrupocontableController.selected.subgrupocontable}" title="#{bundle.ViewSubgrupocontableTitle_subgrupocontable}"/>
+                        <h:outputText value="#{bundlecontable.ViewSubgrupocontableLabel_codigocuenta}"/>
+                        <h:outputText value="#{subgrupocontableController.selected.codigocuenta}" title="#{bundlecontable.ViewSubgrupocontableTitle_codigocuenta}"/>
+                        <h:outputText value="#{bundlecontable.ViewSubgrupocontableLabel_idgrupocontable}"/>
+                        <h:outputText value="#{subgrupocontableController.selected.idgrupocontable}" title="#{bundlecontable.ViewSubgrupocontableTitle_idgrupocontable}"/>
+                        <h:outputText value="#{bundlecontable.ViewSubgrupocontableLabel_idsubgrupocontable}"/>
+                        <h:outputText value="#{subgrupocontableController.selected.idsubgrupocontable}" title="#{bundlecontable.ViewSubgrupocontableTitle_idsubgrupocontable}"/>
+                        <h:outputText value="#{bundlecontable.ViewSubgrupocontableLabel_subgrupocontable}"/>
+                        <h:outputText value="#{subgrupocontableController.selected.subgrupocontable}" title="#{bundlecontable.ViewSubgrupocontableTitle_subgrupocontable}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="SubgrupocontableViewDialog.hide()"/>
+                    <p:commandButton value="#{bundlecontable.Close}" onclick="SubgrupocontableViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

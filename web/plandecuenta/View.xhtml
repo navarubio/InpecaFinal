@@ -8,36 +8,37 @@
 
     <ui:composition>
 
-        <p:dialog id="PlandecuentaViewDlg" widgetVar="PlandecuentaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPlandecuentaTitle}">
+        <p:dialog id="PlandecuentaViewDlg" widgetVar="PlandecuentaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundlecontable.ViewPlandecuentaTitle}">
             <h:form id="PlandecuentaViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{plandecuentaController.selected != null}">
-                        <h:outputText value="#{bundle.ViewPlandecuentaLabel_idplandecuenta}"/>
-                        <h:outputText value="#{plandecuentaController.selected.idplandecuenta}" title="#{bundle.ViewPlandecuentaTitle_idplandecuenta}"/>
-                        <h:outputText value="#{bundle.ViewPlandecuentaLabel_idgeneralcuenta}"/>
-                        <h:outputText value="#{plandecuentaController.selected.idgeneralcuenta}" title="#{bundle.ViewPlandecuentaTitle_idgeneralcuenta}"/>
-                        <h:outputText value="#{bundle.ViewPlandecuentaLabel_descripcioncuenta}"/>
-                        <h:outputText value="#{plandecuentaController.selected.descripcioncuenta}" title="#{bundle.ViewPlandecuentaTitle_descripcioncuenta}"/>
-                        <h:outputText value="#{bundle.ViewPlandecuentaLabel_saldogeneral}"/>
-                        <h:outputText value="#{plandecuentaController.selected.saldogeneral}" title="#{bundle.ViewPlandecuentaTitle_saldogeneral}"/>
-                        <h:outputText value="#{bundle.ViewPlandecuentaLabel_fujodeefectivo}"/>
-                        <h:outputText value="#{plandecuentaController.selected.fujodeefectivo}" title="#{bundle.ViewPlandecuentaTitle_fujodeefectivo}"/>
-                        <h:outputText value="#{bundle.ViewPlandecuentaLabel_idgrupocontable}"/>
-                        <h:outputText value="#{plandecuentaController.selected.idgrupocontable}" title="#{bundle.ViewPlandecuentaTitle_idgrupocontable}"/>
-                        <h:outputText value="#{bundle.ViewPlandecuentaLabel_idsubgrupocontable}"/>
-                        <h:outputText value="#{plandecuentaController.selected.idsubgrupocontable}" title="#{bundle.ViewPlandecuentaTitle_idsubgrupocontable}"/>
-                        <h:outputText value="#{bundle.ViewPlandecuentaLabel_idespecificocontable}"/>
-                        <h:outputText value="#{plandecuentaController.selected.idespecificocontable}" title="#{bundle.ViewPlandecuentaTitle_idespecificocontable}"/>
-                        <h:outputText value="#{bundle.ViewPlandecuentaLabel_idsubespecificocontable}"/>
-                        <h:outputText value="#{plandecuentaController.selected.idsubespecificocontable}" title="#{bundle.ViewPlandecuentaTitle_idsubespecificocontable}"/>
-                        <h:outputText value="#{bundle.ViewPlandecuentaLabel_idtipocuentacontable}"/>
-                        <h:outputText value="#{plandecuentaController.selected.idtipocuentacontable}" title="#{bundle.ViewPlandecuentaTitle_idtipocuentacontable}"/>
-                        <h:outputText value="#{bundle.ViewPlandecuentaLabel_idtiposaldocontable}"/>
-                        <h:outputText value="#{plandecuentaController.selected.idtiposaldocontable}" title="#{bundle.ViewPlandecuentaTitle_idtiposaldocontable}"/>
-                        <h:outputText value="#{bundle.ViewPlandecuentaLabel_idtipopartidacontable}"/>
-                        <h:outputText value="#{plandecuentaController.selected.idtipopartidacontable}" title="#{bundle.ViewPlandecuentaTitle_idtipopartidacontable}"/>
+                        <h:outputText value="#{bundlecontable.ViewPlandecuentaLabel_idplandecuenta}"/>
+                        <h:outputText value="#{plandecuentaController.selected.idplandecuenta}" title="#{bundlecontable.ViewPlandecuentaTitle_idplandecuenta}"/>
+
+                        <h:outputText value="#{bundlecontable.ViewPlandecuentaLabel_idgrupocontable}"/>
+                        <h:outputText value="#{plandecuentaController.selected.idgrupocontable}" title="#{bundlecontable.ViewPlandecuentaTitle_idgrupocontable}"/>
+                        <h:outputText value="#{bundlecontable.ViewPlandecuentaLabel_idsubgrupocontable}"/>
+                        <h:outputText value="#{plandecuentaController.selected.idsubgrupocontable}" title="#{bundlecontable.ViewPlandecuentaTitle_idsubgrupocontable}"/>
+                        <h:outputText value="#{bundlecontable.ViewPlandecuentaLabel_idespecificocontable}"/>
+                        <h:outputText value="#{plandecuentaController.selected.idespecificocontable}" title="#{bundlecontable.ViewPlandecuentaTitle_idespecificocontable}"/>
+                        <h:outputText value="#{bundlecontable.ViewPlandecuentaLabel_idsubespecificocontable}"/>
+                        <h:outputText value="#{plandecuentaController.selected.idsubespecificocontable}" title="#{bundlecontable.ViewPlandecuentaTitle_idsubespecificocontable}"/>
+                        <h:outputText value="#{bundlecontable.ViewPlandecuentaLabel_idgeneralcuenta}"/>
+                        <h:outputText value="#{plandecuentaController.selected.idgeneralcuenta}" title="#{bundlecontable.ViewPlandecuentaTitle_idgeneralcuenta}"/>
+                        <h:outputText value="#{bundlecontable.ViewPlandecuentaLabel_descripcioncuenta}"/>
+                        <h:outputText value="#{plandecuentaController.selected.descripcioncuenta}" title="#{bundlecontable.ViewPlandecuentaTitle_descripcioncuenta}"/>
+                        <h:outputText value="#{bundlecontable.ViewPlandecuentaLabel_idtipocuentacontable}"/>
+                        <h:outputText value="#{plandecuentaController.selected.idtipocuentacontable}" title="#{bundlecontable.ViewPlandecuentaTitle_idtipocuentacontable}"/>
+                        <h:outputText value="#{bundlecontable.ViewPlandecuentaLabel_idtiposaldocontable}"/>
+                        <h:outputText value="#{plandecuentaController.selected.idtiposaldocontable}" title="#{bundlecontable.ViewPlandecuentaTitle_idtiposaldocontable}"/>
+                        <h:outputText value="#{bundlecontable.ViewPlandecuentaLabel_idtipopartidacontable}"/>
+                        <h:outputText value="#{plandecuentaController.selected.idtipopartidacontable}" title="#{bundlecontable.ViewPlandecuentaTitle_idtipopartidacontable}"/>
+                        <h:outputText value="#{bundlecontable.ViewPlandecuentaLabel_saldogeneral}"/>
+                        <h:outputText value="#{plandecuentaController.selected.saldogeneral}" title="#{bundlecontable.ViewPlandecuentaTitle_saldogeneral}"/>
+                        <h:outputText value="#{bundlecontable.ViewPlandecuentaLabel_fujodeefectivo}"/>
+                        <h:outputText value="#{plandecuentaController.selected.fujodeefectivo}" title="#{bundlecontable.ViewPlandecuentaTitle_fujodeefectivo}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="PlandecuentaViewDialog.hide()"/>
+                    <p:commandButton value="#{bundlecontable.Close}" onclick="PlandecuentaViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
