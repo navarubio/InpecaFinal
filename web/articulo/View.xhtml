@@ -17,9 +17,15 @@
                         <h:outputText value="#{bundle.ViewArticuloLabel_descripcion}"/>
                         <h:outputText value="#{articuloController.selected.descripcion}" title="#{bundle.ViewArticuloTitle_descripcion}"/>
                         <h:outputText value="#{bundle.ViewArticuloLabel_pcosto}"/>
-                        <h:outputText value="#{articuloController.selected.pcosto}" title="#{bundle.ViewArticuloTitle_pcosto}"/>
+                        <h:outputText value="#{articuloController.selected.pcosto}" title="#{bundle.ViewArticuloTitle_pcosto}">
+                            <f:convertNumber currencySymbol="Bs. " groupingUsed="true"
+                                             maxFractionDigits="2" type="currency"  />
+                        </h:outputText>                            
                         <h:outputText value="#{bundle.ViewArticuloLabel_pventa}"/>
-                        <h:outputText value="#{articuloController.selected.pventa}" title="#{bundle.ViewArticuloTitle_pventa}"/>
+                        <h:outputText value="#{articuloController.selected.pventa}" title="#{bundle.ViewArticuloTitle_pventa}">
+                            <f:convertNumber currencySymbol="Bs. " groupingUsed="true"
+                                             maxFractionDigits="2" type="currency"  />
+                        </h:outputText>                               
                         <h:outputText value="#{bundle.ViewArticuloLabel_idmedida}"/>
                         <h:outputText value="#{articuloController.selected.idmedida.medida}" title="#{bundle.ViewArticuloTitle_idmedida}"/>
                         <h:outputText value="#{bundle.ViewArticuloLabel_idgrupo}"/>
@@ -27,9 +33,13 @@
                         <h:outputText value="#{bundle.ViewArticuloLabel_idsubgrupo}"/>
                         <h:outputText value="#{articuloController.selected.idsubgrupo.subgrupo}" title="#{bundle.ViewArticuloTitle_idsubgrupo}"/>
                         <h:outputText value="#{bundle.ViewArticuloLabel_idgravamen}"/>
-                        <h:outputText value="#{articuloController.selected.idgravamen.alicuota}" title="#{bundle.ViewArticuloTitle_idgravamen}"/>
+                        <h:outputText value="#{articuloController.selected.idgravamen.alicuota} %"  title="#{bundle.ViewArticuloTitle_idgravamen}"/>
                         <h:outputText value="#{bundle.ViewArticuloLabel_idusuario}"/>
-                        <h:outputText value="#{articuloController.selected.idusuario}" title="#{bundle.ViewArticuloTitle_idusuario}"/>
+                        <h:outputText value="#{articuloController.selected.idusuario.nombre}" title="#{bundle.ViewArticuloTitle_idusuario}"/>
+                        <h:outputText value="#{bundle.ViewArticuloLabel_codigocuenta}"/>
+                        <h:outputText value="#{articuloController.selected.idplandecuenta}" title="#{bundle.ViewArticuloTitle_idusuario}"/>
+                        <h:outputText value="#{bundle.ViewArticuloLabel_descripcioncuenta}"/>
+                        <h:outputText value="#{articuloController.selected.idplandecuenta.descripcioncuenta}" title="#{bundle.ViewArticuloTitle_idusuario}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="ArticuloViewDialog.hide()"/>
                 </h:panelGroup>

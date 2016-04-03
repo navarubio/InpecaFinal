@@ -19,7 +19,7 @@
                 <div id="imag2">
                     <img src="../resources/images/LogoInpeca.jpg" width="155" height="58" alt="Logo Inpeca" />
                 </div>     
-                <img src="../resources/images/lists.png" width="70" height="70" alt="Solicitudes" align="right" />
+                <img src="../resources/images/tablet.png" width="70" height="70" alt="Solicitudes" align="right" />
 
                 <p:panel header="#{bundle.ListAuxiliarrequerimientoTitle}">
                     <p:dataTable id="datalist" value="#{auxiliarrequerimientoController.requerimientosactivos}" var="item"
@@ -87,7 +87,7 @@
                         </p:column>
                         <p:column style="text-align: center" headerText="Procesar">
                             <h:commandLink action="compra.xhtml" actionListener="#{comprasController.asignar(item)}"> 
-                                <h:graphicImage library="images" name="procesarp.jpg"/>
+                                <h:graphicImage library="images" name="apply.png" width="20" height="20" alt="Procesar"/>
                             </h:commandLink>      
                         </p:column>
 

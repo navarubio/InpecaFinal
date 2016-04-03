@@ -99,7 +99,7 @@ public class Estatusfactura implements Serializable {
 
     @Override
     public String toString() {
-        return "Modelo.Estatusfactura[ idestatusfactura=" + idestatusfactura + " ]";
+        return estatusfactura;
     }
     
 }

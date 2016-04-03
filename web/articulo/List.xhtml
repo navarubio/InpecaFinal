@@ -45,7 +45,7 @@
                             </f:facet>
                             <h:outputText value="#{item.descripcion}"/>
                         </p:column>
-                        <p:column>
+                        <p:column width="80">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListArticuloTitle_pcosto}"/>
                             </f:facet>
@@ -54,33 +54,34 @@
                                                  maxFractionDigits="2" type="currency"  />
                             </h:outputText>
                         </p:column>
-                        <p:column>
+                        <p:column width="80" >
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListArticuloTitle_pventa}"/>
                             </f:facet>
                             <h:outputText value="#{item.pventa}" style="float: right">
-                                <f:convertNumber type="currency" currencySymbol="BsF " />
+                                <f:convertNumber currencySymbol="" groupingUsed="true"
+                                                 maxFractionDigits="2" type="currency" />
                             </h:outputText>
                         </p:column>
-                        <p:column style="text-align: center">
+                        <p:column width="100" style="text-align: center">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListArticuloTitle_idmedida}"/>
                             </f:facet>
                             <h:outputText value="#{item.idmedida.medida}"/>
                         </p:column>                        
-                        <p:column style="text-align: center" >
+                        <p:column width="100" style="text-align: center" >
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListArticuloTitle_idgrupo}"/>
                             </f:facet>
                             <h:outputText value="#{item.idgrupo.grupo}" />
                         </p:column>
-                        <p:column style="text-align: center">
+                        <p:column  width="140" style="text-align: center">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListArticuloTitle_idsubgrupo}"/>
                             </f:facet>
                             <h:outputText value="#{item.idsubgrupo.subgrupo}"/>
                         </p:column>
-                        <p:column>
+                        <p:column width="40">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListArticuloTitle_idgravamen}"/>
                             </f:facet>
@@ -96,7 +97,7 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListArticuloTitle_cuentacontable}"/>
                             </f:facet>
-                            <h:outputText value="#{item.idplandecuenta.descripcioncuenta}"/>
+                            <h:outputText value="#{item.idplandecuenta.idplandecuenta}- #{item.idplandecuenta.descripcioncuenta}"/>
                         </p:column>
 
                         <f:facet name="footer">

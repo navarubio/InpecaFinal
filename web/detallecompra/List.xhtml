@@ -11,10 +11,16 @@
 
         <ui:define name="title">
             <h:outputText value="#{bundle.ListDetallecompraTitle}"></h:outputText>
+            <h:outputStylesheet library="css" name="index.css" />                
         </ui:define>
 
         <ui:define name="body">
             <h:form id="DetallecompraListForm">
+                <div id="imag2">
+                    <img src="../resources/images/LogoInpeca.jpg" width="155" height="58" alt="Logo Inpeca" />
+                </div>     
+                <img src="../resources/images/my_documents.png" width="70" height="70" alt="Articulos Comprados" align="right" />                
+
                 <p:panel header="#{bundle.ListDetallecompraTitle}">
                     <p:dataTable id="datalist" value="#{detallecompraController.items}" var="item"
                                  selectionMode="single" selection="#{detallecompraController.selected}"
@@ -38,6 +44,14 @@
                                 <h:outputText value="#{bundle.ListDetallecompraTitle_idcompra}"/>
                             </f:facet>
                             <h:outputText value="#{item.idcompra}"/>
+                        </p:column>
+                        <p:column style="text-align: center">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCompraTitle_fechaorden}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idcompra.fechaorden}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
                         </p:column>
                         <p:column>
                             <f:facet name="header">

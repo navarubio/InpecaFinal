@@ -15,11 +15,11 @@
                         <p:outputLabel value="#{bundle.EditArticuloLabel_codigo}" for="codigo" />
                         <p:inputText id="codigo" value="#{articuloController.selected.codigo}" title="#{bundle.EditArticuloTitle_codigo}" required="true" requiredMessage="#{bundle.EditArticuloRequiredMessage_codigo}"/>
                         <p:outputLabel value="#{bundle.EditArticuloLabel_descripcion}" for="descripcion" />
-                        <p:inputText id="descripcion" value="#{articuloController.selected.descripcion}" title="#{bundle.EditArticuloTitle_descripcion}" />
+                        <p:inputText size="40" id="descripcion" value="#{articuloController.selected.descripcion}" title="#{bundle.EditArticuloTitle_descripcion}" />
                         <p:outputLabel value="#{bundle.EditArticuloLabel_pcosto}" for="pcosto" />
                         <p:inputText id="pcosto" value="#{articuloController.selected.pcosto}" title="#{bundle.EditArticuloTitle_pcosto}" />
                         <p:outputLabel value="#{bundle.EditArticuloLabel_pventa}" for="pventa" />
-                        <p:inputText id="pventa" value="#{articuloController.selected.pventa}" title="#{bundle.EditArticuloTitle_pventa}" />
+                        <p:inputText id="pventa" label="0,00" value="#{articuloController.selected.pventa}" title="#{bundle.EditArticuloTitle_pventa}" />
                         <p:outputLabel value="#{bundle.EditArticuloLabel_idmedida}" for="idmedida" />
                         <p:selectOneMenu id="idmedida" value="#{articuloController.selected.idmedida}" >
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
@@ -49,7 +49,7 @@
                                            itemValue="#{idgravamenItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditArticuloLabel_cuentacontable}" for="idplandecuenta" />
-                        <p:selectOneMenu id="idplandecuenta" value="#{articuloController.selected.idplandecuenta}" >
+                        <p:selectOneMenu id="idplandecuenta" value="#{articuloController.selected.idplandecuenta}" filter="true" filterMatchMode="contains" >
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{plandecuentaController.itemsAvailableSelectOne}"
                                            var="idplandecuentaItem"

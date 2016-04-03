@@ -19,7 +19,7 @@
                 <div id="imag2">
                     <img src="../resources/images/LogoInpeca.jpg" width="155" height="58" alt="Logo Inpeca" />
                 </div>     
-                <img src="../resources/images/lists.png" width="70" height="70" alt="Solicitudes" align="right" />
+                <img src="../resources/images/kthememgr_1.png" width="70" height="70" alt="Solicitudes" align="right" />
 
                 <p:panel header="#{bundle.ListCompraTitle}">
                     <p:dataTable id="datalist" value="#{compraController.items}" var="item"
@@ -33,7 +33,7 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column style="width:5%">
+                        <p:column style="width:5%" sortBy="#{item.idcompra}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCompraTitle_idcompra}"/>
                             </f:facet>
@@ -65,12 +65,12 @@
                             <h:outputText value="#{item.rifproveedor.razonsocial}"/>
                         </p:column>                     
 
-                        <p:column style="text-align: center">
+                        <p:column style="text-align: center" sortBy="#{item.fechaorden}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCompraTitle_fechaorden}"/>
                             </f:facet>
                             <h:outputText value="#{item.fechaorden}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
                             </h:outputText>
                         </p:column>
                         <p:column width="300" >
@@ -135,6 +135,11 @@
                                 <h:outputText value="#{bundle.ListCompraTitle_idestatusfactura}"/>
                             </f:facet>
                             <h:outputText value="#{item.idestatusfactura}"/>
+                        </p:column>                        
+                        <p:column style="text-align: center" headerText="Procesar">
+                            <h:commandLink action="compra.xhtml" actionListener="#{comprasController.asignar(item)}"> 
+                                <h:graphicImage library="images" name="ark2.png" width="30" height="30" alt="Pagar Compra"/>
+                            </h:commandLink>      
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{compraController.prepareCreate}" update=":CompraCreateForm" oncomplete="PF('CompraCreateDialog').show()"/>

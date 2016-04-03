@@ -16,12 +16,12 @@
                         <p:outputLabel value="#{bundle.CreateArticuloLabel_codigo}" for="codigo" />
                         <p:inputText id="codigo" value="#{articuloController.selected.codigo}" title="#{bundle.CreateArticuloTitle_codigo}" required="true" requiredMessage="#{bundle.CreateArticuloRequiredMessage_codigo}"/>
                         <p:outputLabel value="#{bundle.CreateArticuloLabel_descripcion}" for="descripcion" />
-                        <p:inputText id="descripcion" value="#{articuloController.selected.descripcion}" title="#{bundle.CreateArticuloTitle_descripcion}" />
+                        <p:inputText size="40" id="descripcion" value="#{articuloController.selected.descripcion}" title="#{bundle.CreateArticuloTitle_descripcion}" />
                         <p:outputLabel value="#{bundle.CreateArticuloLabel_pcosto}" for="pcosto" />
                         <p:inputText id="pcosto" value="#{articuloController.selected.pcosto}" title="#{bundle.CreateArticuloTitle_pcosto}" />
                         <p:outputLabel value="#{bundle.CreateArticuloLabel_pventa}" for="pventa" />
 
-                        <p:inputText id="pventa" value="#{articuloController.selected.pventa}" title="#{bundle.CreateArticuloTitle_pventa}" />
+                        <p:inputText id="pventa" value="#{articuloController.selected.pventa}" title="#{bundle.CreateArticuloTitle_pventa}" label="0,00" />
 
                         <p:outputLabel value="#{bundle.CreateArticuloLabel_idmedida}" for="idmedida" />
                         <p:selectOneMenu id="idmedida" value="#{articuloController.selected.idmedida}" >

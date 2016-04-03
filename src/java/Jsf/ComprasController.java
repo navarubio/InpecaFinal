@@ -5,6 +5,7 @@ import Jpa.AuxiliarrequerimientoFacadeLocal;
 import Jpa.CompraFacadeLocal;
 import Jpa.DepartamentoFacadeLocal;
 import Jpa.DetallecompraFacadeLocal;
+import Jpa.EstatusfacturaFacadeLocal;
 import Jpa.EstatusrequerimientoFacadeLocal;
 import Jpa.ProveedorFacadeLocal;
 import Jpa.RequerimientoFacadeLocal;
@@ -13,6 +14,7 @@ import Modelo.Auxiliarrequerimiento;
 import Modelo.Detallecompra;
 import Modelo.Compra;
 import Modelo.Departamento;
+import Modelo.Estatusfactura;
 import Modelo.Estatusrequerimiento;
 import Modelo.Proveedor;
 import Modelo.Requerimiento;
@@ -51,6 +53,9 @@ public class ComprasController implements Serializable {
     private DetallecompraFacadeLocal detallecompraEJB;
     @EJB
     private EstatusrequerimientoFacadeLocal estatusrequerimientoEJB;
+    @EJB
+    private EstatusfacturaFacadeLocal estatusfacturaEJB;
+    
     private Auxiliarrequerimiento auxiliarrequerimiento;
     private Usuario usa;
     private Departamento dpto;
@@ -282,7 +287,17 @@ public class ComprasController implements Serializable {
             compra.setTotal(auxiliar.getMontototal());
             Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
             compra.setIdusuario(us);            
+            Estatusfactura statusfactu = null;
+            int tipo=0;
+            if (compra.getTotal() <=50000 ) {
+                tipo=0;
+            }else if (compra.getTotal() >50000 ) {
+                tipo=1;
+            }                    
+            statusfactu= estatusfacturaEJB.cambiarestatusFactura(tipo);
+            compra.setIdestatusfactura(statusfactu);
             compraEJB.create(compra);
+
             Estatusrequerimiento statusreque = null;
             statusreque= estatusrequerimientoEJB.cambiarestatusaProcesado();
             auxiliarrequerimiento.setIdestatusrequerimiento(statusreque);
