@@ -33,19 +33,19 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
+                        <p:column  width="100" >
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListDetallecompraTitle_iddetallecompra}"/>
                             </f:facet>
-                            <h:outputText value="#{item.iddetallecompra}"/>
+                            <h:outputText value="DTC-#{item.iddetallecompra}"/>
                         </p:column>
-                        <p:column>
+                        <p:column width="60" sortBy="#{item.idcompra.idcompra}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListDetallecompraTitle_idcompra}"/>
                             </f:facet>
-                            <h:outputText value="#{item.idcompra}"/>
+                            <h:outputText value="CMP-#{item.idcompra.idcompra}"/>
                         </p:column>
-                        <p:column style="text-align: center">
+                        <p:column width="80" style="text-align: center" sortBy="#{item.idcompra.fechaorden}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCompraTitle_fechaorden}"/>
                             </f:facet>
@@ -53,7 +53,7 @@
                                 <f:convertDateTime pattern="dd/MM/yyyy" />
                             </h:outputText>
                         </p:column>
-                        <p:column>
+                        <p:column width="60">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListDetallecompraTitle_codigo}"/>
                             </f:facet>
@@ -66,29 +66,35 @@
                             <h:outputText value="#{item.codigo.descripcion}"/>
                         </p:column>
 
-                        <p:column>
+                        <p:column width="60" style="text-align: center">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListDetallecompraTitle_cantidad}"/>
                             </f:facet>
                             <h:outputText value="#{item.cantidad}"/>
                         </p:column>
-                        <p:column>
+                        <p:column style="text-align: right">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListDetallecompraTitle_pcosto}"/>
                             </f:facet>
-                            <h:outputText value="#{item.pcosto}"/>
+                            <h:outputText value="#{item.pcosto}">
+                                <f:convertNumber type="currency" currencySymbol=" " />
+                            </h:outputText>
                         </p:column>
-                        <p:column>
+                        <p:column style="text-align: right">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListDetallecompraTitle_tributoiva}"/>
                             </f:facet>
-                            <h:outputText value="#{item.tributoiva}"/>
+                            <h:outputText value="#{item.tributoiva}">
+                                <f:convertNumber type="currency" currencySymbol=" " />
+                            </h:outputText>
                         </p:column>
-                        <p:column>
+                        <p:column style="text-align: right">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListDetallecompraTitle_totalapagar}"/>
                             </f:facet>
-                            <h:outputText value="#{item.totalapagar}"/>
+                            <h:outputText value="#{item.totalapagar}">
+                                <f:convertNumber type="currency" currencySymbol=" " />
+                            </h:outputText>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -96,11 +102,11 @@
                             </f:facet>
                             <h:outputText value="#{item.idestatuscontable}"/>
                         </p:column>
-                        <p:column>
+                        <p:column width="200">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListDetallecompraTitle_idplandecuenta}"/>
                             </f:facet>
-                            <h:outputText value="#{item.idplandecuenta}"/>
+                            <h:outputText value="#{item.codigo.idplandecuenta.descripcioncuenta}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{detallecompraController.prepareCreate}" update=":DetallecompraCreateForm" oncomplete="PF('DetallecompraCreateDialog').show()"/>

@@ -56,7 +56,9 @@
                             <p:menuitem value="Centro de Activos" outcome="/articulo/List.xhtml" />   
                             <p:menuitem value="Centro Contable" outcome="/articulo/List.xhtml" />  
                         </p:submenu>    
-
+                        <p:submenu label="#{bundle.Gerencia}" icon="ui-icon-person">
+                            <p:menuitem value="Autorizar Compras" outcome="/compra/Porautorizar.xhtml" />
+                        </p:submenu>
                         <p:submenu label="#{bundle.Maintenance}" icon="ui-icon-wrench">
                             <p:menuitem value="Condicionfactura" outcome="/condicionfactura/List.xhtml" />
                             <p:menuitem value="Contribuyente" outcome="/contribuyente/List.xhtml" />

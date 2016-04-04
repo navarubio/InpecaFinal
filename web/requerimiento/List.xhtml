@@ -39,20 +39,19 @@
                             </f:facet>
                             <h:outputText value="#{item.idrequerimiento}"/>
                         </p:column>
-                        <p:column width="100">
+                        <p:column width="100" style="text-align: center" sortBy="#{item.idauxiliarrequerimiento.idauxiliarrequerimiento}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListRequerimientoTitle_idauxiliarrequerimiento}"/>
                             </f:facet>
-                            <h:outputText value="#{item.idauxiliarrequerimiento}"/>
+                            <h:outputText value="REQ-#{item.idauxiliarrequerimiento.idauxiliarrequerimiento}"/>
                         </p:column>
-                        <p:column>
+                        <p:column width="100" style="text-align: center" >
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListRequerimientoTitle_departamento}"/>
                             </f:facet>
                             <h:outputText value="#{item.idauxiliarrequerimiento.iddepartamento.departamento}"/>
                         </p:column>
-                        
-                        <p:column width="150">                            
+                        <p:column width="80" style="text-align: center">                            
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListRequerimientoTitle_codigo}"/>
                             </f:facet>

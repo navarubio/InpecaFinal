@@ -31,4 +31,6 @@ public interface CompraFacadeLocal {
     int count();
     
     Compra ultimacompraInsertada();
+    
+    List<Compra> buscarcomprasporAutorizar ();
 }

@@ -96,6 +96,7 @@ public class ComprasController implements Serializable {
     private List<Requerimiento> requerimientosFiltrados;
     private List<Detallecompra> detallesCompras;
     private List<Detallecompra> detallesactuales;
+    private List<Compra> comprasporautorizar = null;
 
     public int getIdAuxiliar() {
         return idAuxiliar;
@@ -183,12 +184,22 @@ public class ComprasController implements Serializable {
         this.detallesCompras = detallesCompras;
     }
 
+    public List<Compra> getComprasporautorizar() {
+        return comprasporautorizar;
+    }
+
+    public void setComprasporautorizar(List<Compra> comprasporautorizar) {
+        this.comprasporautorizar = comprasporautorizar;
+    }
+
     @PostConstruct
     public void init() {
         auxiliarrequerimientos = auxiliarrequerimientoEJB.findAll();
         requerimientos = requerimientoEJB.findAll();
         proveedores = proveedorEJB.findAll();
         articulos = articuloEJB.findAll();
+        comprasporautorizar=compraEJB.buscarcomprasporAutorizar();
+        
 //        this.auxiliarrequerimiento=requerimientosController.getAuxrequer();
 
     }
@@ -346,5 +357,10 @@ public class ComprasController implements Serializable {
     public List<Requerimiento> requerimientosAuxiliar(int idaux) {
         requerimientosFiltrados = requerimientoEJB.requerimientosAuxiliar(idAuxiliar);
         return requerimientosFiltrados;
+    }
+    
+    public List<Compra> buscarComprasporAutorizar() {
+        comprasporautorizar = compraEJB.buscarcomprasporAutorizar();
+        return comprasporautorizar;
     }
 }

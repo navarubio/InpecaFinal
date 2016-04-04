@@ -46,5 +46,19 @@ public class CompraFacade extends AbstractFacade<Compra> implements CompraFacade
         }
         return ultimo;
     }
-    
+    @Override
+    public List<Compra> buscarcomprasporAutorizar() {
+        String consulta;
+        int idstatus = 1;
+        List<Compra> lista = null;
+        try {
+            consulta = "From Compra c where c.idestatusfactura.idestatusfactura= ?1";
+            Query query = em.createQuery(consulta);
+            query.setParameter(1, idstatus);
+            lista = query.getResultList();
+        } catch (Exception e) {
+            throw e;
+        }
+        return lista;
+    }
 }
