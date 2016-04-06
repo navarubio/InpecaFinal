@@ -15,25 +15,26 @@
 
                         <p:outputLabel value="#{bundlecontable.CreateEspecificocontableLabel_idgrupocontable}" for="idgrupocontable" />
                         <p:selectOneMenu id="idgrupocontable" value="#{especificocontableController.selected.idgrupocontable}" converter="omnifaces.SelectItemsConverter" >
-                            <p:ajax event="change" update="codigocuenta"/>   
+                            <!--p:ajax event="change" update="codigocuenta"/-->   
                             <f:selectItems value="#{grupocontableController.itemsAvailableSelectOne}"
                                            var="grupocontableItem"
                                            itemLabel="#{grupocontableItem.grupocontable}"  itemValue="#{grupocontableItem.idgrupocontable}"/>
                         </p:selectOneMenu>
-
-                        <p:outputLabel value="#{bundlecontable.CreateEspecificocontableLabel_idsubgrupocontable}" for="idsubgrupocontable" />
-                        <p:selectOneMenu id="idsubgrupocontable" value="#{especificocontableController.selected.idsubgrupocontable}" converter="omnifaces.SelectItemsConverter" >
-                            <p:ajax event="change" update="codigocuenta"/>   
+                        <p:outputLabel value="#{bundlecontable.CreatePlandecuentaLabel_subgrupocontable}" for="subgrupocontable" />
+                        <p:selectOneMenu id="subgrupocontable" value="#{especificocontableController.selected.idsubgrupocontable}" converter="omnifaces.SelectItemsConverter" requiredMessage="#{bundlecontable.EditPlandecuentaRequiredMessage_subgrupocontable}">
+                            <f:selectItem itemLabel="SIN APLICAR" itemValue="0" noSelectionOption="false" />
                             <f:selectItems value="#{subgrupocontableController.itemsAvailableSelectOne}"
                                            var="subgrupocontableItem"
-                                           itemLabel="#{subgrupocontableItem.subgrupocontable}"  itemValue="#{subgrupocontableItem.idsubgrupocontable}"/>
+                                           itemValue="#{subgrupocontableItem.idsubgrupocontable}"/>
                         </p:selectOneMenu>
+
+
                         <p:outputLabel value="#{bundlecontable.CreateEspecificocontableLabel_idespecificocontable}" for="idespecificocontable" />
                         <p:inputText id="idespecificocontable" value="#{especificocontableController.selected.idespecificocontable}" title="#{bundlecontable.CreateEspecificocontableTitle_idespecificocontable}" />
 
                         <p:outputLabel value="#{bundlecontable.CreateEspecificocontableLabel_especificocontable}" for="especificocontable" />
                         <p:inputText size="40" id="especificocontable" value="#{especificocontableController.selected.especificocontable}" title="#{bundlecontable.CreateEspecificocontableTitle_especificocontable}" />
-                        
+
                         <p:outputLabel value="#{bundlecontable.CreateEspecificocontableLabel_codigocuenta}" for="codigocuenta" />
                         <p:inputText id="codigocuenta" value="#{especificocontableController.selected.codigocuenta}" title="#{bundlecontable.CreateEspecificocontableTitle_codigocuenta}" required="true" requiredMessage="#{bundlecontable.CreateEspecificocontableRequiredMessage_codigocuenta}"/>
 
