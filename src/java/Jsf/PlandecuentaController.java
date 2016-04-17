@@ -4,12 +4,18 @@ import Modelo.Plandecuenta;
 import Jsf.util.JsfUtil;
 import Jsf.util.JsfUtil.PersistAction;
 import Jpa.PlandecuentaFacade;
+import Jpa.PlandecuentaFacadeLocal;
+import Modelo.Especificocontable;
+import Modelo.Grupocontable;
+import Modelo.Subespecificocontable;
+import Modelo.Subgrupocontable;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
@@ -24,9 +30,60 @@ import javax.faces.convert.FacesConverter;
 public class PlandecuentaController implements Serializable {
 
     @EJB
-    private Jpa.PlandecuentaFacade ejbFacade;
+    private Jpa.PlandecuentaFacadeLocal ejbFacade;
+    @EJB
+    private Jpa.GrupocontableFacadeLocal ejbFacadeG;
+    @EJB
+    private Jpa.SubgrupocontableFacadeLocal ejbFacadeSG;
+    @EJB
+    private Jpa.EspecificocontableFacadeLocal ejbFacadeES;
+    @EJB
+    private Jpa.SubespecificocontableFacadeLocal ejbFacadeSE;
+
     private List<Plandecuenta> items = null;
     private Plandecuenta selected;
+
+    private List<Grupocontable> lstGrupos;
+    private List<Subgrupocontable> lstSubgrupos;
+    private List<Especificocontable> lstEspecificos;
+    private List<Subespecificocontable> lstSubespecificos;
+
+    public List<Grupocontable> getLstGrupos() {
+        return lstGrupos;
+    }
+
+    public void setLstGrupos(List<Grupocontable> lstGrupos) {
+        this.lstGrupos = lstGrupos;
+    }
+
+    @PostConstruct
+    public void init() {
+        lstGrupos = ejbFacadeG.findAll();
+    }
+
+    public List<Subgrupocontable> getLstSubgrupos() {
+        return lstSubgrupos;
+    }
+
+    public void setLstSubgrupos(List<Subgrupocontable> lstSubgrupos) {
+        this.lstSubgrupos = lstSubgrupos;
+    }
+
+    public List<Especificocontable> getLstEspecificos() {
+        return lstEspecificos;
+    }
+
+    public void setLstEspecificos(List<Especificocontable> lstEspecificos) {
+        this.lstEspecificos = lstEspecificos;
+    }
+
+    public List<Subespecificocontable> getLstSubespecificos() {
+        return lstSubespecificos;
+    }
+
+    public void setLstSubespecificos(List<Subespecificocontable> lstSubespecificos) {
+        this.lstSubespecificos = lstSubespecificos;
+    }
 
     public PlandecuentaController() {
     }
@@ -45,7 +102,7 @@ public class PlandecuentaController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private PlandecuentaFacade getFacade() {
+    private PlandecuentaFacadeLocal getFacade() {
         return ejbFacade;
     }
 
@@ -53,6 +110,30 @@ public class PlandecuentaController implements Serializable {
         selected = new Plandecuenta();
         initializeEmbeddableKey();
         return selected;
+    }
+
+    public List<Subgrupocontable> refrescarSubgrupos() {
+        try {
+            lstSubgrupos = ejbFacadeSG.subgxGrupo(selected.getIdgrupocontable());
+        } catch (Exception e) {
+        }
+        return lstSubgrupos;
+    }
+
+    public List<Especificocontable> refrescarEspecificos() {
+        try {
+            lstEspecificos = ejbFacadeES.espxSGrupo(selected.getIdgrupocontable(), selected.getIdsubgrupocontable());
+        } catch (Exception e) {
+        }
+        return lstEspecificos;
+    }
+
+    public List<Subespecificocontable> refrescarSubespecificos() {
+        try {
+            lstSubespecificos = ejbFacadeSE.subespxEspecifico(selected.getIdgrupocontable(), selected.getIdsubgrupocontable(), selected.getIdespecificocontable());
+        } catch (Exception e) {
+        }
+        return lstSubespecificos;
     }
 
     public void create() {
@@ -77,6 +158,13 @@ public class PlandecuentaController implements Serializable {
     public List<Plandecuenta> getItems() {
         if (items == null) {
             items = getFacade().findAll();
+        }
+        return items;
+    }
+
+    public List<Plandecuenta> getItemsordenados() {
+        if (items == null) {
+            items = getFacade().itemsordenados();
         }
         return items;
     }

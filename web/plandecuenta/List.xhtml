@@ -16,7 +16,7 @@
         <ui:define name="body">
             <h:form id="PlandecuentaListForm">
                 <p:panel header="#{bundlecontable.ListPlandecuentaTitle}">
-                    <p:dataTable id="datalist" value="#{plandecuentaController.items}" var="item"
+                    <p:dataTable id="datalist" value="#{plandecuentaController.itemsordenados}" var="item"
                                  selectionMode="single" selection="#{plandecuentaController.selected}"
                                  paginator="true"
                                  rowKey="#{item.idplandecuenta}"

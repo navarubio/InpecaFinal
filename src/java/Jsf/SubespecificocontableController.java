@@ -4,6 +4,7 @@ import Modelo.Subespecificocontable;
 import Jsf.util.JsfUtil;
 import Jsf.util.JsfUtil.PersistAction;
 import Jpa.SubespecificocontableFacade;
+import Jpa.SubespecificocontableFacadeLocal;
 import Jpa.SubgrupocontableFacadeLocal;
 import Modelo.Especificocontable;
 import Modelo.Grupocontable;
@@ -29,7 +30,7 @@ import javax.faces.convert.FacesConverter;
 public class SubespecificocontableController implements Serializable {
 
     @EJB
-    private Jpa.SubespecificocontableFacade ejbFacade;
+    private Jpa.SubespecificocontableFacadeLocal ejbFacade;
     @EJB
     private Jpa.EspecificocontableFacadeLocal ejbFacadeES;
     @EJB
@@ -106,7 +107,7 @@ public class SubespecificocontableController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private SubespecificocontableFacade getFacade() {
+    private SubespecificocontableFacadeLocal getFacade() {
         return ejbFacade;
     }
 
@@ -122,7 +123,7 @@ public class SubespecificocontableController implements Serializable {
     }
     
     public List<Subgrupocontable> refrescarSubgrupos() {
-        try {
+        try { 
             lstSubgrupos = ejbFacadeSG.subgxGrupo(selected.getIdgrupocontable());
         } catch (Exception e) {
         }

@@ -27,6 +27,8 @@ public interface PlandecuentaFacadeLocal {
     List<Plandecuenta> findAll();
 
     List<Plandecuenta> findRange(int[] range);
+    
+    List<Plandecuenta> itemsordenados();
 
     int count();
     
