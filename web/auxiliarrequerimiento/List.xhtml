@@ -34,7 +34,7 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton "/>
 
-                        <p:column style="width:5%">
+                        <p:column style="width:5%" filterBy="#{item.idauxiliarrequerimiento}" filterMatchMode="exact">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAuxiliarrequerimientoTitle_idauxiliarrequerimiento}"/>
                             </f:facet>

@@ -40,12 +40,12 @@
                         <p:inputText id="idsubespecificocontable" value="#{subespecificocontableController.selected.idsubespecificocontable}" title="#{bundle.CreateSubespecificocontableTitle_idsubespecificocontable}" >
                             <p:ajax event="keyup" update="out1" />
                         </p:inputText>
-                        <p:outputLabel value="#{bundle.CreateSubespecificocontableLabel_subespecificocontable}" for="subespecificocontable" />
-                        <p:inputText  size="60" id="subespecificocontable" value="#{subespecificocontableController.selected.subespecificocontable}" title="#{bundle.CreateSubespecificocontableTitle_subespecificocontable}" />                        
                         <p:outputLabel value="#{bundlecontable.CreateSubespecificocontableLabel_codigocuenta}" for="out1"/> 
                         <h:outputText id="out1" value="#{subespecificocontableController.selected.idgrupocontable} #{subespecificocontableController.selected.idsubgrupocontable} #{subespecificocontableController.selected.idespecificocontable} #{subespecificocontableController.selected.idsubespecificocontable}  0"  />
                         <p:outputLabel value="#{bundlecontable.CreateSubespecificocontableLabel_codigocuenta}" for="codigocuenta" />
                         <p:inputText id="codigocuenta" value="#{subespecificocontableController.selected.codigocuenta}" title="#{bundlecontable.CreateSubespecificocontableTitle_codigocuenta}" required="true" requiredMessage="#{bundlecontable.CreateSubespecificocontableRequiredMessage_codigocuenta}"/>
+                        <p:outputLabel value="#{bundle.CreateSubespecificocontableLabel_subespecificocontable}" for="subespecificocontable" />
+                        <p:inputText  size="60" id="subespecificocontable" value="#{subespecificocontableController.selected.subespecificocontable}" title="#{bundle.CreateSubespecificocontableTitle_subespecificocontable}" />                        
                     </p:panelGrid>
                     <p:commandButton actionListener="#{subespecificocontableController.create}" value="#{bundlecontable.Save}" update="display,:SubespecificocontableListForm:datalist,:growl" oncomplete="handleSubmit(args,'SubespecificocontableCreateDialog');"/>
                     <p:commandButton value="#{bundlecontable.Cancel}" onclick="SubespecificocontableCreateDialog.hide()"/>

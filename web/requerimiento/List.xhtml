@@ -39,13 +39,13 @@
                             </f:facet>
                             <h:outputText value="#{item.idrequerimiento}"/>
                         </p:column>
-                        <p:column width="100" style="text-align: center" sortBy="#{item.idauxiliarrequerimiento.idauxiliarrequerimiento}">
+                        <p:column width="100" style="text-align: center" filterBy="#{item.idauxiliarrequerimiento.idauxiliarrequerimiento}" filterMatchMode="exact">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListRequerimientoTitle_idauxiliarrequerimiento}"/>
                             </f:facet>
                             <h:outputText value="REQ-#{item.idauxiliarrequerimiento.idauxiliarrequerimiento}"/>
                         </p:column>
-                        <p:column width="100" style="text-align: center" >
+                        <p:column width="100" style="text-align: center" filterBy="#{item.idauxiliarrequerimiento.iddepartamento.departamento}" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListRequerimientoTitle_departamento}"/>
                             </f:facet>
@@ -57,7 +57,7 @@
                             </f:facet>
                             <h:outputText value="#{item.codigo}"/>
                         </p:column>
-                        <p:column width="350">
+                        <p:column width="350" filterBy="#{item.codigo.descripcion}" filterMatchMode="contains"  >
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListRequerimientoTitle_descripcion}"/>
                             </f:facet>

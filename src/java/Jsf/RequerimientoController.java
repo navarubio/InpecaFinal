@@ -1,9 +1,11 @@
 package Jsf;
 
+import Jpa.DepartamentoFacadeLocal;
 import Modelo.Requerimiento;
 import Jsf.util.JsfUtil;
 import Jsf.util.JsfUtil.PersistAction;
 import Jpa.RequerimientoFacadeLocal;
+import Modelo.Departamento;
 
 import java.io.Serializable;
 import java.util.List;
@@ -25,10 +27,22 @@ public class RequerimientoController implements Serializable {
 
     @EJB
     private RequerimientoFacadeLocal ejbFacade;
+    @EJB
+    private DepartamentoFacadeLocal ejbDepartamento;
     private List<Requerimiento> items = null;
     private Requerimiento selected;
 
+    private List<Departamento> departamentos=null;
+    
     public RequerimientoController() {
+    }
+
+    public List<Departamento> getDepartamentos() {
+        return departamentos;
+    }
+
+    public void setDepartamentos(List<Departamento> departamentos) {
+        this.departamentos = departamentos;
     }
 
     public Requerimiento getSelected() {
@@ -53,6 +67,14 @@ public class RequerimientoController implements Serializable {
         selected = new Requerimiento();
         initializeEmbeddableKey();
         return selected;
+    }
+    
+    public List<Departamento> listaDepartartamentos() {
+        try {
+            departamentos = ejbDepartamento.findAll();
+        } catch (Exception e) {
+        }
+        return departamentos;
     }
 
     public void create() {
