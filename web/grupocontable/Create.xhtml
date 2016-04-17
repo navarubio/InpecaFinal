@@ -8,15 +8,15 @@
 
     <ui:composition>
 
-        <p:dialog id="GrupocontableCreateDlg" widgetVar="GrupocontableCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundlecontable.CreateGrupocontableTitle}">
+        <p:dialog id="GrupocontableCreateDlg" widgetVar="GrupocontableCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateGrupocontableTitle}">
             <h:form id="GrupocontableCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{grupocontableController.selected != null}">
-                        <p:outputLabel value="#{bundlecontable.CreateGrupocontableLabel_codigocuenta}" for="codigocuenta" />
+                        <p:outputLabel value="#{bundle.CreateGrupocontableLabel_codigocuenta}" for="codigocuenta" />
                         <p:inputText id="codigocuenta" value="#{grupocontableController.selected.codigocuenta}" title="#{bundlecontable.CreateGrupocontableTitle_codigocuenta}" required="true" requiredMessage="#{bundlecontable.CreateGrupocontableRequiredMessage_codigocuenta}"/>
-                        <p:outputLabel value="#{bundlecontable.CreateGrupocontableLabel_idgrupocontable}" for="idgrupocontable" />
+                        <p:outputLabel value="#{bundle.CreateGrupocontableLabel_idgrupocontable}" for="idgrupocontable" />
                         <p:inputText id="idgrupocontable" value="#{grupocontableController.selected.idgrupocontable}" title="#{bundlecontable.CreateGrupocontableTitle_idgrupocontable}" />
-                        <p:outputLabel value="#{bundlecontable.CreateGrupocontableLabel_grupocontable}" for="grupocontable" />
+                        <p:outputLabel value="#{bundle.CreateGrupocontableLabel_grupocontable}" for="grupocontable" />
                         <p:inputText id="grupocontable" value="#{grupocontableController.selected.grupocontable}" title="#{bundlecontable.CreateGrupocontableTitle_grupocontable}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{grupocontableController.create}" value="#{bundlecontable.Save}" update="display,:GrupocontableListForm:datalist,:growl" oncomplete="handleSubmit(args,'GrupocontableCreateDialog');"/>

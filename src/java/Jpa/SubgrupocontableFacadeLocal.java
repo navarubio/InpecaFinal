@@ -27,6 +27,8 @@ public interface SubgrupocontableFacadeLocal {
     List<Subgrupocontable> findAll();
 
     List<Subgrupocontable> findRange(int[] range);
+    
+    List<Subgrupocontable> subgxGrupo(int idgrupo);
 
     int count();
     

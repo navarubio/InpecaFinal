@@ -4,6 +4,7 @@ import Modelo.Subgrupocontable;
 import Jsf.util.JsfUtil;
 import Jsf.util.JsfUtil.PersistAction;
 import Jpa.SubgrupocontableFacade;
+import Jpa.SubgrupocontableFacadeLocal;
 
 import java.io.Serializable;
 import java.util.List;
@@ -24,7 +25,7 @@ import javax.faces.convert.FacesConverter;
 public class SubgrupocontableController implements Serializable {
 
     @EJB
-    private Jpa.SubgrupocontableFacade ejbFacade;
+    private Jpa.SubgrupocontableFacadeLocal ejbFacade;
     private List<Subgrupocontable> items = null;
     private Subgrupocontable selected;
 
@@ -45,7 +46,7 @@ public class SubgrupocontableController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private SubgrupocontableFacade getFacade() {
+    private SubgrupocontableFacadeLocal getFacade() {
         return ejbFacade;
     }
     

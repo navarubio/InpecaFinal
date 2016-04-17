@@ -4,12 +4,17 @@ import Modelo.Subespecificocontable;
 import Jsf.util.JsfUtil;
 import Jsf.util.JsfUtil.PersistAction;
 import Jpa.SubespecificocontableFacade;
+import Jpa.SubgrupocontableFacadeLocal;
+import Modelo.Especificocontable;
+import Modelo.Grupocontable;
+import Modelo.Subgrupocontable;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
@@ -25,9 +30,65 @@ public class SubespecificocontableController implements Serializable {
 
     @EJB
     private Jpa.SubespecificocontableFacade ejbFacade;
+    @EJB
+    private Jpa.EspecificocontableFacadeLocal ejbFacadeES;
+    @EJB
+    private Jpa.SubgrupocontableFacadeLocal ejbFacadeSG;
+    @EJB
+    private Jpa.GrupocontableFacadeLocal ejbFacadeG;
+    
     private List<Subespecificocontable> items = null;
     private Subespecificocontable selected;
+    
+    private int idgrupo;
+    private int idsubgrupo;
+    private int idespecifico;
+    private int idsubespecifico;
+    private String codigoc;
+    
+    private List <Grupocontable> lstGrupos;
+    private List <Subgrupocontable> lstSubgrupos;
+    private List <Especificocontable> lstEspecificos;
+    private List <Subespecificocontable> lstSubespecificos;
+    
+    @PostConstruct
+    public void init() {
+        lstGrupos = ejbFacadeG.findAll();
+    }
 
+    public String getCodigoc() {
+        return codigoc;
+    }
+
+    public void setCodigoc(String codigoc) {
+        this.codigoc = codigoc;
+    }
+
+    public List<Grupocontable> getLstGrupos() {
+        return lstGrupos;
+    }
+
+    public void setLstGrupos(List<Grupocontable> lstGrupos) {
+        this.lstGrupos = lstGrupos;
+    }
+
+    public List<Subgrupocontable> getLstSubgrupos() {
+        return lstSubgrupos;
+    }
+
+    public void setLstSubgrupos(List<Subgrupocontable> lstSubgrupos) {
+        this.lstSubgrupos = lstSubgrupos;
+    }
+
+    public List<Especificocontable> getLstEspecificos() {
+        return lstEspecificos;
+    }
+
+    public void setLstEspecificos(List<Especificocontable> lstEspecificos) {
+        this.lstEspecificos = lstEspecificos;
+    }
+    
+    
     public SubespecificocontableController() {
     }
 
@@ -49,25 +110,46 @@ public class SubespecificocontableController implements Serializable {
         return ejbFacade;
     }
 
+    public SubgrupocontableFacadeLocal getEjbFacadeSG() {
+        return ejbFacadeSG;
+    }
+    
+
     public Subespecificocontable prepareCreate() {
         selected = new Subespecificocontable();
         initializeEmbeddableKey();
         return selected;
     }
+    
+    public List<Subgrupocontable> refrescarSubgrupos() {
+        try {
+            lstSubgrupos = ejbFacadeSG.subgxGrupo(selected.getIdgrupocontable());
+        } catch (Exception e) {
+        }
+        return lstSubgrupos;
+    }
+
+    public List<Especificocontable> refrescarEspecificos() {
+        try {
+            lstEspecificos = ejbFacadeES.espxSGrupo(selected.getIdgrupocontable(), selected.getIdsubgrupocontable());
+        } catch (Exception e) {
+        }
+        return lstEspecificos;
+    }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundlecontable").getString("SubespecificocontableCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("SubespecificocontableCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundlecontable").getString("SubespecificocontableUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("SubespecificocontableUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundlecontable").getString("SubespecificocontableDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("SubespecificocontableDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
@@ -104,7 +186,7 @@ public class SubespecificocontableController implements Serializable {
                 }
             } catch (Exception ex) {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
-                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundlecontable").getString("PersistenceErrorOccured"));
+                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             }
         }
     }

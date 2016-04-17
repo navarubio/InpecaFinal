@@ -4,6 +4,7 @@ import Modelo.Especificocontable;
 import Jsf.util.JsfUtil;
 import Jsf.util.JsfUtil.PersistAction;
 import Jpa.EspecificocontableFacade;
+import Jpa.EspecificocontableFacadeLocal;
 
 import java.io.Serializable;
 import java.util.List;
@@ -24,7 +25,7 @@ import javax.faces.convert.FacesConverter;
 public class EspecificocontableController implements Serializable {
 
     @EJB
-    private Jpa.EspecificocontableFacade ejbFacade;
+    private Jpa.EspecificocontableFacadeLocal ejbFacade;
     private List<Especificocontable> items = null;
     private Especificocontable selected;
 
@@ -45,7 +46,7 @@ public class EspecificocontableController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private EspecificocontableFacade getFacade() {
+    private EspecificocontableFacadeLocal getFacade() {
         return ejbFacade;
     }
 

@@ -21,7 +21,7 @@
                         <p:outputLabel value="#{bundle.CreateAuxiliarrequerimientoLabel_descripcion}" for="descripcion" />
                         <p:inputText id="descripcion" value="#{auxiliarrequerimientoController.selected.descripcion}" title="#{bundle.CreateAuxiliarrequerimientoTitle_descripcion}" />
                         <p:outputLabel value="#{bundle.CreateAuxiliarrequerimientoLabel_fecharequerimiento}" for="fecharequerimiento" />
-                        <p:calendar id="fecharequerimiento" pattern="MM/dd/yyyy" value="#{auxiliarrequerimientoController.selected.fecharequerimiento}" title="#{bundle.EditAuxiliarrequerimientoTitle_fecharequerimiento}"  showOn="button"/>
+                        <p:calendar id="fecharequerimiento" pattern="dd/MM/yyyy" value="#{auxiliarrequerimientoController.selected.fecharequerimiento}" title="#{bundle.EditAuxiliarrequerimientoTitle_fecharequerimiento}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.CreateAuxiliarrequerimientoLabel_idusuario}" for="idusuario" />
                         <p:selectOneMenu id="idusuario" value="#{auxiliarrequerimientoController.selected.idusuario}" >
                             <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"

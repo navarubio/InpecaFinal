@@ -4,6 +4,7 @@ import Modelo.Grupocontable;
 import Jsf.util.JsfUtil;
 import Jsf.util.JsfUtil.PersistAction;
 import Jpa.GrupocontableFacade;
+import Jpa.GrupocontableFacadeLocal;
 
 import java.io.Serializable;
 import java.util.List;
@@ -24,7 +25,7 @@ import javax.faces.convert.FacesConverter;
 public class GrupocontableController implements Serializable {
 
     @EJB
-    private Jpa.GrupocontableFacade ejbFacade;
+    private Jpa.GrupocontableFacadeLocal ejbFacade;
     private List<Grupocontable> items = null;
     private Grupocontable selected;
 
@@ -45,7 +46,7 @@ public class GrupocontableController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private GrupocontableFacade getFacade() {
+    private GrupocontableFacadeLocal getFacade() {
         return ejbFacade;
     }
 

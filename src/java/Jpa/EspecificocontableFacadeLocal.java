@@ -29,5 +29,6 @@ public interface EspecificocontableFacadeLocal {
     List<Especificocontable> findRange(int[] range);
 
     int count();
-    
+
+    List<Especificocontable> espxSGrupo(int idgrupo, int idsubg);
 }

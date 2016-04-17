@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author Inpeca
  */
 @Stateless
-public class GrupocontableFacade extends AbstractFacade<Grupocontable> {
+public class GrupocontableFacade extends AbstractFacade<Grupocontable> implements GrupocontableFacadeLocal{
     @PersistenceContext(unitName = "InpecaPU")
     private EntityManager em;
 
@@ -27,5 +27,7 @@ public class GrupocontableFacade extends AbstractFacade<Grupocontable> {
     public GrupocontableFacade() {
         super(Grupocontable.class);
     }
+    
+    
     
 }

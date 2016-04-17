@@ -95,7 +95,7 @@ public class Grupocontable implements Serializable {
 
     @Override
     public String toString() {
-        return grupocontable;
+        return "("+ idgrupocontable+") "+grupocontable;
     }
     
 }
