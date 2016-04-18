@@ -52,7 +52,7 @@
                             </f:facet>
                             <h:outputText value="#{item.telefonoproveedor}"/>
                         </p:column>
-                        <p:column width="300" >
+                        <p:column width="300" filterBy="#{item.descripcion}" filterMatchMode="contains" >
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAuxiliarrequerimientoTitle_descripcion}"/>
                             </f:facet>
