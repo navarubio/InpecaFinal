@@ -6,6 +6,7 @@
 package Modelo;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,10 +15,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -38,6 +41,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Plandecuenta.findBySaldogeneral", query = "SELECT p FROM Plandecuenta p WHERE p.saldogeneral = :saldogeneral"),
     @NamedQuery(name = "Plandecuenta.findByFujodeefectivo", query = "SELECT p FROM Plandecuenta p WHERE p.fujodeefectivo = :fujodeefectivo")})
 public class Plandecuenta implements Serializable {
+    @OneToMany(mappedBy = "idplandecuenta")
+    private Collection<Retencionpago> retencionpagoCollection;
+    @OneToMany(mappedBy = "idplandecuenta")
+    private Collection<Pagocompra> pagocompraCollection;
+    @OneToMany(mappedBy = "idplandecuenta")
+    private Collection<Cuentabancaria> cuentabancariaCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -198,6 +207,33 @@ public class Plandecuenta implements Serializable {
     @Override
     public String toString() {
         return  idplandecuenta + " " +descripcioncuenta;
+    }
+
+    @XmlTransient
+    public Collection<Retencionpago> getRetencionpagoCollection() {
+        return retencionpagoCollection;
+    }
+
+    public void setRetencionpagoCollection(Collection<Retencionpago> retencionpagoCollection) {
+        this.retencionpagoCollection = retencionpagoCollection;
+    }
+
+    @XmlTransient
+    public Collection<Pagocompra> getPagocompraCollection() {
+        return pagocompraCollection;
+    }
+
+    public void setPagocompraCollection(Collection<Pagocompra> pagocompraCollection) {
+        this.pagocompraCollection = pagocompraCollection;
+    }
+
+    @XmlTransient
+    public Collection<Cuentabancaria> getCuentabancariaCollection() {
+        return cuentabancariaCollection;
+    }
+
+    public void setCuentabancariaCollection(Collection<Cuentabancaria> cuentabancariaCollection) {
+        this.cuentabancariaCollection = cuentabancariaCollection;
     }
     
 }

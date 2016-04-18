@@ -20,5 +20,9 @@
             <base-name>/Bundlecontable</base-name>
             <var>bundlecontable</var>
         </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundlebanco</base-name>
+            <var>bundlebanco</var>
+        </resource-bundle>
     </application>
 </faces-config>

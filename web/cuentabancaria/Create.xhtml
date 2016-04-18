@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CuentabancariaCreateDlg" widgetVar="CuentabancariaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundlebanco.CreateCuentabancariaTitle}">
+            <h:form id="CuentabancariaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cuentabancariaController.selected != null}">
+                        <p:outputLabel value="#{bundlebanco.CreateCuentabancariaLabel_idcuentabancaria}" for="idcuentabancaria" />
+                        <p:inputText id="idcuentabancaria" value="#{cuentabancariaController.selected.idcuentabancaria}" title="#{bundlebanco.CreateCuentabancariaTitle_idcuentabancaria}" required="true" requiredMessage="#{bundlebanco.CreateCuentabancariaRequiredMessage_idcuentabancaria}"/>
+                        <p:outputLabel value="#{bundlebanco.CreateCuentabancariaLabel_numerocuenta}" for="numerocuenta" />
+                        <p:inputText id="numerocuenta" value="#{cuentabancariaController.selected.numerocuenta}" title="#{bundlebanco.CreateCuentabancariaTitle_numerocuenta}" />
+                        <p:outputLabel value="#{bundlebanco.CreateCuentabancariaLabel_saldo}" for="saldo" />
+                        <p:inputText id="saldo" value="#{cuentabancariaController.selected.saldo}" title="#{bundlebanco.CreateCuentabancariaTitle_saldo}" />
+                        <p:outputLabel value="#{bundlebanco.CreateCuentabancariaLabel_idbanco}" for="idbanco" />
+                        <p:selectOneMenu id="idbanco" value="#{cuentabancariaController.selected.idbanco}" >
+                            <f:selectItems value="#{bancoController.itemsAvailableSelectOne}"
+                                           var="idbancoItem"
+                                           itemValue="#{idbancoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundlebanco.CreateCuentabancariaLabel_idplandecuenta}" for="idplandecuenta" />
+                        <p:selectOneMenu id="idplandecuenta" value="#{cuentabancariaController.selected.idplandecuenta}" >
+                            <f:selectItems value="#{plandecuentaController.itemsAvailableSelectOne}"
+                                           var="idplandecuentaItem"
+                                           itemValue="#{idplandecuentaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{cuentabancariaController.create}" value="#{bundlebanco.Save}" update="display,:CuentabancariaListForm:datalist,:growl" oncomplete="handleSubmit(args,'CuentabancariaCreateDialog');"/>
+                    <p:commandButton value="#{bundlebanco.Cancel}" onclick="CuentabancariaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

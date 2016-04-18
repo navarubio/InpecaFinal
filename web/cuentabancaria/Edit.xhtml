@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CuentabancariaEditDlg" widgetVar="CuentabancariaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundlebanco.EditCuentabancariaTitle}">
+            <h:form id="CuentabancariaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cuentabancariaController.selected != null}">
+                        <p:outputLabel value="#{bundlebanco.EditCuentabancariaLabel_idcuentabancaria}" for="idcuentabancaria" />
+                        <p:inputText id="idcuentabancaria" value="#{cuentabancariaController.selected.idcuentabancaria}" title="#{bundlebanco.EditCuentabancariaTitle_idcuentabancaria}" required="true" requiredMessage="#{bundlebanco.EditCuentabancariaRequiredMessage_idcuentabancaria}"/>
+                        <p:outputLabel value="#{bundlebanco.EditCuentabancariaLabel_numerocuenta}" for="numerocuenta" />
+                        <p:inputText id="numerocuenta" value="#{cuentabancariaController.selected.numerocuenta}" title="#{bundlebanco.EditCuentabancariaTitle_numerocuenta}" />
+                        <p:outputLabel value="#{bundlebanco.EditCuentabancariaLabel_saldo}" for="saldo" />
+                        <p:inputText id="saldo" value="#{cuentabancariaController.selected.saldo}" title="#{bundlebanco.EditCuentabancariaTitle_saldo}" />
+                        <p:outputLabel value="#{bundlebanco.EditCuentabancariaLabel_idbanco}" for="idbanco" />
+                        <p:selectOneMenu id="idbanco" value="#{cuentabancariaController.selected.idbanco}" >
+                            <f:selectItem itemLabel="#{bundlebanco.SelectOneMessage}"/>
+                            <f:selectItems value="#{bancoController.itemsAvailableSelectOne}"
+                                           var="idbancoItem"
+                                           itemValue="#{idbancoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundlebanco.EditCuentabancariaLabel_idplandecuenta}" for="idplandecuenta" />
+                        <p:selectOneMenu id="idplandecuenta" value="#{cuentabancariaController.selected.idplandecuenta}" >
+                            <f:selectItem itemLabel="#{bundlebanco.SelectOneMessage}"/>
+                            <f:selectItems value="#{plandecuentaController.itemsAvailableSelectOne}"
+                                           var="idplandecuentaItem"
+                                           itemValue="#{idplandecuentaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{cuentabancariaController.update}" value="#{bundlebanco.Save}" update="display,:CuentabancariaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CuentabancariaEditDialog');"/>
+                    <p:commandButton value="#{bundlebanco.Cancel}" onclick="CuentabancariaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

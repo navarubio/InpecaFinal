@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CuentabancariaViewDlg" widgetVar="CuentabancariaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundlebanco.ViewCuentabancariaTitle}">
+            <h:form id="CuentabancariaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cuentabancariaController.selected != null}">
+                        <h:outputText value="#{bundlebanco.ViewCuentabancariaLabel_idcuentabancaria}"/>
+                        <h:outputText value="#{cuentabancariaController.selected.idcuentabancaria}" title="#{bundlebanco.ViewCuentabancariaTitle_idcuentabancaria}"/>
+                        <h:outputText value="#{bundlebanco.ViewCuentabancariaLabel_numerocuenta}"/>
+                        <h:outputText value="#{cuentabancariaController.selected.numerocuenta}" title="#{bundlebanco.ViewCuentabancariaTitle_numerocuenta}"/>
+                        <h:outputText value="#{bundlebanco.ViewCuentabancariaLabel_saldo}"/>
+                        <h:outputText value="#{cuentabancariaController.selected.saldo}" title="#{bundlebanco.ViewCuentabancariaTitle_saldo}"/>
+                        <h:outputText value="#{bundlebanco.ViewCuentabancariaLabel_idbanco}"/>
+                        <h:outputText value="#{cuentabancariaController.selected.idbanco}" title="#{bundlebanco.ViewCuentabancariaTitle_idbanco}"/>
+                        <h:outputText value="#{bundlebanco.ViewCuentabancariaLabel_idplandecuenta}"/>
+                        <h:outputText value="#{cuentabancariaController.selected.idplandecuenta}" title="#{bundlebanco.ViewCuentabancariaTitle_idplandecuenta}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundlebanco.Close}" onclick="CuentabancariaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

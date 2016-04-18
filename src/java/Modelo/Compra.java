@@ -46,6 +46,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Compra.findByFechafactura", query = "SELECT c FROM Compra c WHERE c.fechafactura = :fechafactura"),
     @NamedQuery(name = "Compra.findByObservacionespago", query = "SELECT c FROM Compra c WHERE c.observacionespago = :observacionespago")})
 public class Compra implements Serializable {
+    @OneToMany(mappedBy = "idcompra")
+    private Collection<Pagocompra> pagocompraCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -243,6 +245,15 @@ public class Compra implements Serializable {
     @Override
     public String toString() {
         return "Modelo.Compra[ idcompra=" + idcompra + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Pagocompra> getPagocompraCollection() {
+        return pagocompraCollection;
+    }
+
+    public void setPagocompraCollection(Collection<Pagocompra> pagocompraCollection) {
+        this.pagocompraCollection = pagocompraCollection;
     }
     
 }
