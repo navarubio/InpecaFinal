@@ -136,9 +136,9 @@
                             </f:facet>
                             <h:outputText value="#{item.idestatusfactura}"/>
                         </p:column>                        
-                        <p:column style="text-align: center" headerText="Procesar">
-                            <h:commandLink action="compra.xhtml" actionListener="#{comprasController.asignar(item)}"> 
-                                <h:graphicImage library="images" name="ark2.png" width="30" height="30" alt="Pagar Compra"/>
+                        <p:column style="text-align: center" headerText="Pagar">
+                            <h:commandLink action="/auxiliarrequerimiento/Pagocompra.xhtml" actionListener="#{pagosController.asignar(item)}" > 
+                                <h:graphicImage library="images" name="Dollar.png" width="30" height="30" alt="Pagar Compra"/>
                             </h:commandLink>      
                         </p:column>
                         <f:facet name="footer">

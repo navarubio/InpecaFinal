@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author Inpeca
  */
 @Stateless
-public class CuentabancariaFacade extends AbstractFacade<Cuentabancaria> {
+public class CuentabancariaFacade extends AbstractFacade<Cuentabancaria> implements CuentabancariaFacadeLocal{
     @PersistenceContext(unitName = "InpecaPU")
     private EntityManager em;
 
