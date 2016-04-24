@@ -26,7 +26,7 @@
                     <img src="../resources/images/calc.png" width="70" height="70" alt="Clientes" align="right" />
 
                     <p:panel id="panel1" header="PAGAR COMPRAS EFECTUADAS">
-                        <p:panelGrid columns="2">
+                        <p:panelGrid columns="3">
                             <p:fieldset legend="Datos Requerimiento" >
                                 <p:panelGrid columns="2">
                                     <p:outputLabel for="numero" value="Solicitud" styleClass="optionalLbl"/>
@@ -93,7 +93,7 @@
                                     <p:outputLabel for="rif1" value="R.I.F." styleClass="optionalLbl"/>
                                     <p:outputLabel id="rif1" value="#{comprasController.provee.rifproveedor}" styleClass="optionalLbl"/>
                                     <p:outputLabel for="observa2" value="Observaciones" styleClass="optionalLbl"/>
-                                    <p:inputTextarea id="observa2"  rows="2" cols="50" label="Observaciones" value="#{comprasController.compra.observacionescompra}" required="true"/>
+                                    <p:inputTextarea id="observa2"  rows="2" cols="30" label="Observaciones" value="#{comprasController.compra.observacionescompra}" required="true"/>
 
                                 </p:panelGrid>                                
                             </p:fieldset>

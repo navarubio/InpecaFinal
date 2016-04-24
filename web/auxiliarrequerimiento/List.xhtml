@@ -75,13 +75,13 @@
                             </h:outputText>
                         </p:column>
 
-                        <p:column style="text-align: center" >
+                        <p:column style="text-align: center" filterBy="#{item.iddepartamento.departamento}" filterMatchMode="contains" >
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAuxiliarrequerimientoTitle_iddepartamento}"/>
                             </f:facet>
                             <h:outputText value="#{item.iddepartamento.departamento}"/>
                         </p:column>                        
-                        <p:column style="text-align: center">
+                        <p:column style="text-align: center"  filterBy="#{item.idusuario.nombre}" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAuxiliarrequerimientoTitle_idusuario}"/>
                             </f:facet>
