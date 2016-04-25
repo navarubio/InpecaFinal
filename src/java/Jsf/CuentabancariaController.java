@@ -4,6 +4,7 @@ import Modelo.Cuentabancaria;
 import Jsf.util.JsfUtil;
 import Jsf.util.JsfUtil.PersistAction;
 import Jpa.CuentabancariaFacade;
+import Jpa.CuentabancariaFacadeLocal;
 
 import java.io.Serializable;
 import java.util.List;
@@ -24,7 +25,7 @@ import javax.faces.convert.FacesConverter;
 public class CuentabancariaController implements Serializable {
 
     @EJB
-    private Jpa.CuentabancariaFacade ejbFacade;
+    private Jpa.CuentabancariaFacadeLocal ejbFacade;
     private List<Cuentabancaria> items = null;
     private Cuentabancaria selected;
 
@@ -45,7 +46,7 @@ public class CuentabancariaController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private CuentabancariaFacade getFacade() {
+    private CuentabancariaFacadeLocal getFacade() {
         return ejbFacade;
     }
 

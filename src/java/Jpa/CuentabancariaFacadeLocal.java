@@ -30,4 +30,6 @@ public interface CuentabancariaFacadeLocal {
 
     int count();
     
+    List<Cuentabancaria> espxBanco(int idbank);
+    
 }
