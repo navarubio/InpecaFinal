@@ -75,9 +75,9 @@
                                     <p:outputLabel for="depto1" value="DEPARTAMENTO" styleClass="optionalLbl"/>
                                     <p:outputLabel id="depto1" value="#{pagosController.buscarDepartamento().departamento}" styleClass="optionalLbl"/>
                                     <p:outputLabel for="numerofact" value="Numero Factura" styleClass="optionalLbl"/>
-                                    <p:inputText id="numerofact" label="Numero de Factura" size ="20" value="#{pagosController.compra.numerofactura}" />
+                                    <p:inputText id="numerofact" label="Numero de Factura" size ="10" value="#{pagosController.compra.numerofactura}" />
                                     <p:outputLabel for="numerocontrol" value="Numero Control" styleClass="optionalLbl"/>
-                                    <p:inputText id="numerocontrol" label="Numero de Control" size ="20" value="#{pagosController.compra.controlfactura}" />
+                                    <p:inputText id="numerocontrol" label="Numero de Control" size ="10" value="#{pagosController.compra.controlfactura}" />
                                     <p:outputLabel for="fechacompra1" value="Fecha Factura" />
                                     <p:calendar id="fechacompra1" pattern="dd/MM/yyyy" value="#{pagosController.compra.fechafactura}" showOn="button" navigator="true"/>
                                     <p:outputLabel for="montop" value="Monto a Pagar" styleClass="optionalLbl"/>
@@ -104,14 +104,19 @@
                                     </p:selectOneMenu>
                                     <p:outputLabel for="cuentabanco" value="Cuenta Bancaria" styleClass="optionalLbl"/>
                                     <p:selectOneMenu id="cuentabanco" value="#{pagosController.pagocompra.idcuentabancaria}" converter="omnifaces.SelectItemsConverter"  required="true">
+                                        <p:ajax event="change" update="saldocuenta"/>                              
                                         <f:selectItems value="#{pagosController.lstCuentasSelecc}"
                                                        var="cuentaporbancoItem"
                                                        itemLabel="#{cuentaporbancoItem.numerocuenta}" itemValue="#{cuentaporbancoItem}"/>
-                                    </p:selectOneMenu>    
+                                    </p:selectOneMenu>
+                                    <p:outputLabel for="saldocuenta" value="Saldo Cuenta" styleClass="optionalLbl"/>
+                                    <h:outputText id="saldocuenta" value="#{pagosController.pagocompra.idcuentabancaria.saldo}" styleClass="optionalLbl">
+                                        <f:convertNumber type="currency" currencySymbol=" " />
+                                    </h:outputText>
                                     <p:outputLabel for="ctareceptora" value="Cta. Receptora" styleClass="optionalLbl"/>
                                     <p:inputText id="ctareceptora" label="Cta. Receptora" size ="25" value="#{pagosController.pagocompra.cuentareceptora}" />                                    
                                     <p:outputLabel for="aprobacion" value="Nro. Aprobacion" styleClass="optionalLbl"/>
-                                    <p:inputText id="aprobacion" label="Nro. Aprobacion " size ="25" value="#{pagosController.pagocompra.aprobacion}" />
+                                    <p:inputText id="aprobacion" label="Nro. Aprobacion " size ="15" value="#{pagosController.pagocompra.aprobacion}" />
                                     <p:outputLabel for="observa2" value="Observaciones" styleClass="optionalLbl"/>
                                     <p:inputTextarea id="observa2"  rows="2" cols="30" label="Observaciones" value="#{comprasController.compra.observacionescompra}" required="true"/>
 

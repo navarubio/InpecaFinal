@@ -42,7 +42,7 @@ public class RequerimientosController implements Serializable {
     private List<Requerimiento> listarequerimiento = new ArrayList();
     private String codigo = null;
     private String descripcion = null;
-    private int cantidad = 0;
+    private double cantidad = 0;
     private double pcosto = 0;
     private double subtotal = 0;
     private double totalgeneral = 0;
@@ -109,11 +109,11 @@ public class RequerimientosController implements Serializable {
         this.listarequerimiento = listarequerimiento;
     }
 
-    public int getCantidad() {
+    public Double getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad) {
+    public void setCantidad(Double cantidad) {
         this.cantidad = cantidad;
     }
 
