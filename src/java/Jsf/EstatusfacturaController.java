@@ -1,10 +1,10 @@
 package Jsf;
 
-import Modelo.Personalidadjuridica;
+import Modelo.Estatusfactura;
 import Jsf.util.JsfUtil;
 import Jsf.util.JsfUtil.PersistAction;
-import Jpa.PersonalidadjuridicaFacadeLocal;
-
+import Jpa.EstatusfacturaFacade;
+import Jpa.EstatusfacturaFacadeLocal;
 import java.io.Serializable;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -19,23 +19,23 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@ManagedBean(name = "personalidadjuridicaController")
+@ManagedBean(name = "estatusfacturaController")
 @SessionScoped
-public class PersonalidadjuridicaController implements Serializable {
+public class EstatusfacturaController implements Serializable {
 
     @EJB
-    private PersonalidadjuridicaFacadeLocal ejbFacade;
-    private List<Personalidadjuridica> items = null;
-    private Personalidadjuridica selected;
+    private EstatusfacturaFacadeLocal ejbFacade;
+    private List<Estatusfactura> items = null;
+    private Estatusfactura selected;
 
-    public PersonalidadjuridicaController() {
+    public EstatusfacturaController() {
     }
 
-    public Personalidadjuridica getSelected() {
+    public Estatusfactura getSelected() {
         return selected;
     }
 
-    public void setSelected(Personalidadjuridica selected) {
+    public void setSelected(Estatusfactura selected) {
         this.selected = selected;
     }
 
@@ -45,36 +45,36 @@ public class PersonalidadjuridicaController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private PersonalidadjuridicaFacadeLocal getFacade() {
+    private EstatusfacturaFacadeLocal getFacade() {
         return ejbFacade;
     }
 
-    public Personalidadjuridica prepareCreate() {
-        selected = new Personalidadjuridica();
+    public Estatusfactura prepareCreate() {
+        selected = new Estatusfactura();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("PersonalidadjuridicaCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("EstatusfacturaCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("PersonalidadjuridicaUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("EstatusfacturaUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("PersonalidadjuridicaDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("EstatusfacturaDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<Personalidadjuridica> getItems() {
+    public List<Estatusfactura> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -109,29 +109,29 @@ public class PersonalidadjuridicaController implements Serializable {
         }
     }
 
-    public Personalidadjuridica getPersonalidadjuridica(java.lang.Integer id) {
+    public Estatusfactura getEstatusfactura(java.lang.Integer id) {
         return getFacade().find(id);
     }
 
-    public List<Personalidadjuridica> getItemsAvailableSelectMany() {
+    public List<Estatusfactura> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<Personalidadjuridica> getItemsAvailableSelectOne() {
+    public List<Estatusfactura> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Personalidadjuridica.class)
-    public static class PersonalidadjuridicaControllerConverter implements Converter {
+    @FacesConverter(forClass = Estatusfactura.class)
+    public static class EstatusfacturaControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            PersonalidadjuridicaController controller = (PersonalidadjuridicaController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "personalidadjuridicaController");
-            return controller.getFacade().find(getKey(value));
+            EstatusfacturaController controller = (EstatusfacturaController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "estatusfacturaController");
+            return controller.getEstatusfactura(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -151,11 +151,11 @@ public class PersonalidadjuridicaController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Personalidadjuridica) {
-                Personalidadjuridica o = (Personalidadjuridica) object;
-                return getStringKey(o.getIdpersonalidad());
+            if (object instanceof Estatusfactura) {
+                Estatusfactura o = (Estatusfactura) object;
+                return getStringKey(o.getIdestatusfactura());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Personalidadjuridica.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Estatusfactura.class.getName()});
                 return null;
             }
         }

@@ -23,7 +23,7 @@
                 <img src="../resources/images/kthememgr_1.png" width="70" height="70" alt="Solicitudes" align="right" />
 
                 <p:panel header="#{bundle.ListCompraTitle}">
-                    <p:dataTable id="datalist" value="#{compraController.comprasactivas}" var="item"
+                    <p:dataTable id="datalist" value="#{compraController.comprasPagadas}" var="item"
                                  selectionMode="single" selection="#{compraController.selected}"
                                  paginator="true"
                                  rowKey="#{item.idcompra}"
@@ -131,11 +131,11 @@
                             </f:facet>
                             <h:outputText value=".{item.observacionespago}"/>
                         </p:column-->
-                        <p:column width="80" >
+                        <p:column width="80" style="text-align: center">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCompraTitle_idestatusfactura}"/>
                             </f:facet>
-                            <h:outputText value="#{item.idestatusfactura}"/>
+                            <h:outputText value="#{item.idestatusfactura.estatusfactura}"/>
                         </p:column>                        
                         <p:column style="text-align: center" headerText="Pagar">
                             <h:commandLink action="/auxiliarrequerimiento/Pagocompra.xhtml" actionListener="#{pagosController.asignar(item)}" > 

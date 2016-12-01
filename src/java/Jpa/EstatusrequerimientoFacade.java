@@ -14,10 +14,11 @@ import javax.persistence.Query;
 
 /**
  *
- * @author Inpeca
+ * @author sofimarye
  */
 @Stateless
 public class EstatusrequerimientoFacade extends AbstractFacade<Estatusrequerimiento> implements EstatusrequerimientoFacadeLocal{
+
     @PersistenceContext(unitName = "InpecaPU")
     private EntityManager em;
 
@@ -42,7 +43,7 @@ public class EstatusrequerimientoFacade extends AbstractFacade<Estatusrequerimie
             List<Estatusrequerimiento> lista = query.getResultList();
             if (!lista.isEmpty()) {
                 estatus = lista.get(0);
-            }
+}
 
         } catch (Exception e) {
             throw e;

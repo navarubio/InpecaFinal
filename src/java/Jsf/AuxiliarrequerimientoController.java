@@ -3,6 +3,7 @@ package Jsf;
 import Modelo.Auxiliarrequerimiento;
 import Jsf.util.JsfUtil;
 import Jsf.util.JsfUtil.PersistAction;
+import Jpa.AuxiliarrequerimientoFacade;
 import Jpa.AuxiliarrequerimientoFacadeLocal;
 
 import java.io.Serializable;
@@ -13,7 +14,6 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
@@ -27,7 +27,7 @@ public class AuxiliarrequerimientoController implements Serializable {
 
     @EJB
     private AuxiliarrequerimientoFacadeLocal ejbFacade;
-    private List<Auxiliarrequerimiento> items = null;
+    private List<Auxiliarrequerimiento> items = null; 
     private List<Auxiliarrequerimiento> requerimientosactivos = null;
     private Auxiliarrequerimiento selected;
 
@@ -129,6 +129,10 @@ public class AuxiliarrequerimientoController implements Serializable {
                 JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             }
         }
+    }
+
+    public Auxiliarrequerimiento getAuxiliarrequerimiento(java.lang.Integer id) {
+        return getFacade().find(id);
     }
 
     public List<Auxiliarrequerimiento> getItemsAvailableSelectMany() {

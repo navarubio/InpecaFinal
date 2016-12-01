@@ -109,6 +109,10 @@ public class DepartamentoController implements Serializable {
         }
     }
 
+    public Departamento getDepartamento(java.lang.Integer id) {
+        return getFacade().find(id);
+    }
+
     public List<Departamento> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }

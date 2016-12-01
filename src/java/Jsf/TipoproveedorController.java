@@ -109,6 +109,10 @@ public class TipoproveedorController implements Serializable {
         }
     }
 
+    public Tipoproveedor getTipoproveedor(java.lang.Integer id) {
+        return getFacade().find(id);
+    }
+
     public List<Tipoproveedor> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }

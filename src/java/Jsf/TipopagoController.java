@@ -109,6 +109,10 @@ public class TipopagoController implements Serializable {
         }
     }
 
+    public Tipopago getTipopago(java.lang.Integer id) {
+        return getFacade().find(id);
+    }
+
     public List<Tipopago> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }

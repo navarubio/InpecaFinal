@@ -12,10 +12,11 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Inpeca
+ * @author sofimarye
  */
 @Stateless
 public class TipocuentacontableFacade extends AbstractFacade<Tipocuentacontable> {
+
     @PersistenceContext(unitName = "InpecaPU")
     private EntityManager em;
 

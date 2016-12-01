@@ -12,10 +12,11 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Inpeca
+ * @author sofimarye
  */
 @Stateless
-public class TiposaldocontableFacade extends AbstractFacade<Tiposaldocontable> {
+public class TiposaldocontableFacade extends AbstractFacade<Tiposaldocontable> implements TiposaldocontableFacadeLocal{
+
     @PersistenceContext(unitName = "InpecaPU")
     private EntityManager em;
 

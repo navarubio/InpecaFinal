@@ -12,10 +12,11 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Inpeca
+ * @author sofimarye
  */
 @Stateless
 public class BancoFacade extends AbstractFacade<Banco> implements BancoFacadeLocal{
+
     @PersistenceContext(unitName = "InpecaPU")
     private EntityManager em;
 

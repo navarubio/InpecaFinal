@@ -15,10 +15,10 @@ import javax.persistence.Query;
 
 /**
  *
- * @author Inpeca
+ * @author sofimarye
  */
 @Stateless
-public class AuxiliarrequerimientoFacade extends AbstractFacade<Auxiliarrequerimiento> implements AuxiliarrequerimientoFacadeLocal {
+public class AuxiliarrequerimientoFacade extends AbstractFacade<Auxiliarrequerimiento> implements AuxiliarrequerimientoFacadeLocal{
 
     @PersistenceContext(unitName = "InpecaPU")
     private EntityManager em;
@@ -31,7 +31,7 @@ public class AuxiliarrequerimientoFacade extends AbstractFacade<Auxiliarrequerim
     public AuxiliarrequerimientoFacade() {
         super(Auxiliarrequerimiento.class);
     }
-
+    
     @Override
     public List<Auxiliarrequerimiento> buscarrequerimientosActivos() {
         String consulta;
@@ -44,7 +44,7 @@ public class AuxiliarrequerimientoFacade extends AbstractFacade<Auxiliarrequerim
             lista = query.getResultList();
         } catch (Exception e) {
             throw e;
-        }
+}
         return lista;
     }
 }

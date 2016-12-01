@@ -33,4 +33,8 @@ public interface CompraFacadeLocal {
     Compra ultimacompraInsertada();
     
     List<Compra> buscarcomprasporAutorizar ();
+    
+    List<Compra> buscarcomprasporPagar();
+    
+    List<Compra> buscarcomprasPagadas();
 }

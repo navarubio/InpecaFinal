@@ -14,13 +14,13 @@ import javax.persistence.Query;
 
 /**
  *
- * @author Inpeca
+ * @author sofimarye
  */
 @Stateless
 public class PlandecuentaFacade extends AbstractFacade<Plandecuenta> implements PlandecuentaFacadeLocal{
     @PersistenceContext(unitName = "InpecaPU")
     private EntityManager em;
-    
+
     private List<Plandecuenta> lista = null;
     private String consulta;
     private Plandecuenta plandecuenta=null;
@@ -47,7 +47,7 @@ public class PlandecuentaFacade extends AbstractFacade<Plandecuenta> implements 
 //            }
         } catch (Exception e) {
             throw e;
-        }
+}
         return lista;
     }
 }

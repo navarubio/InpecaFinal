@@ -14,10 +14,11 @@ import javax.persistence.Query;
 
 /**
  *
- * @author Inpeca
+ * @author sofimarye
  */
 @Stateless
-public class EstatusfacturaFacade extends AbstractFacade<Estatusfactura> implements EstatusfacturaFacadeLocal {
+public class EstatusfacturaFacade extends AbstractFacade<Estatusfactura> implements EstatusfacturaFacadeLocal{
+
     @PersistenceContext(unitName = "InpecaPU")
     private EntityManager em;
 
@@ -29,7 +30,7 @@ public class EstatusfacturaFacade extends AbstractFacade<Estatusfactura> impleme
     public EstatusfacturaFacade() {
         super(Estatusfactura.class);
     }
- 
+    
     @Override
     public Estatusfactura cambiarestatusFactura(int tipo) {
         String consulta;
@@ -42,7 +43,7 @@ public class EstatusfacturaFacade extends AbstractFacade<Estatusfactura> impleme
             List<Estatusfactura> lista = query.getResultList();
             if (!lista.isEmpty()) {
                 estatus = lista.get(0);
-            }
+}
 
         } catch (Exception e) {
             throw e;

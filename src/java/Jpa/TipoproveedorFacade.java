@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Inpeca
+ * @author sofimarye
  */
 @Stateless
 public class TipoproveedorFacade extends AbstractFacade<Tipoproveedor> implements TipoproveedorFacadeLocal{

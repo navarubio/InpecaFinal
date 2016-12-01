@@ -15,10 +15,11 @@ import javax.persistence.Query;
 
 /**
  *
- * @author Inpeca
+ * @author sofimarye
  */
 @Stateless
 public class DepartamentoFacade extends AbstractFacade<Departamento> implements DepartamentoFacadeLocal{
+
     @PersistenceContext(unitName = "InpecaPU")
     private EntityManager em;
 
@@ -43,7 +44,7 @@ public class DepartamentoFacade extends AbstractFacade<Departamento> implements 
             List<Departamento> lista = query.getResultList();
             if (!lista.isEmpty()) {
                 dpto = lista.get(0);
-            }
+}
         } catch (Exception e) {
             throw e;
         }

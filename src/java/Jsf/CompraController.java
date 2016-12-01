@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
@@ -28,9 +29,19 @@ public class CompraController implements Serializable {
     @EJB
     private Jpa.CompraFacadeLocal ejbFacade;
     private List<Compra> items = null;
+    private List<Compra> comprasactivas = null;
+    private List<Compra> comprasporautorizar = null;
+    private List<Compra> compraspagadas = null;
     private Compra selected;
 
     public CompraController() {
+    }
+
+    @PostConstruct
+    public void init() {
+        comprasactivas = ejbFacade.buscarcomprasporPagar();
+        comprasporautorizar = ejbFacade.buscarcomprasporAutorizar();
+        compraspagadas = ejbFacade.buscarcomprasPagadas();
     }
 
     public Compra getSelected() {
@@ -49,6 +60,32 @@ public class CompraController implements Serializable {
 
     private CompraFacadeLocal getFacade() {
         return ejbFacade;
+    }
+
+    public List<Compra> getComprasactivas() {
+        return comprasactivas;
+    }
+
+    public List<Compra> getComprasporAutorizar() {
+        return comprasporautorizar;
+    }
+
+    public List<Compra> getComprasPagadas() {
+        return compraspagadas;
+    }
+
+    public void setRequerimientosactivos(List<Compra> comprasactivas) {
+        this.comprasactivas = comprasactivas;
+    }
+
+    public List<Compra> buscarComprasActivas() {
+        comprasactivas = ejbFacade.buscarcomprasporPagar();
+        return comprasactivas;
+    }
+
+    public List<Compra> buscarComprasporAutorizar() {
+        comprasporautorizar = ejbFacade.buscarcomprasporAutorizar();
+        return comprasporautorizar;
     }
 
     public Compra prepareCreate() {

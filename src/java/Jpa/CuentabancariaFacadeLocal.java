@@ -14,7 +14,7 @@ import javax.ejb.Local;
  * @author Inpeca
  */
 @Local
-public interface CuentabancariaFacadeLocal {
+public interface CuentabancariaFacadeLocal  {
 
     void create(Cuentabancaria cuentabancaria);
 

@@ -109,6 +109,10 @@ public class EstatusrequerimientoController implements Serializable {
         }
     }
 
+    public Estatusrequerimiento getEstatusrequerimiento(java.lang.Integer id) {
+        return getFacade().find(id);
+    }
+
     public List<Estatusrequerimiento> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }

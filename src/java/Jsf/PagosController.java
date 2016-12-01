@@ -62,12 +62,12 @@ public class PagosController implements Serializable {
     @EJB
     private TipopagoFacadeLocal tipopagoEJB;
     @EJB
-    private BancoFacadeLocal bancoEJB; 
+    private BancoFacadeLocal bancoEJB;
 
     private Auxiliarrequerimiento auxiliarrequerimiento;
     private Compra compra;
     private Detallecompra detallecompras;
-    private Pagocompra pagocompra= new Pagocompra();
+    private Pagocompra pagocompra = new Pagocompra();
     private Estatusfactura statusfactu = null;
 
     private Usuario usa;
@@ -81,6 +81,7 @@ public class PagosController implements Serializable {
     private List<Detallecompra> detallecompraFiltrados;
     private List<Banco> bancos;
     private List<Cuentabancaria> lstCuentasSelecc;
+    private List<Pagocompra> pagosefectuados;
 
     @Inject
     private Auxiliarrequerimiento auxiliar;
@@ -120,7 +121,6 @@ public class PagosController implements Serializable {
         this.bancos = bancos;
     }
 
-    
     public Tipopago getTipopago() {
         return tipopago;
     }
@@ -177,12 +177,21 @@ public class PagosController implements Serializable {
         this.tipopagos = tipopagos;
     }
 
+    public List<Pagocompra> getPagosefectuados() {
+        return pagosefectuados;
+    }
+
+    public void setPagosefectuados(List<Pagocompra> pagosefectuados) {
+        this.pagosefectuados = pagosefectuados;
+    }
+
     @PostConstruct
     public void init() {
         auxiliarrequerimientos = auxiliarrequerimientoEJB.findAll();
         cuentasbancarias = cuentabancariaEJB.findAll();
         tipopagos = tipopagoEJB.findAll();
         bancos = bancoEJB.findAll();
+        pagosefectuados = pagocompraEJB.findAll();
         //articulos = articuloEJB.findAll();
         //comprasporautorizar=compraEJB.buscarcomprasporAutorizar();
 
@@ -222,7 +231,12 @@ public class PagosController implements Serializable {
 //        statusreq.setIdestatusrequerimiento(statu);
         return dpto;
     }
-    
+
+    public List<Pagocompra> buscarTodoslosPagos() {
+        pagosefectuados = pagocompraEJB.findAll();
+        return pagosefectuados;
+    }
+
     public List<Cuentabancaria> refrescarCuentasBancarias() {
         try {
             lstCuentasSelecc = cuentabancariaEJB.espxBanco(pagocompra.getIdbanco().getIdbanco());
@@ -230,23 +244,26 @@ public class PagosController implements Serializable {
         }
         return lstCuentasSelecc;
     }
-        public void registrar() {        
+
+    public void registrar() {
         try {
-/**            compra.setRifproveedor(provee);
-            compra.setSubtotal(auxiliar.getSubtotal());
-            compra.setIva(auxiliar.getMontoiva());
-            compra.setTotal(auxiliar.getMontototal());
-            Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
-            compra.setIdusuario(us);**/            
-            int tipo=3;
-            statusfactu= estatusfacturaEJB.cambiarestatusFactura(tipo);
+            /**
+             * compra.setRifproveedor(provee);
+             * compra.setSubtotal(auxiliar.getSubtotal());
+             * compra.setIva(auxiliar.getMontoiva());
+             * compra.setTotal(auxiliar.getMontototal()); Usuario us = (Usuario)
+             * FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+            compra.setIdusuario(us);*
+             */
+            int tipo = 3;
+            statusfactu = estatusfacturaEJB.cambiarestatusFactura(tipo);
             compra.setIdestatusfactura(statusfactu);
-            compraEJB.edit(compra);                     
+            compraEJB.edit(compra);
             //codCompra = compraEJB.ultimacompraInsertada();
-            
+
             pagocompra.setIdcompra(compra);
             pagocompra.setTotalpago(compra.getTotal());
-            pagocompraEJB.create(pagocompra);            
+            pagocompraEJB.create(pagocompra);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Su Pago fue Almacenado"));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error al Grabar Pago"));

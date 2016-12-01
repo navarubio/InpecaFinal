@@ -11,13 +11,14 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
- 
+
 /**
  *
- * @author Inpeca
+ * @author sofimarye
  */
 @Stateless
 public class CompraFacade extends AbstractFacade<Compra> implements CompraFacadeLocal{
+
     @PersistenceContext(unitName = "InpecaPU")
     private EntityManager em;
 
@@ -29,7 +30,7 @@ public class CompraFacade extends AbstractFacade<Compra> implements CompraFacade
     public CompraFacade() {
         super(Compra.class);
     }
-
+    
     @Override
     public Compra ultimacompraInsertada() {
         String consulta = null;
@@ -40,7 +41,7 @@ public class CompraFacade extends AbstractFacade<Compra> implements CompraFacade
             List<Compra> lista = query.getResultList();
             if (!lista.isEmpty()) {
                 ultimo = lista.get(0);
-            }
+}
         } catch (Exception e) {
             throw e;
         }
@@ -61,4 +62,37 @@ public class CompraFacade extends AbstractFacade<Compra> implements CompraFacade
         }
         return lista;
     }
+    @Override
+    public List<Compra> buscarcomprasporPagar() {
+        String consulta;
+        int idstatus = 1;
+        int idstatus2 =2;
+        List<Compra> lista = null;
+        try {
+            consulta = "From Compra c where c.idestatusfactura.idestatusfactura= ?1 or c.idestatusfactura.idestatusfactura= ?2";
+            Query query = em.createQuery(consulta);
+            query.setParameter(1, idstatus);
+            query.setParameter(2, idstatus2);            
+            lista = query.getResultList();
+        } catch (Exception e) {
+            throw e;
+        }
+        return lista;
+    }
+    @Override
+    public List<Compra> buscarcomprasPagadas() {
+        String consulta;
+        int idstatus = 3;
+        List<Compra> lista = null;
+        try {
+            consulta = "From Compra c where c.idestatusfactura.idestatusfactura= ?1";
+            Query query = em.createQuery(consulta);
+            query.setParameter(1, idstatus);
+            lista = query.getResultList();
+        } catch (Exception e) {
+            throw e;
+        }
+        return lista;
+    }
+    
 }

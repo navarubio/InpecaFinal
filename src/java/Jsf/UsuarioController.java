@@ -110,6 +110,10 @@ public class UsuarioController implements Serializable {
         }
     }
 
+    public Usuario getUsuario(java.lang.Integer id) {
+        return getFacade().find(id);
+    }
+
     public List<Usuario> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }

@@ -3,24 +3,23 @@ package Jsf;
 import Modelo.Cuentabancaria;
 import Jsf.util.JsfUtil;
 import Jsf.util.JsfUtil.PersistAction;
-import Jpa.CuentabancariaFacade;
 import Jpa.CuentabancariaFacadeLocal;
-
 import java.io.Serializable;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
-import javax.ejb.EJBException;
+import javax.ejb.EJBException; 
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ManagedBean;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@Named("cuentabancariaController")
+@ManagedBean(name = "cuentabancariaController")
 @SessionScoped
 public class CuentabancariaController implements Serializable {
 

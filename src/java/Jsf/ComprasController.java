@@ -55,7 +55,7 @@ public class ComprasController implements Serializable {
     private EstatusrequerimientoFacadeLocal estatusrequerimientoEJB;
     @EJB
     private EstatusfacturaFacadeLocal estatusfacturaEJB;
-    
+
     private Auxiliarrequerimiento auxiliarrequerimiento;
     private Usuario usa;
     private Departamento dpto;
@@ -97,6 +97,7 @@ public class ComprasController implements Serializable {
     private List<Detallecompra> detallesCompras;
     private List<Detallecompra> detallesactuales;
     private List<Compra> comprasporautorizar = null;
+    private List<Compra> comprasporpagar = null;
 
     public int getIdAuxiliar() {
         return idAuxiliar;
@@ -192,16 +193,24 @@ public class ComprasController implements Serializable {
         this.comprasporautorizar = comprasporautorizar;
     }
 
+    public List<Compra> getComprasporpagar() {
+        return comprasporpagar;
+    }
+
+    public void setComprasporpagar(List<Compra> comprasporpagar) {
+        this.comprasporpagar = comprasporpagar;
+    }
+
     @PostConstruct
     public void init() {
         auxiliarrequerimientos = auxiliarrequerimientoEJB.findAll();
         requerimientos = requerimientoEJB.findAll();
         proveedores = proveedorEJB.findAll();
         articulos = articuloEJB.findAll();
-        comprasporautorizar=compraEJB.buscarcomprasporAutorizar();
-        
-//        this.auxiliarrequerimiento=requerimientosController.getAuxrequer();
+        comprasporautorizar = compraEJB.buscarcomprasporAutorizar();
+        comprasporpagar = compraEJB.buscarcomprasporPagar();
 
+//        this.auxiliarrequerimiento=requerimientosController.getAuxrequer();
     }
 
     public void asignar(Auxiliarrequerimiento aux) {
@@ -218,12 +227,11 @@ public class ComprasController implements Serializable {
         return listado;
     }
 
-/*    public List<Detallecompra> buscardetallecompra() {
+    /*    public List<Detallecompra> buscardetallecompra() {
         List<Detallecompra> listado = null;
         listado = detallecompraEJB.buscardetalle(compra);
         return listado;
     }*/
-    
     public List<Requerimiento> requerimientosAuxiliar() {
         List<Requerimiento> listado = null;
         listado = requerimientoEJB.requerimientosAuxiliar(idAuxiliar);
@@ -259,7 +267,7 @@ public class ComprasController implements Serializable {
             montotiva += requeri.getTributoiva();
             montotsubtotal += requeri.getSubtotal();
         }
-        
+
         auxiliarrequerimiento.setSubtotal(montotsubtotal);
         auxiliarrequerimiento.setMontoiva(montotiva);
         auxiliarrequerimiento.setMontototal(montotgeneral);
@@ -268,10 +276,23 @@ public class ComprasController implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Su Requerimiento fue Modificado"));
     }
 
+    public void autorizar() {
+        Estatusfactura statusfactu = null;
+        int tipo = 2;
+        statusfactu = estatusfacturaEJB.cambiarestatusFactura(tipo);
+        compra.setIdestatusfactura(statusfactu);
+        compraEJB.edit(compra);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Compra Autorizada por Gerencia"));
+    }
+
     public void asignarRequerimiento(Requerimiento requeri) {
         requerimiento = requeri;
     }
+    public void asignarCompra(Compra compraselec) {
+        compra = compraselec;
+    }
 
+    
     public List<Requerimiento> solicitarRequerimientosFiltro() {
         return requerimientosFiltrados;
     }
@@ -290,31 +311,30 @@ public class ComprasController implements Serializable {
         requerimiento.setTotal(total);
     }
 
-    public void registrar() {        
+    public void registrar() {
         try {
             compra.setRifproveedor(provee);
             compra.setSubtotal(auxiliar.getSubtotal());
             compra.setIva(auxiliar.getMontoiva());
             compra.setTotal(auxiliar.getMontototal());
             Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
-            compra.setIdusuario(us);            
+            compra.setIdusuario(us);
             Estatusfactura statusfactu = null;
-            int tipo=0;
-            if (compra.getTotal() <=50000 ) {
-                tipo=0;
-            }else if (compra.getTotal() >50000 ) {
-                tipo=1;
-            }                    
-            statusfactu= estatusfacturaEJB.cambiarestatusFactura(tipo);
+            int tipo = 0;
+            if (compra.getTotal() <= 50000) {
+                tipo = 0;
+            } else if (compra.getTotal() > 50000) {
+                tipo = 1;
+            }
+            statusfactu = estatusfacturaEJB.cambiarestatusFactura(tipo);
             compra.setIdestatusfactura(statusfactu);
             compraEJB.create(compra);
 
             Estatusrequerimiento statusreque = null;
-            statusreque= estatusrequerimientoEJB.cambiarestatusaProcesado();
+            statusreque = estatusrequerimientoEJB.cambiarestatusaProcesado();
             auxiliarrequerimiento.setIdestatusrequerimiento(statusreque);
             auxiliarrequerimientoEJB.edit(auxiliarrequerimiento);
-            
-            
+
             codCompra = compraEJB.ultimacompraInsertada();
             for (Requerimiento rq : requerimientosFiltrados) {
                 Articulo arti = rq.getCodigo();
@@ -327,7 +347,7 @@ public class ComprasController implements Serializable {
                 detallecompra.setTotalapagar(rq.getTotal());
                 detallecompraEJB.create(detallecompra);
             }
-            
+
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Su Requerimiento fue Almacenado"));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error al Grabar Requerimiento"));
@@ -358,9 +378,14 @@ public class ComprasController implements Serializable {
         requerimientosFiltrados = requerimientoEJB.requerimientosAuxiliar(idAuxiliar);
         return requerimientosFiltrados;
     }
-    
+
     public List<Compra> buscarComprasporAutorizar() {
         comprasporautorizar = compraEJB.buscarcomprasporAutorizar();
         return comprasporautorizar;
+    }
+
+    public List<Compra> buscarComprasporPagar() {
+        comprasporpagar = compraEJB.buscarcomprasporPagar();
+        return comprasporpagar;
     }
 }

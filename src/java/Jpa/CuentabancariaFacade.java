@@ -14,16 +14,17 @@ import javax.persistence.Query;
 
 /**
  *
- * @author Inpeca
+ * @author sofimarye
  */
 @Stateless
 public class CuentabancariaFacade extends AbstractFacade<Cuentabancaria> implements CuentabancariaFacadeLocal{
+
     @PersistenceContext(unitName = "InpecaPU")
     private EntityManager em;
     private List<Cuentabancaria> lista = null;
     private String consulta;
     private Cuentabancaria cuentabancaria=null;
-    
+
     @Override
     protected EntityManager getEntityManager() {
         return em;
@@ -46,7 +47,7 @@ public class CuentabancariaFacade extends AbstractFacade<Cuentabancaria> impleme
 //            }
         } catch (Exception e) {
             throw e;
-        }
+}
         return lista;
     }
     

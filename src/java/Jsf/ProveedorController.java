@@ -26,7 +26,7 @@ import javax.inject.Inject;
 @SessionScoped
 public class ProveedorController implements Serializable {
 
-    @EJB
+    @EJB 
     private ProveedorFacadeLocal ejbFacade;
     private List<Proveedor> items = null;
     private Proveedor selected;
@@ -120,6 +120,10 @@ public class ProveedorController implements Serializable {
                 JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             }
         }
+    }
+
+    public Proveedor getProveedor(java.lang.String id) {
+        return getFacade().find(id);
     }
 
     public List<Proveedor> getItemsAvailableSelectMany() {
