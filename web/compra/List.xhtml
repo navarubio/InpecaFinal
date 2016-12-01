@@ -131,11 +131,11 @@
                             </f:facet>
                             <h:outputText value=".{item.observacionespago}"/>
                         </p:column-->
-                        <p:column width="80" >
+                        <p:column width="80" style="text-align: center" >
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCompraTitle_idestatusfactura}"/>
                             </f:facet>
-                            <h:outputText value="#{item.idestatusfactura}"/>
+                            <h:outputText value="#{item.idestatusfactura.estatusfactura}"/>
                         </p:column>                        
                         <p:column style="text-align: center" headerText="Pagar">
                             <h:commandLink action="/auxiliarrequerimiento/Pagocompra.xhtml" actionListener="#{pagosController.asignar(item)}" > 
