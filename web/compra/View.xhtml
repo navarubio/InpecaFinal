@@ -39,11 +39,11 @@
                         <h:outputText value="#{bundle.ViewCompraLabel_idauxiliarrequerimiento}"/>
                         <h:outputText value="#{compraController.selected.idauxiliarrequerimiento}" title="#{bundle.ViewCompraTitle_idauxiliarrequerimiento}"/>
                         <h:outputText value="#{bundle.ViewCompraLabel_idusuario}"/>
-                        <h:outputText value="#{compraController.selected.idusuario}" title="#{bundle.ViewCompraTitle_idusuario}"/>
+                        <h:outputText value="#{compraController.selected.idusuario.nombre}" title="#{bundle.ViewCompraTitle_idusuario}"/>
                         <h:outputText value="#{bundle.ViewCompraLabel_rifproveedor}"/>
                         <h:outputText value="#{compraController.selected.rifproveedor}" title="#{bundle.ViewCompraTitle_rifproveedor}"/>
                         <h:outputText value="#{bundle.ViewCompraLabel_idestatusfactura}"/>
-                        <h:outputText value="#{compraController.selected.idestatusfactura}" title="#{bundle.ViewCompraTitle_idestatusfactura}"/>
+                        <h:outputText value="#{compraController.selected.idestatusfactura.estatusfactura}" title="#{bundle.ViewCompraTitle_idestatusfactura}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="CompraViewDialog.hide()"/>
                 </h:panelGroup>

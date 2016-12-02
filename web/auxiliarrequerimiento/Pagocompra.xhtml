@@ -79,13 +79,13 @@
                                     <p:outputLabel for="numerocontrol" value="Numero Control" styleClass="optionalLbl"/>
                                     <p:inputText id="numerocontrol" label="Numero de Control" size ="10" value="#{pagosController.compra.controlfactura}" />
                                     <p:outputLabel for="fechacompra1" value="Fecha Factura" />
-                                    <p:calendar id="fechacompra1" pattern="dd/MM/yyyy" value="#{pagosController.compra.fechafactura}" showOn="button" navigator="true"/>
+                                    <p:calendar size="10" id="fechacompra1" pattern="dd/MM/yyyy" value="#{pagosController.compra.fechafactura}" showOn="button" navigator="true"/>
                                     <p:outputLabel for="montop" value="Monto a Pagar" styleClass="optionalLbl"/>
                                     <p:outputLabel id="montop" value="#{pagosController.compra.total}" styleClass="optionalLbl" >
                                         <f:convertNumber type="currency" currencySymbol=" " />
                                     </p:outputLabel>
                                     <p:outputLabel for="fechapago" value="Fecha Pago" />
-                                    <p:calendar id="fechapago" pattern="dd/MM/yyyy" value="#{pagosController.pagocompra.fechapago}" showOn="button" navigator="true"/>
+                                    <p:calendar size="10" id="fechapago" pattern="dd/MM/yyyy" value="#{pagosController.pagocompra.fechapago}" showOn="button" navigator="true"/>
                                     <p:outputLabel for="tipopag" value="Forma de Pago" styleClass="optionalLbl"/>
                                     <p:selectOneMenu id="tipopag" value="#{pagosController.pagocompra.idtipopago}" converter="omnifaces.SelectItemsConverter" > 
                                         <!--f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue=".{null}"/-->

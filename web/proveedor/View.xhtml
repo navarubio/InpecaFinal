@@ -24,18 +24,18 @@
                         <h:outputText value="#{proveedorController.selected.correo}" title="#{bundle.ViewProveedorTitle_correo}"/>
                         <h:outputText value="#{bundle.ViewProveedorLabel_fechainscripcion}"/>
                         <h:outputText value="#{proveedorController.selected.fechainscripcion}" title="#{bundle.ViewProveedorTitle_fechainscripcion}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
                         </h:outputText>
                         <h:outputText value="#{bundle.ViewProveedorLabel_personacontacto}"/>
                         <h:outputText value="#{proveedorController.selected.personacontacto}" title="#{bundle.ViewProveedorTitle_personacontacto}"/>
                         <h:outputText value="#{bundle.ViewProveedorLabel_telefonocontacto}"/>
                         <h:outputText value="#{proveedorController.selected.telefonocontacto}" title="#{bundle.ViewProveedorTitle_telefonocontacto}"/>
                         <h:outputText value="#{bundle.ViewProveedorLabel_idtipoproveedor}"/>
-                        <h:outputText value="#{proveedorController.selected.idtipoproveedor}" title="#{bundle.ViewProveedorTitle_idtipoproveedor}"/>
+                        <h:outputText value="#{proveedorController.selected.idtipoproveedor.tipoproveedor}" title="#{bundle.ViewProveedorTitle_idtipoproveedor}"/>
                         <h:outputText value="#{bundle.ViewProveedorLabel_idusuario}"/>
-                        <h:outputText value="#{proveedorController.selected.idusuario}" title="#{bundle.ViewProveedorTitle_idusuario}"/>
+                        <h:outputText value="#{proveedorController.selected.idusuario.nombre}" title="#{bundle.ViewProveedorTitle_idusuario}"/>
                         <h:outputText value="#{bundle.ViewProveedorLabel_idpersonalidad}"/>
-                        <h:outputText value="#{proveedorController.selected.idpersonalidad}" title="#{bundle.ViewProveedorTitle_idpersonalidad}"/>
+                        <h:outputText value="#{proveedorController.selected.idpersonalidad.personalidad}" title="#{bundle.ViewProveedorTitle_idpersonalidad}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="ProveedorViewDialog.hide()"/>
                 </h:panelGroup>

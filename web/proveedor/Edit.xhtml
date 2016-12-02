@@ -35,13 +35,6 @@
                                            var="idtipoproveedorItem"
                                            itemValue="#{idtipoproveedorItem}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditProveedorLabel_idusuario}" for="idusuario" />
-                        <p:selectOneMenu id="idusuario" value="#{proveedorController.selected.idusuario}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"
-                                           var="idusuarioItem"
-                                           itemValue="#{idusuarioItem}"/>
-                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditProveedorLabel_idpersonalidad}" for="idpersonalidad" />
                         <p:selectOneMenu id="idpersonalidad" value="#{proveedorController.selected.idpersonalidad}" >
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
