@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CompraCreateDlg" widgetVar="CompraCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCompraTitle}">
+            <h:form id="CompraCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{compraController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateCompraLabel_idcompra}" for="idcompra" />
+                        <p:inputText id="idcompra" value="#{compraController.selected.idcompra}" title="#{bundle.CreateCompraTitle_idcompra}" required="true" requiredMessage="#{bundle.CreateCompraRequiredMessage_idcompra}"/>
+                        <p:outputLabel value="#{bundle.CreateCompraLabel_fechaorden}" for="fechaorden" />
+                        <p:calendar id="fechaorden" pattern="MM/dd/yyyy" value="#{compraController.selected.fechaorden}" title="#{bundle.EditCompraTitle_fechaorden}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateCompraLabel_subtotal}" for="subtotal" />
+                        <p:inputText id="subtotal" value="#{compraController.selected.subtotal}" title="#{bundle.CreateCompraTitle_subtotal}" />
+                        <p:outputLabel value="#{bundle.CreateCompraLabel_iva}" for="iva" />
+                        <p:inputText id="iva" value="#{compraController.selected.iva}" title="#{bundle.CreateCompraTitle_iva}" />
+                        <p:outputLabel value="#{bundle.CreateCompraLabel_total}" for="total" />
+                        <p:inputText id="total" value="#{compraController.selected.total}" title="#{bundle.CreateCompraTitle_total}" />
+                        <p:outputLabel value="#{bundle.CreateCompraLabel_observacionescompra}" for="observacionescompra" />
+                        <p:inputText id="observacionescompra" value="#{compraController.selected.observacionescompra}" title="#{bundle.CreateCompraTitle_observacionescompra}" />
+                        <p:outputLabel value="#{bundle.CreateCompraLabel_numerofactura}" for="numerofactura" />
+                        <p:inputText id="numerofactura" value="#{compraController.selected.numerofactura}" title="#{bundle.CreateCompraTitle_numerofactura}" />
+                        <p:outputLabel value="#{bundle.CreateCompraLabel_controlfactura}" for="controlfactura" />
+                        <p:inputText id="controlfactura" value="#{compraController.selected.controlfactura}" title="#{bundle.CreateCompraTitle_controlfactura}" />
+                        <p:outputLabel value="#{bundle.CreateCompraLabel_fechafactura}" for="fechafactura" />
+                        <p:calendar id="fechafactura" pattern="MM/dd/yyyy" value="#{compraController.selected.fechafactura}" title="#{bundle.EditCompraTitle_fechafactura}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateCompraLabel_observacionespago}" for="observacionespago" />
+                        <p:inputText id="observacionespago" value="#{compraController.selected.observacionespago}" title="#{bundle.CreateCompraTitle_observacionespago}" />
+                        <p:outputLabel value="#{bundle.CreateCompraLabel_idauxiliarrequerimiento}" for="idauxiliarrequerimiento" />
+                        <p:selectOneMenu id="idauxiliarrequerimiento" value="#{compraController.selected.idauxiliarrequerimiento}" >
+                            <f:selectItems value="#{auxiliarrequerimientoController.itemsAvailableSelectOne}"
+                                           var="idauxiliarrequerimientoItem"
+                                           itemValue="#{idauxiliarrequerimientoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCompraLabel_idusuario}" for="idusuario" />
+                        <p:selectOneMenu id="idusuario" value="#{compraController.selected.idusuario}" >
+                            <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"
+                                           var="idusuarioItem"
+                                           itemValue="#{idusuarioItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCompraLabel_rifproveedor}" for="rifproveedor" />
+                        <p:selectOneMenu id="rifproveedor" value="#{compraController.selected.rifproveedor}" >
+                            <f:selectItems value="#{proveedorController.itemsAvailableSelectOne}"
+                                           var="rifproveedorItem"
+                                           itemValue="#{rifproveedorItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCompraLabel_idestatusfactura}" for="idestatusfactura" />
+                        <p:selectOneMenu id="idestatusfactura" value="#{compraController.selected.idestatusfactura}" >
+                            <f:selectItems value="#{estatusfacturaController.itemsAvailableSelectOne}"
+                                           var="idestatusfacturaItem"
+                                           itemValue="#{idestatusfacturaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{compraController.create}" value="#{bundle.Save}" update="display,:CompraListForm:datalist,:growl" oncomplete="handleSubmit(args,'CompraCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CompraCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

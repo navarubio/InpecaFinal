@@ -30,4 +30,6 @@ public interface PagocompraFacadeLocal {
 
     int count();
     
+    List<Pagocompra> buscarPagosefectuados();
+    
 }

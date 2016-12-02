@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CompraEditDlg" widgetVar="CompraEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCompraTitle}">
+            <h:form id="CompraEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{compraController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCompraLabel_idcompra}" for="idcompra" />
+                        <p:inputText id="idcompra" value="#{compraController.selected.idcompra}" title="#{bundle.EditCompraTitle_idcompra}" required="true" requiredMessage="#{bundle.EditCompraRequiredMessage_idcompra}"/>
+                        <p:outputLabel value="#{bundle.EditCompraLabel_fechaorden}" for="fechaorden" />
+                        <p:calendar id="fechaorden" pattern="MM/dd/yyyy" value="#{compraController.selected.fechaorden}" title="#{bundle.EditCompraTitle_fechaorden}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditCompraLabel_subtotal}" for="subtotal" />
+                        <p:inputText id="subtotal" value="#{compraController.selected.subtotal}" title="#{bundle.EditCompraTitle_subtotal}" />
+                        <p:outputLabel value="#{bundle.EditCompraLabel_iva}" for="iva" />
+                        <p:inputText id="iva" value="#{compraController.selected.iva}" title="#{bundle.EditCompraTitle_iva}" />
+                        <p:outputLabel value="#{bundle.EditCompraLabel_total}" for="total" />
+                        <p:inputText id="total" value="#{compraController.selected.total}" title="#{bundle.EditCompraTitle_total}" />
+                        <p:outputLabel value="#{bundle.EditCompraLabel_observacionescompra}" for="observacionescompra" />
+                        <p:inputText id="observacionescompra" value="#{compraController.selected.observacionescompra}" title="#{bundle.EditCompraTitle_observacionescompra}" />
+                        <p:outputLabel value="#{bundle.EditCompraLabel_numerofactura}" for="numerofactura" />
+                        <p:inputText id="numerofactura" value="#{compraController.selected.numerofactura}" title="#{bundle.EditCompraTitle_numerofactura}" />
+                        <p:outputLabel value="#{bundle.EditCompraLabel_controlfactura}" for="controlfactura" />
+                        <p:inputText id="controlfactura" value="#{compraController.selected.controlfactura}" title="#{bundle.EditCompraTitle_controlfactura}" />
+                        <p:outputLabel value="#{bundle.EditCompraLabel_fechafactura}" for="fechafactura" />
+                        <p:calendar id="fechafactura" pattern="MM/dd/yyyy" value="#{compraController.selected.fechafactura}" title="#{bundle.EditCompraTitle_fechafactura}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditCompraLabel_observacionespago}" for="observacionespago" />
+                        <p:inputText id="observacionespago" value="#{compraController.selected.observacionespago}" title="#{bundle.EditCompraTitle_observacionespago}" />
+                        <p:outputLabel value="#{bundle.EditCompraLabel_idauxiliarrequerimiento}" for="idauxiliarrequerimiento" />
+                        <p:selectOneMenu id="idauxiliarrequerimiento" value="#{compraController.selected.idauxiliarrequerimiento}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{auxiliarrequerimientoController.itemsAvailableSelectOne}"
+                                           var="idauxiliarrequerimientoItem"
+                                           itemValue="#{idauxiliarrequerimientoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditCompraLabel_idusuario}" for="idusuario" />
+                        <p:selectOneMenu id="idusuario" value="#{compraController.selected.idusuario}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"
+                                           var="idusuarioItem"
+                                           itemValue="#{idusuarioItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditCompraLabel_rifproveedor}" for="rifproveedor" />
+                        <p:selectOneMenu id="rifproveedor" value="#{compraController.selected.rifproveedor}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{proveedorController.itemsAvailableSelectOne}"
+                                           var="rifproveedorItem"
+                                           itemValue="#{rifproveedorItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditCompraLabel_idestatusfactura}" for="idestatusfactura" />
+                        <p:selectOneMenu id="idestatusfactura" value="#{compraController.selected.idestatusfactura}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{estatusfacturaController.itemsAvailableSelectOne}"
+                                           var="idestatusfacturaItem"
+                                           itemValue="#{idestatusfacturaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{compraController.update}" value="#{bundle.Save}" update="display,:CompraListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CompraEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CompraEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

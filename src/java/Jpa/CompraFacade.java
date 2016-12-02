@@ -65,7 +65,7 @@ public class CompraFacade extends AbstractFacade<Compra> implements CompraFacade
     @Override
     public List<Compra> buscarcomprasporPagar() {
         String consulta;
-        int idstatus = 1;
+        int idstatus = 0;
         int idstatus2 =2;
         List<Compra> lista = null;
         try {

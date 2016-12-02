@@ -25,14 +25,16 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
+
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-@Named
+@ManagedBean(name = "comprasController")
 @SessionScoped
 
 public class ComprasController implements Serializable {
@@ -98,6 +100,7 @@ public class ComprasController implements Serializable {
     private List<Detallecompra> detallesactuales;
     private List<Compra> comprasporautorizar = null;
     private List<Compra> comprasporpagar = null;
+    private List<Compra> compraspagadas = null;
 
     public int getIdAuxiliar() {
         return idAuxiliar;
@@ -201,6 +204,15 @@ public class ComprasController implements Serializable {
         this.comprasporpagar = comprasporpagar;
     }
 
+    public List<Compra> getCompraspagadas() {
+        return compraspagadas;
+    }
+
+    public void setCompraspagadas(List<Compra> compraspagadas) {
+        this.compraspagadas = compraspagadas;
+    }
+    
+
     @PostConstruct
     public void init() {
         auxiliarrequerimientos = auxiliarrequerimientoEJB.findAll();
@@ -209,6 +221,7 @@ public class ComprasController implements Serializable {
         articulos = articuloEJB.findAll();
         comprasporautorizar = compraEJB.buscarcomprasporAutorizar();
         comprasporpagar = compraEJB.buscarcomprasporPagar();
+        compraspagadas = compraEJB.buscarcomprasPagadas();
 
 //        this.auxiliarrequerimiento=requerimientosController.getAuxrequer();
     }
@@ -386,6 +399,10 @@ public class ComprasController implements Serializable {
 
     public List<Compra> buscarComprasporPagar() {
         comprasporpagar = compraEJB.buscarcomprasporPagar();
+        return comprasporpagar;
+    }
+        public List<Compra> buscarComprasPagadas() {
+        compraspagadas = compraEJB.buscarcomprasPagadas();
         return comprasporpagar;
     }
 }

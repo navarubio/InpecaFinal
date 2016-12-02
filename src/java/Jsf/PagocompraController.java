@@ -3,30 +3,32 @@ package Jsf;
 import Modelo.Pagocompra;
 import Jsf.util.JsfUtil;
 import Jsf.util.JsfUtil.PersistAction;
-import Jpa.PagocompraFacade;
-
+import Jpa.PagocompraFacadeLocal;
 import java.io.Serializable;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@Named("pagocompraController")
+@ManagedBean(name ="pagocompraController")
 @SessionScoped
 public class PagocompraController implements Serializable {
 
     @EJB
-    private Jpa.PagocompraFacade ejbFacade;
+    private Jpa.PagocompraFacadeLocal ejbFacade;
+
     private List<Pagocompra> items = null;
     private Pagocompra selected;
+    private List<Pagocompra> pagosefectuados;
 
     public PagocompraController() {
     }
@@ -45,7 +47,7 @@ public class PagocompraController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private PagocompraFacade getFacade() {
+    private PagocompraFacadeLocal getFacade() {
         return ejbFacade;
     }
 
@@ -79,6 +81,19 @@ public class PagocompraController implements Serializable {
             items = getFacade().findAll();
         }
         return items;
+    }
+
+    public List<Pagocompra> getPagosefectuados() {
+        return pagosefectuados;
+    }
+
+    public void setPagosefectuados(List<Pagocompra> pagosefectuados) {
+        this.pagosefectuados = pagosefectuados;
+    }
+
+    @PostConstruct
+    public void init() {
+        pagosefectuados = ejbFacade.buscarPagosefectuados();
     }
 
     private void persist(PersistAction persistAction, String successMessage) {
